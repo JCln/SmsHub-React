@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Login } from './components/login';
+import { Button } from './components/Button';
+import { Input } from './components/Input';
+import 'tailwindcss';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <h1 className='text-3xl font-bold underline'>
+        hello
+      </h1>
+      <Login></Login>
+      <Button onClick={(e) => {
+        e.preventDefault();
+        console.log(e);
+      }}
+      >
+        this is login
+      </Button>
+      <Input></Input>
+    </div >
   );
 }
 
