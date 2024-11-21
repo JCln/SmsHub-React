@@ -2,7 +2,6 @@ import React from 'react';
 import { Login } from './components/login';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
-import 'tailwindcss';
 import './App.css';
 
 function App() {
