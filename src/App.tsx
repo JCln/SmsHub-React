@@ -1,24 +1,11 @@
 import React from 'react';
 import { Login } from './components/login';
-import { Button } from './components/Button';
-import { Input } from './components/Input';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <h1 className='text-3xl font-bold underline'>
-        hello
-      </h1>
       <Login></Login>
-      <Button onClick={(e) => {
-        e.preventDefault();
-        console.log(e);
-      }}
-      >
-        this is login
-      </Button>
-      <Input></Input>
     </div >
   );
 }

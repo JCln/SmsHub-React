@@ -1,16 +1,23 @@
 import React, { useRef, useState } from 'react'
 
-export const Input = () => {
-    const [name, setName] = useState('');
+type Props = {
+    placeholder: string;
+    name: string;
+    icon: string;
+    label: string
+    // type: string
+}
+
+export const Input = ({ placeholder, icon, name, label }: Props) => {
+    const [value, setValue] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
     console.log("ref", inputRef?.current?.value);
     return (
-        <input
-            ref={inputRef}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-        >
-        </input>
+        <div className='input-group mb-3'>
+            <span className="input-group-text" id={name}>{icon}</span>
+            <input type='text' ref={inputRef} className="form-control" placeholder={placeholder} aria-label={label} aria-describedby="basic-addon1" onChange={(e) => setValue(e.target.value)}>
+            </input>
+        </div>
     )
 }

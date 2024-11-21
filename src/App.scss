@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2 supports variations'),
+    url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-family: "Vazirmatn", sans-serif;
+
+  --black: #282c34;
+  --white: #fff;
+  --green-100: #d1e7dd;
+  --green-200: #a3cfbb;
+  --green-300: #75b798;
+  --green-500: #479f76;
+  --green-700: #0f5132;
+  --green-900: #051b11;
+
+  --border-5px: 5px;
+  --border-10px: 10px;
+  --border-15px: 15px;
+  --border-100vmax: 100vmax;
+
+  --size-5px: 5px;
+  --size-8px: 8px;
+  --size-10px: 10px;
+  --size-1rem: 1rem;
+  --size-1-2rem: 1.2rem;
+  --size-1-3rem: 1.3rem;
+  --size-1-4rem: 1.4rem;
+  --size-1-5rem: 1.5rem;
+  --size-1-6rem: 1.6rem;
+  --size-2rem: 2rem;
+}
+
+html,
+body {
+  font-family: var(--font-family) !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: var(--black);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+._content {
+  display: grid;
+  justify-content: center;
+  direction: rtl;
+  gap: 5px;
+}
+
+.logo-img {
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
+}
+
+.btn-green-500 {
+  background-color: var(--green-500) !important;
+  color: var(--white) !important;
+}
