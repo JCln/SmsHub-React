@@ -1,10 +1,12 @@
 import { Button } from './Button';
 import loginLogo from '../images/logo.png';
 import { Input } from './Input';
+import { Link } from 'react-router';
+import * as ENRoutes from '../constants/ENRoutes';
 
 export const Login = () => {
     return (
-        <div className=''>
+        <div className='َApp'>
             <div className="_content">
                 <img className='logo-img' src={loginLogo} alt="" />
                 <h3>ورود/ ثبت نام</h3>
@@ -14,6 +16,7 @@ export const Login = () => {
                 <Button onClick={(e) => {
                     e.preventDefault();
                     console.log(e);
+                    <Link to={ENRoutes.TwoStepVerification}></Link>
                 }}
                 >
                     ورود
@@ -26,6 +29,6 @@ export const Login = () => {
                     ثبت نام
                 </Button>
             </div>
-        </div >
+        </div>
     )
 }

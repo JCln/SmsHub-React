@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Types from '../actions/ActionTypes';
+import * as Types from '../constants/ActionTypes';
 
 const initialState = {
     count: 0
