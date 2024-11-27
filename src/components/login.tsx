@@ -14,9 +14,9 @@ export const Login = () => {
                 <p>با وارد نمودن شماره همراه یک کد تایید برای شما به صورت پیامک ارسال خواهد شد</p>
 
                 <Button onClick={(e) => {
-                    e.preventDefault();
-                    console.log(e);
+                    // e.preventDefault();
                     <Link to={ENRoutes.TwoStepVerification}></Link>
+                    console.log(e);
                 }}
                 >
                     ورود
