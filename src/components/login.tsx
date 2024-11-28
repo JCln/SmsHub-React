@@ -10,7 +10,13 @@ export const Login = () => {
             <div className="_content">
                 <img className='logo-img' src={loginLogo} alt="" />
                 <h3>ورود/ ثبت نام</h3>
-                <Input icon=':(' label='شماره همراه' name='mobile' placeholder='09*********' key={23}></Input>
+                <div className='input-group mb-3'>
+                    <span
+                        className="input-group-text">
+                        :()
+                    </span>
+                    <Input icon=':(' label='شماره همراه' name='mobile' placeholder='09*********' key={23}></Input>
+                </div>
                 <p>با وارد نمودن شماره همراه یک کد تایید برای شما به صورت پیامک ارسال خواهد شد</p>
 
                 <Button onClick={(e) => {

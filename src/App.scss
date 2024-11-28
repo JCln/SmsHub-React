@@ -34,6 +34,11 @@
   --size-1-5rem: 1.5rem;
   --size-1-6rem: 1.6rem;
   --size-2rem: 2rem;
+  --size-7rem: 7rem;
+  --size-8rem: 8rem;
+  --size-10rem: 10rem;
+  --size-12rem: 12rem;
+  --size-15rem: 15rem;
 }
 
 html,
@@ -60,7 +65,8 @@ body {
   display: grid;
   justify-content: center;
   direction: rtl;
-  gap: 5px;
+  gap: var(--size-5px);
+  grid-template-columns: repeat(auto-fit, minmax(var(--size-12rem), var(--size-15rem)));
 }
 
 .logo-img {
@@ -72,4 +78,36 @@ body {
 .btn-green-500 {
   background-color: var(--green-500) !important;
   color: var(--white) !important;
+}
+
+.announcement_content {
+  display: grid;
+  justify-content: center;
+  background: var(--green-100);
+  border-radius: var(--border-10px);
+  padding: var(--size-1rem);
+
+  .announcement_tumbnail {
+    margin: auto;
+    height: var(--size-8rem);
+    width: calc(100% - var(--size-8px));
+    border-radius: var(--border-10px);
+  }
+
+  .title {
+    font-size: var(--size-1-2rem);
+    font-weight: bold;
+  }
+
+  .description {}
+
+  .price_section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .price {
+    font-size: var(--size-1-2rem);
+    font-weight: bold;
+  }
 }
