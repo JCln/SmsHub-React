@@ -6,12 +6,12 @@ import { Link } from 'react-router';
 
 const TwoStepVerification = () => {
     return (
-        <div className='َApp'>
+        <div className='َapp'>
             <div className="_content">
                 <img className='logo-img' src={lockTwoStep} alt="" />
                 <h3>ثبت کد تایید</h3>
                 <div>
-                    <Inputs type='text' label='' name='in1' placeholder='' key={1}></Inputs>
+                    <Inputs type='text' label='' name='in1' placeholder='' key={1} direction='ltr'></Inputs>
                 </div>
                 <p>جهت ورود یا ثبت نام، کد ارسال شده را وارد کنید</p>
 

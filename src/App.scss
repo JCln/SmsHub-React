@@ -43,10 +43,27 @@
 
 html,
 body {
+  height: 100%;
   font-family: var(--font-family) !important;
 }
 
-.App {
+.background-img {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+.input_icon {
+  width: var(--size-1-2rem);
+  height: var(--size-1-2rem);
+}
+
+.app {
   text-align: center;
 }
 
@@ -66,6 +83,14 @@ body {
   justify-content: center;
   direction: rtl;
   gap: var(--size-5px);
+  padding: var(--size-5px);
+}
+
+._container {
+  display: grid;
+  justify-content: center;
+  direction: rtl;
+  gap: var(--size-5px);
   grid-template-columns: repeat(auto-fit, minmax(var(--size-12rem), var(--size-15rem)));
 }
 
@@ -81,8 +106,6 @@ body {
 }
 
 .announcement_content {
-  display: grid;
-  justify-content: center;
   background: var(--green-100);
   border-radius: var(--border-10px);
   padding: var(--size-1rem);
@@ -104,10 +127,15 @@ body {
   .price_section {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   .price {
     font-size: var(--size-1-2rem);
     font-weight: bold;
+
+    button {
+      border-radius: var(--border-100vmax);
+    }
   }
 }

@@ -1,16 +1,18 @@
 import React, { useRef, useState } from 'react'
 import { Input } from './Input';
+import { InputDirectionTypes, InputTypes } from '../constants/ActionTypes';
 
 type Props = {
     placeholder: string;
     name: string;
     icon?: string;
     label: string;
-    type: string;
+    type: InputTypes;
+    direction: InputDirectionTypes;
     className?: string;
 }
 
-export const Inputs = ({ placeholder, icon, name, label, type }: Props) => {
+export const Inputs = ({ placeholder, icon, name, label, type, direction }: Props) => {
     const [value, setValue] = useState('');
     return (
         // <div className='input-group mb-3'>
@@ -26,11 +28,13 @@ export const Inputs = ({ placeholder, icon, name, label, type }: Props) => {
             label={label}
             aria-label={label}
             type={type}
+            dir={direction}
             aria-describedby="basic-addon1"
-            className="form-control"
+            className="inputs"
         >
 
         </Input>
         // </div>
+        // form-control in <Input
     )
 }
