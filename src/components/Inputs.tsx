@@ -15,12 +15,6 @@ type Props = {
 export const Inputs = ({ placeholder, icon, name, label, type, direction }: Props) => {
     const [value, setValue] = useState('');
     return (
-        // <div className='input-group mb-3'>
-        //     <span
-        //         className="input-group-text"
-        //         id={name}>
-        //         {icon}
-        //     </span>
         <Input
             name={name}
             icon={icon}
@@ -32,9 +26,6 @@ export const Inputs = ({ placeholder, icon, name, label, type, direction }: Prop
             aria-describedby="basic-addon1"
             className="inputs"
         >
-
         </Input>
-        // </div>
-        // form-control in <Input
     )
 }
