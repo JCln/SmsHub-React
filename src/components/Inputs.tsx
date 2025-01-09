@@ -13,7 +13,6 @@ type Props = {
 }
 
 export const Inputs = ({ placeholder, icon, name, label, type, direction }: Props) => {
-    const [value, setValue] = useState('');
     return (
         <Input
             name={name}

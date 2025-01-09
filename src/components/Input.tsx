@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-export const Input = ({ title, icon, ...rest }: any) => {
+export const Input = ({ title, icon, onChange, ...rest }: any) => {
     const [value, setValue] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -9,6 +9,7 @@ export const Input = ({ title, icon, ...rest }: any) => {
         <input
             ref={inputRef}
             {...rest}
+            value={value}
             onChange={(e) => setValue(e.target.value)}
         >
         </input>

@@ -1,17 +1,34 @@
-import { Button } from './Button';
 import loginLogo from '../images/logo.jpg';
 import back1 from '../images/back1.png';
 import loginDashboard from '../images/login-dashboard.jpg';
-import { Link } from 'react-router';
-import * as ENRoutes from '../constants/ENRoutes';
-import { Inputs } from './Inputs';
+import { useState } from 'react';
+import axios from 'axios';
 
 export const Login = () => {
-    const loginForm = {
+    const [inputs, setInputs] = useState({
         username: '',
         password: '',
-        captcha: '',
+        clientDateTime: '',
+        appVersion: '',
+        captchaText: '',
+        captchaToken: '',
+        captchaInputText: ''
+    });
+
+    const setLoginForm = (e: any) => {
+        const value = e.target.value;
+        const name = e.target.name;
+
+        setInputs(values => ({ ...values, [name]: value }))
     }
+    const callAPI = () => {
+        console.log(inputs);
+    }
+    // componentDidMount() {
+    //     const promise = axios.get("https://localhost:5001/api/posts");
+    //     console.log(promise);
+    // }
+
     return (
         <>
             <div className="wrapper">
@@ -20,12 +37,12 @@ export const Login = () => {
                     <div className="_content">
                         <div className="inner_content">
                             <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
-                            <Inputs direction='rtl' label='نام کاربری' name='username' placeholder='نام کاربری' type='text' />
-                            <Inputs direction='rtl' label='رمز عبور' name='password' placeholder='رمز عبور' type='password' />
-                            <Inputs direction='ltr' label='کپچا' name='captcha' placeholder='کپچا' type='text' />
-                            <Inputs direction='rtl' label='کد امنیتی را وارد نمایید' name='enterCaptcha' placeholder='کد امنیتی را وارد نمایید' type='text' />
+                            <input name='username' placeholder='نام کاربری' type="text" dir='ltr' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
+                            <input name='password' placeholder='نام کاربری' type="text" dir='ltr' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
+                            <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='ltr' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
+
                             <button className="_button" onClick={e => {
-                                console.log(e)
+                                callAPI()
                             }}>
                                 ورود
                             </button>
@@ -56,33 +73,3 @@ export const Login = () => {
         </>
     )
 }
-
-
-{/* <div className='َapp'>            
-<div className="_content">
-    <img className='logo-img' src={loginLogo} alt="" />
-    <h3>ورود/ ثبت نام</h3>
-    <div className='d-flex mb-3'>
-        <span
-            className="input-group-text">
-            <img className='input_icon' src={phoneCall} alt="" />
-        </span>
-        <Inputs direction='ltr' type='text' icon=':(' label='شماره همراه' name='mobile' placeholder='09*********' key={23}></Inputs>
-    </div>
-    <p>با وارد نمودن شماره همراه یک کد تایید برای شما به صورت پیامک ارسال خواهد شد</p>
-
-    <Button onClick={(e) => {
-        // e.preventDefault();
-        <Link to={ENRoutes.TwoStepVerification}></Link>
-        console.log(e);
-    }}
-    >
-        ورود
-    </Button>
-    <Button onClick={(e) => {
-        e.preventDefault();
-        console.log(e);
-    }}
-    >
-        ثبت نام
-    </Button> */}
