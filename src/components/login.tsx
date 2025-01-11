@@ -8,11 +8,11 @@ export const Login = () => {
     const [inputs, setInputs] = useState({
         username: '',
         password: '',
-        clientDateTime: '',
-        appVersion: '',
-        captchaText: '',
-        captchaToken: '',
-        captchaInputText: ''
+        clientDateTime: 'string',
+        appVersion: 'string',
+        captchaText: 'string',
+        captchaToken: 'string',
+        captchaInputText: 'string'
     });
 
     const setLoginForm = (e: any) => {
@@ -21,14 +21,16 @@ export const Login = () => {
 
         setInputs(values => ({ ...values, [name]: value }))
     }
-    const callAPI = () => {
+    const callAPI = async () => {
         console.log(inputs);
+        const res = await axios.post("https://130.185.75.117/smshub/login/first-step", inputs)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
-    // componentDidMount() {
-    //     const promise = axios.get("https://localhost:5001/api/posts");
-    //     console.log(promise);
-    // }
-
     return (
         <>
             <div className="wrapper">
