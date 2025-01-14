@@ -1,3 +1,5 @@
 export const TwoStepVerification = '/login';
 export const Announcement = '/announcement';
-export const Home = '/';
+export const Sidebar = '/sidebar';
+export const serveruser = '/framework/serveruser';
+export const Login = '/';

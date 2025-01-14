@@ -1,26 +1,42 @@
-import React from 'react';
-import { Login } from './components/login';
-import TwoStepVerification from './components/TwoStepsVerification';
 import './App.scss';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import * as ENRoutes from './constants/ENRoutes';
 import NotFound from './components/NotFound';
 import Announcement from './components/Announcement';
+import { PrivateRoute } from './components/PrivateRoute';
+import { Login } from './components/login';
+import Framework from './components/framework';
+import ServerUser from './components/serverUser';
+import axios from 'axios';
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path={ENRoutes.Announcement} Component={Announcement}></Route> */}
-          {/* <Route path={ENRoutes.TwoStepVerification} Component={TwoStepVerification}></Route> */}
-          <Route path={ENRoutes.Home} Component={Login}></Route>
-          <Route path="/not-found" Component={NotFound} />
-          {/* <Redirect to='/not-found' /> */}
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <PrimeReactProvider>
+        <BrowserRouter>
+          <div style={{ display: 'flex', direction: 'rtl' }}>
+            <Framework />
+            <Routes>
+
+              <Route path={ENRoutes.Sidebar} Component={Framework}></Route>
+              <Route path={ENRoutes.serveruser} Component={ServerUser}></Route>
+              <Route path={ENRoutes.Login} Component={Login}></Route>
+              <Route path="/not-found" Component={NotFound}></Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </PrimeReactProvider>
+    </div >
   );
 }
 
+axios.interceptors.response.use(null, error => {
+  console.log("interceptor called.");
+  return Promise.reject(error);
+});
+
 export default App;
+
+{/* <Route path={ENRoutes.TwoStepVerification} Component={TwoStepVerification}></Route> */ }
+{/* <Redirect to='/not-found' /> */ }

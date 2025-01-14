@@ -2,7 +2,7 @@ import loginLogo from '../images/logo.jpg';
 import back1 from '../images/back1.png';
 import loginDashboard from '../images/login-dashboard.jpg';
 import { useState } from 'react';
-import axios from 'axios';
+import http from '../services/httpService';
 
 export const Login = () => {
     const [inputs, setInputs] = useState({
@@ -23,13 +23,14 @@ export const Login = () => {
     }
     const callAPI = async () => {
         console.log(inputs);
-        const res = await axios.post("https://130.185.75.117/smshub/login/first-step", inputs)
+        const res = await http.post("https://130.185.75.117/smshub/login/first-step", inputs)
             .then(function (response) {
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
+
     }
     return (
         <>
