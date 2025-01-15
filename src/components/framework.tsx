@@ -5,7 +5,7 @@ import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router';
 import { PrimeReactProvider } from 'primereact/api';
 import Announcement from './Announcement';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import hiwalogo from '../images/hiwalogo.png';
+import stipe from '../images/stipe.jpg';
 
 
 const Framework = () => {
@@ -18,7 +18,7 @@ const Framework = () => {
                     backgroundColor={'#E0E0E0'}
                 >
                     <div style={{ width: '4rem', height: '4rem', margin: '16px auto 24px' }}>
-                        <img className="w-100 h-100" src={hiwalogo} alt="" />
+                        <img className="w-100 h-100" src={stipe} alt="" />
                     </div>
 
                     <Menu

@@ -1,0 +1,4 @@
+{
+    "serverUser": "/ServerUser/GetAll",
+    "login": "/login/first-step"
+}

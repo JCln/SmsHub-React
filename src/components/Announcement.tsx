@@ -5,11 +5,11 @@ import { Inputs } from './Inputs';
 import * as ENRoutes from '../constants/ENRoutes';
 import { Link } from 'react-router';
 
-import configs from '../configs.json';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useEffect, useState } from 'react';
 import http from '../services/httpService';
+import { getDynamics } from '../dynamics/getDynamics';
 
 
 const Announcement = () => {
@@ -21,7 +21,7 @@ const Announcement = () => {
     }, []);
 
     const callAPI = async (): Promise<any> => {
-        const res = await http.post(`${configs}/ServerUser/GetAll`);
+        const res = await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.serverUser}`);
         console.log(res);
     }
     return (

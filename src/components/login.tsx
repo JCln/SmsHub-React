@@ -3,6 +3,7 @@ import back1 from '../images/back1.png';
 import loginDashboard from '../images/login-dashboard.jpg';
 import { useState } from 'react';
 import http from '../services/httpService';
+import { getDynamics } from '../dynamics/getDynamics';
 
 export const Login = () => {
     const [inputs, setInputs] = useState({
@@ -23,7 +24,7 @@ export const Login = () => {
     }
     const callAPI = async () => {
         console.log(inputs);
-        const res = await http.post("https://130.185.75.117/smshub/login/first-step", inputs)
+        const res = await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.login}`, inputs)
             .then(function (response) {
                 console.log(response);
             })

@@ -1,0 +1,1 @@
+export * as getDynamics from './exportConfigs';

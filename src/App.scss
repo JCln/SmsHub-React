@@ -75,6 +75,11 @@ input {
   text-align: center;
 }
 
+.full-height-width {
+  width: 100vw;
+  height: 100vh;
+}
+
 .App-header {
   background-color: var(--black);
   min-height: 100vh;

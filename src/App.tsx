@@ -9,13 +9,15 @@ import { Login } from './components/login';
 import Framework from './components/framework';
 import ServerUser from './components/serverUser';
 import axios from 'axios';
+import back1 from './images/back1.png';
 
 function App() {
   return (
     <div>
       <PrimeReactProvider>
         <BrowserRouter>
-          <div style={{ display: 'flex', direction: 'rtl' }}>
+          <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
+            <img className="full-height-width position-fixed" src={back1} alt="" />
             <Framework />
             <Routes>
 
