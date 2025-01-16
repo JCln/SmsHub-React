@@ -1,4 +1,6 @@
 {
+    "userAll": "/user/all",
     "serverUser": "/ServerUser/GetAll",
-    "login": "/login/first-step"
+    "login": "/login/first-step",
+    "loginCaptcha": "/login/captcha"
 }

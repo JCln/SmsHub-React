@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import * as ENRoutes from './constants/ENRoutes';
 import NotFound from './components/NotFound';
-import Announcement from './components/Announcement';
-import { PrivateRoute } from './components/PrivateRoute';
+// import Announcement from './components/Announcement';
+// import { PrivateRoute } from './components/PrivateRoute';
 import { Login } from './components/login';
 import Framework from './components/framework';
 import ServerUser from './components/serverUser';
+import userAll from './components/userAll';
 import axios from 'axios';
 import back1 from './images/back1.png';
 
@@ -23,6 +24,7 @@ function App() {
 
               <Route path={ENRoutes.Sidebar} Component={Framework}></Route>
               <Route path={ENRoutes.serveruser} Component={ServerUser}></Route>
+              <Route path={ENRoutes.userAll} Component={userAll}></Route>
               <Route path={ENRoutes.Login} Component={Login}></Route>
               <Route path="/not-found" Component={NotFound}></Route>
             </Routes>

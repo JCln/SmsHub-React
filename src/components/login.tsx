@@ -1,32 +1,48 @@
 import loginLogo from '../images/logo.jpg';
 import back1 from '../images/back1.png';
 import loginDashboard from '../images/login-dashboard.jpg';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import http from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
+import axios from 'axios';
 
 export const Login = () => {
+    const [captcha, setCaptcha] = useState<any>();
     const [inputs, setInputs] = useState({
         username: '',
         password: '',
         clientDateTime: 'string',
         appVersion: 'string',
         captchaText: 'string',
-        captchaToken: 'string',
         captchaInputText: 'string'
     });
+    useEffect(() => {
+        getCaptcha().then(data => setCaptcha(data));
+    }, []);
 
     const setLoginForm = (e: any) => {
         const value = e.target.value;
         const name = e.target.name;
-
         setInputs(values => ({ ...values, [name]: value }))
     }
+
     const callAPI = async () => {
         console.log(inputs);
         const res = await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.login}`, inputs)
             .then(function (response) {
                 console.log(response);
+                axios.defaults.headers.common['Authorization'] = `Bearer ` + response.data.data.accessToken;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
+    const getCaptcha = async () => {
+        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.loginCaptcha}`)
+            .then(function (response) {
+                inputs.captchaInputText = response.data.data.dntCaptchaTextValue;
+                // setInputs(values => ({ ...values, ['captchaInputText']: response.data.data.dntCaptchaTextValue }))               
             })
             .catch(function (error) {
                 console.log(error);

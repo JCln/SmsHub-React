@@ -2,13 +2,13 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import http from '../services/httpService';
 
-import { useEffect, useState } from 'react';
 import { getDynamics } from '../dynamics/getDynamics';
+import { useEffect, useState } from 'react';
 
 
-const ServerUser = () => {
-    console.log('this is server user');
-    const [products, setProducts] = useState([]);
+const UserAll = () => {
+    console.log('this is user all');
+    const [products, setProducts] = useState<any[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
     const [columns, setColumns] = useState<any>(null);
@@ -23,9 +23,13 @@ const ServerUser = () => {
     // }, [])
 
     const callAPI = async (): Promise<any> => {
-        const res = await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.serverUser}`)
+        const res = await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.userAll}`)
             .then(function (response) {
-                console.log(response);
+                return new Promise((resolve) => {
+                    console.log(response);
+                    resolve(response)
+                });
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -36,12 +40,13 @@ const ServerUser = () => {
         <div>
             <DataTable value={products} tableStyle={{ minWidth: '50rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
-                <Column sortable field="code" header="username"></Column>
-                <Column sortable field="name" header="isAdmin"></Column>
-                <Column sortable field="category" header="createDateTime"></Column>
-                <Column sortable field="quantity" header="deleteDateTime"></Column>
+                <Column sortable field="displayName" header="displayName"></Column>
+                <Column sortable field="username" header="username"></Column>
+                <Column sortable field="mobile" header="mobile"></Column>
+                <Column sortable field="lockTimespan" header="lockTimespan"></Column>
+
             </DataTable>
         </div>
     )
 }
-export default ServerUser;
+export default UserAll;
