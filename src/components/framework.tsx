@@ -44,7 +44,7 @@ const Framework = () => {
                             <MenuItem component={<Link to="/framework/sendSMS" />}>تراکنش ها</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}>فاکتور های صادر شده</MenuItem> */}
                         </SubMenu>
-
+                        <MenuItem component={<Link to={ENRoutes.Root} />}> خروج</MenuItem>
                     </Menu>
                 </Sidebar>
             </div>

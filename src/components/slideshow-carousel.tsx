@@ -134,7 +134,7 @@ export default function CircularDemo() {
     return (
         <div>
             <div className="card">
-                <Carousel value={products} numVisible={1} numScroll={3} responsiveOptions={responsiveOptions} className="custom-carousel" circular
+                <Carousel value={products} numVisible={1} numScroll={1} responsiveOptions={responsiveOptions} className="custom-carousel" circular
                     autoplayInterval={3000} itemTemplate={productTemplate} />
             </div>
         </div>

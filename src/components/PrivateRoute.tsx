@@ -9,5 +9,5 @@ export const PrivateRoute = () => {
     // If not, return element that will navigate to login page
     console.log(auth);
     console.log(Outlet);
-    return auth ? <Outlet /> : <Navigate to={ENRoutes.Login} />;
+    return auth ? <Outlet /> : <Navigate to={ENRoutes.Root} />;
 }

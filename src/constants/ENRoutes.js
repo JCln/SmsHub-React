@@ -4,4 +4,4 @@ export const Sidebar = '/sidebar';
 export const SMSHub = '/smshub';
 export const serveruser = '/smshub/serveruser';
 export const userAll = '/smshub/userall';
-export const Login = '/';
+export const Root = '/';

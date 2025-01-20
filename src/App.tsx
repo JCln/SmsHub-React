@@ -18,14 +18,12 @@ function App() {
         <BrowserRouter>
           <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
             <img className="full-height-width position-fixed" src={back1} alt="" />
-            {/* <Framework /> */}
             <Routes>
-
-              <Route path={ENRoutes.SMSHub} Component={Framework}>
+              <Route path={ENRoutes.SMSHub}>                
                 <Route path={ENRoutes.userAll} Component={userAll}></Route>
+                <Route path={ENRoutes.serveruser} Component={ServerUser}></Route>
               </Route>
-              <Route path={ENRoutes.serveruser} Component={ServerUser}></Route>
-              <Route path={ENRoutes.Login} Component={Login}></Route>
+              <Route path={ENRoutes.Root} Component={Login}></Route>
               <Route path="/not-found" Component={NotFound}></Route>
             </Routes>
           </div>

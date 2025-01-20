@@ -4,6 +4,7 @@ import http from '../services/httpService';
 
 import { useEffect, useState } from 'react';
 import { getDynamics } from '../dynamics/getDynamics';
+import Framework from './framework';
 
 
 const ServerUser = () => {
@@ -33,7 +34,8 @@ const ServerUser = () => {
         console.log(res);
     }
     return (
-        <div>
+        <div className='temporary_route_flex'>
+            <Framework></Framework>
             <DataTable value={products} tableStyle={{ minWidth: '50rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 <Column sortable field="code" header="username"></Column>

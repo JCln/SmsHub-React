@@ -1,11 +1,13 @@
 import loginLogo from '../images/logo.jpg';
 import back1 from '../images/back1.png';
 import { useEffect, useRef, useState } from 'react';
-import http, { setAxiosHeader } from '../services/httpService';
+import http from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
 import * as ENRoutes from '../constants/ENRoutes';
 import axios from 'axios';
 import CircularDemo from './slideshow-carousel';
+import { Link } from 'react-router';
+import Framework from './framework';
 
 export const Login = () => {
     const [captcha, setCaptcha] = useState();
@@ -33,14 +35,9 @@ export const Login = () => {
         console.log(inputs);
         await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.login}`, inputs)
             .then(function (response) {
-                const authorization = `Bearer ` + response.data.data.accessToken;
-                setAxiosHeader(authorization);
-                return (
-                    <div>
-                        {/* <div onClick={() => history.push('/products')}>
-                        </div> */}
-                    </div>
-                )
+                const AUTH_TOKEN = `Bearer ` + response.data.data.accessToken;
+                axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+                // setAxiosHeader(authorization);                
             })
             .catch(function (error) {
                 console.log(error);
@@ -71,6 +68,7 @@ export const Login = () => {
     }
     return (
         <>
+            <Framework></Framework>
             <div className="wrapper">
                 <section className="main">
                     <img className="w-100 h-100" src={back1} alt="" />
