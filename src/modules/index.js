@@ -1,0 +1,1 @@
+export * as PrimeReact from './prime.js';

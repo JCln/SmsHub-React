@@ -1,9 +1,5 @@
-import { Button } from './Button';
-import { Inputs } from './Inputs';
 import * as ENRoutes from '../constants/ENRoutes';
-import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router';
-import { PrimeReactProvider } from 'primereact/api';
-import Announcement from './Announcement';
+import { Link } from 'react-router';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import logo from '../images/hiwalogo.png';
 
@@ -33,20 +29,20 @@ const Framework = () => {
                             },
                         }}
                     >
-                        <MenuItem component={<Link to="/framework" />}> خانه</MenuItem>
+                        <MenuItem component={<Link to={ENRoutes.SMSHub} />}> خانه</MenuItem>
                         <SubMenu label="کاربران" >
-                            <MenuItem component={<Link to="/framework/userall" />}>همه کاربران</MenuItem>
-                            <MenuItem component={<Link to="/framework/serveruser" />}> کابران سرور</MenuItem>
+                            <MenuItem component={<Link to={ENRoutes.userAll} />}>همه کاربران</MenuItem>
+                            <MenuItem component={<Link to={ENRoutes.serveruser} />}> کابران سرور</MenuItem>
                         </SubMenu>
                         <SubMenu label="ارسال پیامک" >
-                            <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال سریع</MenuItem>
+                            {/* <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال سریع</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال فوری</MenuItem>
-                            <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال انقلابی</MenuItem>
+                            <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال انقلابی</MenuItem> */}
                         </SubMenu>
                         <SubMenu label="مدیریت مالی" >
-                            <MenuItem component={<Link to="/framework/sendSMS" />}>پیش فاکتورها</MenuItem>
+                            {/* <MenuItem component={<Link to="/framework/sendSMS" />}>پیش فاکتورها</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}>تراکنش ها</MenuItem>
-                            <MenuItem component={<Link to="/framework/sendSMS" />}>فاکتور های صادر شده</MenuItem>
+                            <MenuItem component={<Link to="/framework/sendSMS" />}>فاکتور های صادر شده</MenuItem> */}
                         </SubMenu>
 
                     </Menu>
