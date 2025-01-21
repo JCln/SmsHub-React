@@ -21,10 +21,10 @@ const store = configureStore(
 )
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <ToastContainer />
-      <App />
-    </React.StrictMode>
+    {/* <React.StrictMode>  Strict mode cause program to run twice at startup*/}
+    <ToastContainer />
+    <App />
+    {/* </React.StrictMode> */}
   </Provider>
 );
 

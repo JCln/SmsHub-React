@@ -1,23 +1,32 @@
 /* ./src/index.css */
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@layer base {
+  @font-face {
+    font-family: 'Vazirmatn';
+    font-weight: 400;
+    src: url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2 supports variations'),
+      url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2-variations');
+  }
+
+  @font-face {
+    font-family: 'Vazirmatn';
+    font-weight: 500;
+    src: url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2 supports variations'),
+      url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2-variations');
+  }
 }
 
+@tailwind utilities;
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Vazirmatn' !important;
 }
 
 :root {
+  font-family: 'Vazirmatn';
   --clr-white: #FFFFFF;
   --clr-white20: #FFFFFF33;
   --clr-lightgray: #E0E0E0;

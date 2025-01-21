@@ -31,35 +31,42 @@ const Framework = () => {
                     >
                         <reactProSidebar.MenuItem component={<Link to={ENRoutes.SMSHub} />}> خانه</reactProSidebar.MenuItem>
                         <div className='_hr1'></div>
-                        <reactProSidebar.SubMenu label="کاربران" >
+
+                        <reactProSidebar.SubMenu label="کاربران">
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.userAll} />} >همه کاربران</reactProSidebar.MenuItem>
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.serveruser} />}> کابران سرور</reactProSidebar.MenuItem>
                         </reactProSidebar.SubMenu>
                         <div className='_hr1'></div>
+
                         <reactProSidebar.SubMenu label="مشتریان ما" >
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.provider} />}>سرویس دهندگان</reactProSidebar.MenuItem>
                         </reactProSidebar.SubMenu>
                         <div className='_hr1'></div>
+
                         <reactProSidebar.SubMenu label="خطوط" >
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.consumerLine} />}>مشتریان</reactProSidebar.MenuItem>
                         </reactProSidebar.SubMenu>
                         <div className='_hr1'></div>
+
                         <reactProSidebar.SubMenu label="قالب ها" >
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.ConfigTypeGroup} />}>گروه بندی</reactProSidebar.MenuItem>
                         </reactProSidebar.SubMenu>
                         <div className='_hr1'></div>
+
                         <reactProSidebar.SubMenu label="ارسال پیامک" >
                             {/* <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال سریع</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال فوری</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}> ارسال انقلابی</MenuItem> */}
                         </reactProSidebar.SubMenu>
                         <div className='_hr1'></div>
+
                         <reactProSidebar.SubMenu label="مدیریت مالی" >
                             {/* <MenuItem component={<Link to="/framework/sendSMS" />}>پیش فاکتورها</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}>تراکنش ها</MenuItem>
                             <MenuItem component={<Link to="/framework/sendSMS" />}>فاکتور های صادر شده</MenuItem> */}
                         </reactProSidebar.SubMenu>
                         <div className='_hr1'></div>
+
                         <reactProSidebar.MenuItem component={<Link to={ENRoutes.Root} />}> خروج</reactProSidebar.MenuItem>
                     </reactProSidebar.Menu>
                 </reactProSidebar.Sidebar>
