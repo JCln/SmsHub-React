@@ -67,8 +67,7 @@ export const Login = () => {
 
     }
     return (
-        <>
-            <Framework></Framework>
+        <>            
             <div className="wrapper">
                 <section className="main">
                     <img className="w-100 h-100" src={back1} alt="" />

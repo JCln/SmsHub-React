@@ -1,5 +1,8 @@
 {
     "userAll": "/user/all",
+    "providerGetList": "/Provider/GetList",
+    "ConsumerLineGetList": "/CunsumerLine/GetList",
+    "ConfigTypeGroup": "/ConfigTypeGroup/GetList",
     "serverUser": "/ServerUser/GetAll",
     "login": "/login/first-step",
     "loginCaptcha": "/login/captcha"

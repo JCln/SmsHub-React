@@ -154,6 +154,12 @@ input {
   height: 100%;
 }
 
+._hr1 {
+  border-bottom: 1px solid var(--clr-lightgray);
+  width: 80%;
+  margin: auto;
+}
+
 .wrapper {
   position: fixed;
   display: flex;

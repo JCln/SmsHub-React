@@ -7,24 +7,21 @@ import { useEffect, useState } from 'react';
 import Framework from './framework';
 
 
-const UserAll = () => {
-    console.log('this is user all');
+const ConfigTypeGroup = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
     const columns = [
-        { field: 'displayName', header: 'نام نمایشی' },
-        { field: 'fullName', header: 'نام کامل' },
-        { field: 'username', header: 'نام کاربری' },
-        { field: 'mobile', header: 'موبایل' }
+        { field: 'title', header: 'نام' },
+        { field: 'configTypeId', header: 'کانفیگ' },
+        { field: 'description', header: 'توضیحات' },
     ];
-
 
     useEffect(() => {
         callAPI();
     }, []);
     const callAPI = async (): Promise<any> => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.userAll}`)
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.ConfigTypeGroup}`)
             .then(function (response) {
                 setProducts(response.data.data);
             })
@@ -44,4 +41,4 @@ const UserAll = () => {
         </div>
     )
 }
-export default UserAll;
+export default ConfigTypeGroup;

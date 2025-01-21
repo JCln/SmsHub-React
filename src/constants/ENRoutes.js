@@ -4,4 +4,7 @@ export const Sidebar = '/sidebar';
 export const SMSHub = '/smshub';
 export const serveruser = '/smshub/serveruser';
 export const userAll = '/smshub/userall';
+export const provider = '/smshub/provider';
+export const consumerLine = '/smshub/consumerLine';
+export const ConfigTypeGroup = '/smshub/ConfigTypeGroup';
 export const Root = '/';
