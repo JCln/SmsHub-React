@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/*
+320px — 480px: Mobile devices.
+481px — 768px: iPads, Tablets.
+769px — 1024px: Small screens, laptops.
+1025px — 1200px: Desktops, large screens.
+1201px and more — Extra large screens, TV.
+*/
 
 @layer base {
   @font-face {
@@ -129,11 +136,61 @@ input {
   margin: auto;
 }
 
+._captcha {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: var(--size-5px);
+}
+
+.captcha-refresh {
+  cursor: pointer;
+  padding-left: var(--size-5px);
+  width: 20px;
+  height: 20px;
+}
+
 .captcha-image {
   object-fit: fill;
   height: var(--size-3rem);
   border-radius: var(--border-10px);
   width: 100%;
+}
+
+$spinner-size: 30px;
+$light-blue: #eaf5fe;
+$blue: #5597d4;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+.spinner {
+  $spinner-size: 30px;
+  $light-blue: #eaf5fe;
+  $blue: #5597d4;
+  width: $spinner-size;
+  height: $spinner-size;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -($spinner-size/ 2);
+  margin-left: -($spinner-size/ 2);
+  border-radius: 50%;
+  border: 5px solid #eaf5fe;
+  border-right-color: $blue;
+  animation: rotateSpinner 400ms linear infinite;
+}
+
+@keyframes rotateSpinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .temporary_route_flex {
@@ -226,6 +283,7 @@ input {
 }
 
 .description {
+  user-select: none;
   position: absolute;
   width: 85%;
   top: 50%;
@@ -240,6 +298,7 @@ input {
 }
 
 .dashboard_image {
+  user-select: none;
   box-shadow: 0px 4px 40px 0px #FFFFFF40;
   object-fit: contain;
   width: 100%;
@@ -257,6 +316,7 @@ input {
 }
 
 .slider_content {
+  user-select: none;
   width: 70%;
   text-align: center;
   margin: var(--size-10rem) auto 0 auto;

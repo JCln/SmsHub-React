@@ -1,5 +1,6 @@
 import loginLogo from '../images/logo.jpg';
 import back1 from '../images/back1.png';
+import refreshIcon from '../images/refresh.png';
 import { useEffect, useRef, useState } from 'react';
 import http, { setAxiosHeader } from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
@@ -19,8 +20,8 @@ export const Login = () => {
             password: '',
             clientDateTime: 'string',
             appVersion: 'string',
-            captchaText: 'string',
-            captchaInputText: 'string'
+            captchaText: '',
+            captchaInputText: ''
         });
 
     useEffect(() => {
@@ -66,11 +67,14 @@ export const Login = () => {
                             <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
                             <input name='username' placeholder='نام کاربری' type="text" dir='rtl' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
                             <input name='password' placeholder='گذرواژه' type="password" dir='rtl' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
-                            <div>
+                            <div className='_captcha'>
+                                <img onClick={e => {
+                                    getCaptcha()
+                                }} className="captcha-refresh" src={refreshIcon} alt="" />
                                 {captchaImg ?
                                     <img className="captcha-image" src={captchaImg} alt="" />
                                     :
-                                    'loading..'
+                                    <div className="spinner"></div>
                                 }
                             </div>
                             <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
@@ -89,7 +93,6 @@ export const Login = () => {
                     </div>
                     <div className="description">
                         <SlidershowCarousel />
-                        {/* <img className="img-full dashboard" src={loginDashboard} alt=""></img> */}
                     </div>
                     <div className="slider_content">
                         <SlidershowTextPanel />
