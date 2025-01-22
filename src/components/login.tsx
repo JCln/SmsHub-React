@@ -68,9 +68,12 @@ export const Login = () => {
                             <input name='username' placeholder='نام کاربری' type="text" dir='rtl' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
                             <input name='password' placeholder='گذرواژه' type="password" dir='rtl' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
                             <div className='_captcha'>
-                                <img onClick={e => {
-                                    getCaptcha()
-                                }} className="captcha-refresh" src={refreshIcon} alt="" />
+                                <div className='captcha-refresh-wrapper'>
+                                    <img onClick={() => {
+                                        getCaptcha()
+                                    }}
+                                        className="captcha-refresh" src={refreshIcon} alt="" />
+                                </div>
                                 {captchaImg ?
                                     <img className="captcha-image" src={captchaImg} alt="" />
                                     :
