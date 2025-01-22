@@ -4,7 +4,7 @@ import * as reactProSidebar from 'react-pro-sidebar';
 import logo from '../images/hiwalogo.png';
 
 
-const Framework = () => {
+const Sidebar = () => {
     return (
         <div>
             <div style={{ height: '100vh', direction: 'rtl' }}>
@@ -32,7 +32,7 @@ const Framework = () => {
                         <reactProSidebar.MenuItem component={<Link to={ENRoutes.SMSHub} />}> خانه</reactProSidebar.MenuItem>
                         <div className='_hr1'></div>
 
-                        <reactProSidebar.SubMenu label="کاربران">
+                        <reactProSidebar.SubMenu label="کاربران">                            
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.userAll} />} >همه کاربران</reactProSidebar.MenuItem>
                             <reactProSidebar.MenuItem component={<Link to={ENRoutes.serveruser} />}> کابران سرور</reactProSidebar.MenuItem>
                         </reactProSidebar.SubMenu>
@@ -74,4 +74,4 @@ const Framework = () => {
         </div >
     )
 }
-export default Framework;
+export default Sidebar;

@@ -4,7 +4,7 @@ import http from '../services/httpService';
 
 import { getDynamics } from '../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import Framework from './framework';
+import Sidebar from './framework';
 
 
 const ConfigTypeGroup = () => {
@@ -31,7 +31,7 @@ const ConfigTypeGroup = () => {
     }
     return (
         <div style={{ display: 'flex', direction: 'rtl' }}>
-            <Framework></Framework>
+            <Sidebar></Sidebar>
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {columns.map((col, i) => (

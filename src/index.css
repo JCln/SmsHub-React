@@ -21,12 +21,17 @@
 
 @tailwind utilities;
 
+html,
+body {
+  font-family: "Vazirmatn" !important;
+}
+
 code {
   font-family: 'Vazirmatn' !important;
 }
 
 :root {
-  font-family: 'Vazirmatn';
+  --font-family: 'Vazirmatn';
   --clr-white: #FFFFFF;
   --clr-white20: #FFFFFF33;
   --clr-lightgray: #E0E0E0;

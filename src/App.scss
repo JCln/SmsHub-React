@@ -18,7 +18,7 @@
 }
 
 :root {
-  --font-family: "Vazirmatn";
+  --font-family: "Vazirmatn" !important;
 
   --clr-white: #FFFFFF;
   --clr-white20: #FFFFFF33;
@@ -451,5 +451,5 @@ body {
 ._logo {
   display: grid;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }

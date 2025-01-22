@@ -7,7 +7,7 @@ import NotFound from './components/NotFound';
 // import Announcement from './components/Announcement';
 // import { PrivateRoute } from './components/PrivateRoute';
 import { Login } from './components/login';
-import Framework from './components/framework';
+import Sidebar from './components/framework';
 import ServerUser from './components/serverUser';
 import userAll from './components/userAll';
 import back1 from './images/back1.png';
