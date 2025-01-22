@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Authorization } from "../constants/ActionTypes";
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -20,7 +21,7 @@ axios.interceptors.response.use(null, error => {
   return Promise.reject(error);
 });
 export function setAxiosHeader(AUTH_TOKEN) {
-  axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+  axios.defaults.headers.common[Authorization] = AUTH_TOKEN;
 }
 export default {
   get: axios.get,

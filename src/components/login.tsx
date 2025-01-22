@@ -1,4 +1,4 @@
-import loginLogo from '../images/logo.jpg';
+import loginLogo from '../images/smsHubLogo.png';
 import back1 from '../images/back1.png';
 import refreshIcon from '../images/refresh.png';
 import { useEffect, useRef, useState } from 'react';
@@ -9,20 +9,26 @@ import SlidershowCarousel from './slideshow-carousel';
 import { configs } from '../dynamics/exportConfigs';
 import { useNavigate } from "react-router";
 import SlidershowTextPanel from './slidershow-text-panel';
+import { BEARER } from '../constants/ActionTypes';
+import { AxiosResponse } from 'axios';
 
 export const Login = () => {
-    // let captchaLogo = '';
     let navigate = useNavigate();
     const [captchaImg, setCaptchaImg] = useState(null);
+    const [nextAction, setNextAction] = useState<boolean>(false);
     const [inputs, setInputs] = useState(
         {
             username: '',
             password: '',
-            clientDateTime: 'string',
-            appVersion: 'string',
+            clientDateTime: '',
+            appVersion: '',
             captchaText: '',
             captchaInputText: ''
         });
+    const [secondStep, setSecondStep] = useState({
+        id: '',
+        confirmCode: ''
+    })
 
     useEffect(() => {
         getCaptcha();
@@ -33,14 +39,34 @@ export const Login = () => {
         const name = e.target.name;
         setInputs(values => ({ ...values, [name]: value }))
     }
-
-    const callAPI = async () => {
-        console.log(inputs);
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.login}`, inputs)
+    const setSecondStepForm = (e: any) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setSecondStep(values => ({ ...values, [name]: value }))
+    }
+    const hasSecondStep = (response: AxiosResponse) => {
+        setNextAction(true);
+        setSecondStep({ id: response.data.data.id, confirmCode: '' });
+    }
+    const getServerToken = (response: AxiosResponse) => {
+        setNextAction(false);// after return to this main page another login will have being needs, so next action should not shown                            
+        const AUTH_TOKEN = BEARER + response.data.data.accessToken;
+        setAxiosHeader(AUTH_TOKEN);
+        navigate(ENRoutes.userAll);
+    }
+    const callFirstStepAPI = async () => {
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.firstStep}`, inputs)
             .then(function (response) {
-                const AUTH_TOKEN = `Bearer ` + response.data.data.accessToken;
-                setAxiosHeader(AUTH_TOKEN);
-                navigate(ENRoutes.userAll);
+                response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    const callSecondStepAPI = async () => {
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.secondStep}`, secondStep)
+            .then(function (response) {
+                getServerToken(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -64,29 +90,49 @@ export const Login = () => {
                     <img className="w-100 h-100" src={back1} alt="" />
                     <div className="_content">
                         <div className="inner_content">
-                            <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
-                            <input name='username' placeholder='نام کاربری' type="text" dir='rtl' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
-                            <input name='password' placeholder='گذرواژه' type="password" dir='rtl' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
-                            <div className='_captcha'>
-                                <div className='captcha-refresh-wrapper'>
-                                    <img onClick={() => {
-                                        getCaptcha()
-                                    }}
-                                        className="captcha-refresh" src={refreshIcon} alt="" />
-                                </div>
-                                {captchaImg ?
-                                    <img className="captcha-image" src={captchaImg} alt="" />
-                                    :
-                                    <div className="spinner"></div>
-                                }
-                            </div>
-                            <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
+                            {nextAction ?
+                                <>
+                                    <div className='mb-8 _logo-wrapper'>
+                                        <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
+                                    </div>
+                                    <h3>تایید شماره همراه</h3>
+                                    <p>کد تایید ارسال شده به شماره همراه را وارد نمایید</p>
+                                    <input value={secondStep.confirmCode} onChange={setSecondStepForm} name='confirmCode' placeholder='کد تایید را وارد نمایید' type="text" dir='ltr' className='inputs text-center' />
 
-                            <button className="_button" onClick={e => {
-                                callAPI()
-                            }}>
-                                ورود
-                            </button>
+                                    <button className="_button" onClick={e => {
+                                        callSecondStepAPI()
+                                    }}>
+                                        تایید
+                                    </button>
+                                </> :
+                                <>
+                                    <div className='mb-8 _logo-wrapper'>
+                                        <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
+                                    </div>
+                                    <input name='username' placeholder='نام کاربری' type="text" dir='rtl' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
+                                    <input name='password' placeholder='گذرواژه' type="password" dir='rtl' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
+                                    <div className='_captcha'>
+                                        <div className='captcha-refresh-wrapper'>
+                                            <img onClick={() => {
+                                                getCaptcha()
+                                            }}
+                                                className="captcha-refresh" src={refreshIcon} alt="" />
+                                        </div>
+                                        {captchaImg ?
+                                            <img className="captcha-image" src={captchaImg} alt="" />
+                                            :
+                                            <div className="spinner"></div>
+                                        }
+                                    </div>
+                                    <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
+
+                                    <button className="_button" onClick={e => {
+                                        callFirstStepAPI()
+                                    }}>
+                                        ورود
+                                    </button>
+                                </>
+                            }
                         </div>
                     </div>
                 </section>

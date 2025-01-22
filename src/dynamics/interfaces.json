@@ -4,6 +4,7 @@
     "ConsumerLineGetList": "/CunsumerLine/GetList",
     "ConfigTypeGroup": "/ConfigTypeGroup/GetList",
     "serverUser": "/ServerUser/GetAll",
-    "login": "/login/first-step",
+    "firstStep": "/login/first-step",
+    "secondStep": "/login/second-step",
     "loginCaptcha": "/login/captcha"
 }

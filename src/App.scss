@@ -25,6 +25,7 @@
   --clr-lightgray-1: #E7E7E7;
   --clr-lightgray: #E0E0E0;
   --clr-gray: hsl(0, 0%, 49%);
+  --clr-0: #eaf5fe;
   --clr-1: #B0D0FC;
   --clr-2: #3989F9;
   --clr-3: #0650BA;
@@ -189,19 +190,13 @@ body {
 }
 
 .spinner {
-  $spinner-size: 30px;
-  $light-blue: #eaf5fe;
-  $blue: #5597d4;
+  $spinner-size: 20px;
   width: $spinner-size;
   height: $spinner-size;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -($spinner-size/ 2);
-  margin-left: -($spinner-size/ 2);
-  border-radius: 50%;
-  border: 5px solid #eaf5fe;
-  border-right-color: $blue;
+  margin: auto;
+  border-radius: var(--border-50);
+  border: 5px solid var(--clr-0);
+  border-right-color: var(--clr-3);
   animation: rotateSpinner 400ms linear infinite;
 }
 
@@ -449,9 +444,12 @@ body {
   font-size: var(--size-1-2rem);
 }
 
+._logo-wrapper {
+  margin-bottom: var(--size-1-5rem);
+}
+
 ._logo {
   display: grid;
   justify-content: center;
-  align-items: center;
-
+  align-items: center;  
 }
