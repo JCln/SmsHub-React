@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './sidebar';
 /*
 320px — 480px: Mobile devices.
 481px — 768px: iPads, Tablets.
@@ -97,9 +98,25 @@ input {
   text-align: center;
 }
 
+._app_main {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
 .full-height-width {
+  // image to set on background
+  z-index: -1;
+  position: fixed;
   width: 100vw;
   height: 100vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
 }
 
 .App-header {
@@ -231,6 +248,11 @@ body {
   right: 0;
 }
 
+._pages_wrapper {
+  width: 100%;
+  background: url('./images/back1.png');
+}
+
 .main {
   position: relative;
   width: 21rem;
@@ -301,6 +323,35 @@ body {
   top: 50%;
   bottom: 10%;
   left: 20px;
+}
+
+.dashboard-wrapper {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  div {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .d1 {
+    background-color: #1E80FFB2;
+  }
+
+  .d2 {
+    background-color: #CE2C91B2;
+  }
+
+  .d3 {
+    background-color: #4BA148B2;
+  }
+
+  .d4 {
+    background-color: #F8811DB2;
+  }
 }
 
 .dashboard-slide {

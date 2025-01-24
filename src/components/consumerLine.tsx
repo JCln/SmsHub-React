@@ -4,7 +4,7 @@ import http from '../services/httpService';
 
 import { getDynamics } from '../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import Sidebar from './framework';
+import Sidebar from './sidebar';
 
 
 const Consumer = () => {
