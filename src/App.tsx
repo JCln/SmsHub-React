@@ -19,6 +19,8 @@ import ConfigTypeGroup from './components/configTypeGroup';
 import Home from './pages/sms-hub/home';
 import UserAll from './pages/sms-hub/sub-routes/userAll';
 import Dashboard from './components/dashboard';
+import Role from './components/role';
+import Line from './components/line';
 function App() {
   return (
     <div>
@@ -29,15 +31,17 @@ function App() {
             <Routes>
               <Route path={ENRoutes.SMSHub} element={<Home />}>
                 {
-                  <Route path={ENRoutes.SMSHub} element={<Dashboard />}></Route>
-                /* <Route path={ENRoutes.serveruser} element={<ServerUser />}></Route>
-                <Route path={ENRoutes.provider} element={<Providers />}></Route>
-                <Route path={ENRoutes.consumerLine} element={<Consumer />}></Route>
-                <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route> */}
-                <Route path={ENRoutes.userAll} element={<UserAll />}></Route>
+                  <>
+                    <Route path={ENRoutes.SMSHub} element={<Dashboard />}></Route>
+                    <Route path={ENRoutes.userAll} element={<UserAll />}></Route>
+                    <Route path={ENRoutes.provider} element={<Providers />}></Route>
+                    <Route path={ENRoutes.role} element={<Role />}></Route>
+                    <Route path={ENRoutes.line} element={<Line />}></Route>
+                  </>
+                }
               </Route>
               <Route path={ENRoutes.Root} element={<Login />}></Route>
-              {/* <Route path="/not-found" element={<NotFound />}></Route> */}
+              <Route path="/not-found" element={<NotFound />}></Route>
             </Routes>
           </div>
         </BrowserRouter>

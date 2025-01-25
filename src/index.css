@@ -1,7 +1,5 @@
-/* ./src/index.css */
 @tailwind base;
 @tailwind components;
-
 
 @layer base {
   @font-face {
@@ -21,33 +19,30 @@
 
 @tailwind utilities;
 
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   font-family: "Vazirmatn" !important;
 }
 
-code {
-  font-family: 'Vazirmatn' !important;
+a {
+  text-decoration: none;
 }
 
-:root {
-  --font-family: 'Vazirmatn';
-  --clr-white: #FFFFFF;
-  --clr-white20: #FFFFFF33;
-  --clr-lightgray: #E0E0E0;
-  --clr-gray: #7C7C7C;
-  --clr-green4: #121C0D;
-  --clr-green3: #395B50;
-  --clr-green2: #2A9270;
-  --clr-green1: #CFF2E6;
-  --spacer: 2rem;
-  --border2: 2px;
-  --border5: 5px;
-  --border10: 10px;
-  --border20: 20px;
-  --border50: 50%;
-  --border80: 80px;
-  --size12: 1.2rem;
-  --size_1: 1rem;
-  --size_5: 5px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button,
+input,
+code {
+  font-family: 'Vazirmatn' !important;
 }

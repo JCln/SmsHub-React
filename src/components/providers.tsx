@@ -35,8 +35,7 @@ const Providers = () => {
             });
     }
     return (
-        <div style={{ display: 'flex', direction: 'rtl' }}>
-            <Sidebar></Sidebar>
+        <div style={{ display: 'flex', direction: 'rtl' }}>            
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {columns.map((col, i) => (

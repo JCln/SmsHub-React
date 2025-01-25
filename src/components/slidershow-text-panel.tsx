@@ -1,11 +1,13 @@
 import React from 'react';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import loginDashboard from '../images/login-dashboard.jpg';
+// import { getDynamics } from '../dynamics/getDynamics'; // to show text dynamically
 
 export default class SlidershowTextPanel extends React.Component {
 
     render() {
+        // const carouselContent: any = getDynamics.carouselSlides;
+        // console.log(carouselContent);
         return (
             <CarouselProvider
                 naturalSlideWidth={1000}
@@ -36,6 +38,7 @@ export default class SlidershowTextPanel extends React.Component {
                 <div>
                     <div>
                         <ButtonBack className='_dot'><div></div></ButtonBack>
+                        <ButtonNext className='_dot'><div></div></ButtonNext>
                         <ButtonNext className='_dot'><div></div></ButtonNext>
                     </div>
                 </div>

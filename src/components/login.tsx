@@ -1,4 +1,4 @@
-import loginLogo from '../images/smsHubLogo.png';
+import loginLogo from '../images/abfa_logo.png';
 import back1 from '../images/back1.png';
 import refreshIcon from '../images/refresh.png';
 import { useEffect, useRef, useState } from 'react';
@@ -52,7 +52,7 @@ export const Login = () => {
         setNextAction(false);// after return to this main page another login will have being needs, so next action should not shown                            
         const AUTH_TOKEN = BEARER + response.data.data.accessToken;
         setAxiosHeader(AUTH_TOKEN);
-        navigate(ENRoutes.userAll);
+        navigate(ENRoutes.SMSHub);
     }
     const callFirstStepAPI = async () => {
         await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.firstStep}`, inputs)
@@ -95,7 +95,7 @@ export const Login = () => {
                                     <div className='mb-8 _logo-wrapper'>
                                         <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
                                     </div>
-                                    <h3>تایید شماره همراه</h3>
+                                    <h3>مرحله دوم احراز هویت</h3>
                                     <p>کد تایید ارسال شده به شماره همراه را وارد نمایید</p>
                                     <input value={secondStep.confirmCode} onChange={setSecondStepForm} name='confirmCode' placeholder='کد تایید را وارد نمایید' type="text" dir='ltr' className='inputs text-center' />
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Authorization } from "../constants/ActionTypes";
+import { ACCESS_TOKEN, Authorization } from "../constants/ActionTypes";
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -22,6 +22,10 @@ axios.interceptors.response.use(null, error => {
 });
 export function setAxiosHeader(AUTH_TOKEN) {
   axios.defaults.headers.common[Authorization] = AUTH_TOKEN;
+  localStorage.setItem(ACCESS_TOKEN, AUTH_TOKEN);
+}
+export function logout() {
+  localStorage.removeItem(ACCESS_TOKEN);
 }
 export default {
   get: axios.get,
