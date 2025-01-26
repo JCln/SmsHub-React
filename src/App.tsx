@@ -16,7 +16,7 @@ import back1 from './images/back1.png';
 import Providers from './components/providers';
 import Consumer from './components/consumerLine';
 import ConfigTypeGroup from './components/configTypeGroup';
-import Home from './pages/sms-hub/home';
+import Home from './pages/sms-hub/sub-routes/home';
 import UserAll from './pages/sms-hub/sub-routes/userAll';
 import Dashboard from './components/dashboard';
 import Role from './components/role';
@@ -37,6 +37,7 @@ function App() {
                     <Route path={ENRoutes.provider} element={<Providers />}></Route>
                     <Route path={ENRoutes.role} element={<Role />}></Route>
                     <Route path={ENRoutes.line} element={<Line />}></Route>
+                    <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>
                   </>
                 }
               </Route>

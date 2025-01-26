@@ -4,3 +4,4 @@ export type InputTypes = 'password' | 'text' | 'number' | 'submit';
 export const BEARER = 'Bearer ';
 export const Authorization = 'Authorization';
 export const ACCESS_TOKEN = 'accessToken';
+export const IDENTITY_CLAIM_NAME = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";

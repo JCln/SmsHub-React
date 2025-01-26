@@ -7,6 +7,7 @@ import { getDynamics } from '../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
 import { classNames } from 'primereact/utils';
+import { serverUser } from '../dynamics/column-data';
 
 
 const ServerUser = () => {
@@ -14,14 +15,6 @@ const ServerUser = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
-    const columns = [
-        { field: 'username', header: 'نام کاربری' },
-        { field: 'isAdmin', header: 'ادمین', isCheckbox: true },
-        { field: 'createDateTime', header: 'تاریخ ایجاد' },
-        { field: 'deleteDateTime', header: 'تاریخ حذف' },
-        // { field: 'apiKeyHash', header: 'موبایل' }
-    ];
-
 
     useEffect(() => {
         callAPI();
@@ -44,7 +37,7 @@ const ServerUser = () => {
             <Sidebar></Sidebar>
             <DataTable value={products} tableStyle={{ minWidth: '30rem', width: '100%' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
-                {columns.map((col, i) => (
+                {serverUser.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} dataType={col.isCheckbox ? 'boolean' : ''} />
                 ))}
             </DataTable>

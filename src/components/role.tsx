@@ -10,6 +10,7 @@ import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
+import { role } from '../dynamics/column-data';
 
 const Role = () => {
     const [products, setProducts] = useState([]);
@@ -19,11 +20,6 @@ const Role = () => {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: { value: null, matchMode: FilterMatchMode.CONTAINS }
     });
-    const columns = [
-        // { field: 'id', header: 'id' },
-        { field: 'name', header: 'نام' },
-        { field: 'title', header: 'عنوان' }
-    ];
     const [globalFilterValue, setGlobalFilterValue] = useState('');
 
 
@@ -55,7 +51,7 @@ const Role = () => {
             <div className='_table_header'>
                 <div className="flex align-items-center justify-content-end gap-2">
                     <Button type="button" icon="pi pi-file" rounded onClick={() => (false)} data-pr-tooltip="CSV" />
-                    <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={() => makeEXCEL(products, columns, 'testFileName')} data-pr-tooltip="XLS" />
+                    <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={() => makeEXCEL(products, role, 'testFileName')} data-pr-tooltip="XLS" />
                     <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={() => (false)} data-pr-tooltip="PDF" />
                     <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => (false)} data-pr-tooltip="+" />
                 </div>
@@ -123,7 +119,7 @@ const Role = () => {
         <div>
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} header={header} stateStorage="session" stateKey="role-state" paginator rows={5} stripedRows rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={['name', 'title']} dataKey="id" metaKeySelection={metaKey} emptyMessage="موردی یافت نشد">
-                {columns.map((col, i) => (
+                {role.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder="جستجو" sortable />
                 ))}
             </DataTable>

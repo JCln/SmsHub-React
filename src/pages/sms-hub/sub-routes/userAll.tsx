@@ -11,6 +11,7 @@ import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import 'jspdf-autotable';
 import * as ExcelJs from "exceljs";
+import { userAll } from '../../../dynamics/column-data';
 
 
 const UserAll = () => {
@@ -18,12 +19,6 @@ const UserAll = () => {
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
 
-    const columns = [
-        { field: 'displayName', header: 'نام نمایشی' },
-        { field: 'fullName', header: 'نام کامل' },
-        { field: 'username', header: 'نام کاربری' },
-        { field: 'mobile', header: 'موبایل' }
-    ];
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -155,7 +150,7 @@ const UserAll = () => {
         <div>
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} header={headerIcons} paginator rows={5} stripedRows rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} globalFilterFields={['displayName', 'fullName', 'username', 'mobile']} dataKey="id" metaKeySelection={metaKey}>
-                {columns.map((col, i) => (
+                {userAll.map((col, i) => (
                     <Column key={col.field} field={col.field} filter sortable header={col.header} />
                 ))}
             </DataTable>

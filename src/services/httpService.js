@@ -7,6 +7,11 @@ axios.interceptors.response.use(null, error => {
     error.response &&
     error.response.status >= 400 &&
     error.response.status < 600;
+  if (error.response.status === 401) {
+    alert('401 was called');
+    // logout();
+  }
+  console.log(expectedError);
 
   const possibleErrors = error.response.data.errors;
   for (let index = 0; index < possibleErrors.length; index++) {

@@ -90,6 +90,12 @@ const Sidebar = () => {
                         </div>
                         <div class="nav__items">
                             <div class="nav__subtitle">
+                                <img src={simcardImage} alt="" class="sidebar_icon"></img>
+                                <Link to={ENRoutes.ConfigTypeGroup} class="nav__dropdown-item">configType</Link>
+                            </div>
+                        </div>
+                        <div class="nav__items">
+                            <div class="nav__subtitle">
                                 <img src={sendImage} alt="" class="sidebar_icon"></img>
                                 ارسال
                             </div>

@@ -1,9 +1,9 @@
 import { Outlet } from "react-router";
-import Sidebar from "../../components/sidebar";
-import Header from "../../components/header";
+import Sidebar from "../../../components/sidebar";
+import Header from "../../../components/header";
 import { useEffect, useState } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { ACCESS_TOKEN } from "../../constants/ActionTypes";
+import { ACCESS_TOKEN, IDENTITY_CLAIM_NAME } from "../../../constants/ActionTypes";
 
 const Home = () => {
     const [state, setState] = useState<any>();
@@ -15,7 +15,7 @@ const Home = () => {
         try {
             const jwt = localStorage.getItem(ACCESS_TOKEN) as any;
             const jwtToken: any = jwtDecode<JwtPayload>(jwt);
-            const currentUser = jwtToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+            const currentUser = jwtToken[IDENTITY_CLAIM_NAME];
             setState(currentUser);
         } catch (ex) {
             console.log(ex);

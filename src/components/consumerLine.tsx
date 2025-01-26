@@ -5,6 +5,7 @@ import http from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
+import { consumerLine } from '../dynamics/column-data';
 
 
 const Consumer = () => {
@@ -12,12 +13,6 @@ const Consumer = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
-    const columns = [
-        { field: 'title', header: 'نام' },
-        { field: 'consumerId', header: 'کانفیگ' },
-        { field: 'lineId', header: 'توضیحات' },
-    ];
-
     useEffect(() => {
         callAPI();
     }, []);
@@ -35,7 +30,7 @@ const Consumer = () => {
             <Sidebar></Sidebar>
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
-                {columns.map((col, i) => (
+                {consumerLine.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} />
                 ))}
             </DataTable>
