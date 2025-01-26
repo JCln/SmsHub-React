@@ -6,8 +6,6 @@ import developerImage from '../images/developer.jpg';
 import logImage from '../images/log.jpg';
 import patternImage from '../images/pattern.jpg';
 import reportImage from '../images/report.jpg';
-import settingsImage from '../images/settings.jpg';
-import bellImage from '../images/bell.jpg';
 import sendImage from '../images/send.jpg';
 import arrowImage from '../images/arrow.jpg';
 import { Link } from 'react-router';
@@ -16,32 +14,6 @@ import httpService from '../services/httpService';
 
 
 const Sidebar = () => {
-    // const showMenu = (headerToggle, navbarId) => {
-    //     const toggleBtn = document.getElementById(headerToggle),
-    //         nav = document.getElementById(navbarId)
-
-    //     // Validate that variables exist
-    //     if (headerToggle && navbarId) {
-    //         toggleBtn.addEventListener('click', () => {
-    //             // We add the show-menu class to the div tag with the nav__menu class
-    //             nav.classList.toggle('show-menu')
-    //             // change icon
-    //             toggleBtn.classList.toggle('bx-x')
-    //         })
-    //     }
-    // }
-    // showMenu('header-toggle', 'navbar')
-
-    // /*==================== LINK ACTIVE ====================*/
-    // const linkColor = document.querySelectorAll('.nav__link')
-
-    // function colorLink() {
-    //     linkColor.forEach(l => l.classList.remove('active'))
-    //     this.classList.add('active')
-    // }
-
-    // linkColor.forEach(l => l.addEventListener('click', colorLink));
-
     return (
         <>
             <div class="nav" id="navbar">
@@ -62,15 +34,13 @@ const Sidebar = () => {
                                 <div class="nav__subtitle">
                                     <img src={userImage} alt="" class="sidebar_icon"></img>
                                     کاربران
+                                    <img src={arrowImage} alt="" class="-icon"></img>
                                 </div>
-                                {/* <img src={arrowImage} alt="" class="-icon"></img> */}
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
                                         <Link to={ENRoutes.userAll} class="nav__dropdown-item">همه کاربران</Link>
                                         <Link to={ENRoutes.role} class="nav__dropdown-item">نقش ها</Link>
-                                        <a href="#" class="nav__dropdown-item">افزودن کاربر</a>
-                                        <a href="#" class="nav__dropdown-item">جستجو کاربران</a>
                                     </div>
                                 </div>
                             </div>

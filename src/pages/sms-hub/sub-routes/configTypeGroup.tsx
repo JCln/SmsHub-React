@@ -1,10 +1,10 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import http from '../services/httpService';
+import http from '../../../services/httpService';
 
-import { getDynamics } from '../dynamics/getDynamics';
+import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { configTypeGroup } from '../dynamics/column-data';
+import { configTypeGroup } from '../../../dynamics/column-data';
 
 
 const ConfigTypeGroup = () => {

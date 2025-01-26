@@ -1,8 +1,8 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import http from '../services/httpService';
+import http from '../../../services/httpService';
 
-import { getDynamics } from '../dynamics/getDynamics';
+import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import * as ExcelJs from "exceljs";
@@ -10,7 +10,7 @@ import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
-import { line } from '../dynamics/column-data';
+import { line } from '../../../dynamics/column-data';
 
 const Line = () => {
     const [products, setProducts] = useState([]);

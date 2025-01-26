@@ -10,17 +10,17 @@ import NotFound from './components/NotFound';
 // import { PrivateRoute } from './components/PrivateRoute';
 import { Login } from './components/login';
 import Sidebar from './components/sidebar';
-import ServerUser from './components/serverUser';
+import ServerUser from './pages/sms-hub/sub-routes/serverUser';
 import userAll from './pages/sms-hub/sub-routes/userAll';
 import back1 from './images/back1.png';
-import Providers from './components/providers';
-import Consumer from './components/consumerLine';
-import ConfigTypeGroup from './components/configTypeGroup';
+import Providers from './pages/sms-hub/sub-routes/providers';
+import Consumer from './pages/sms-hub/sub-routes/consumerLine';
+import ConfigTypeGroup from './pages/sms-hub/sub-routes/configTypeGroup';
 import Home from './pages/sms-hub/sub-routes/home';
 import UserAll from './pages/sms-hub/sub-routes/userAll';
-import Dashboard from './components/dashboard';
-import Role from './components/role';
-import Line from './components/line';
+import Dashboard from './pages/sms-hub/sub-routes/dashboard';
+import Role from './pages/sms-hub/sub-routes/role';
+import Line from './pages/sms-hub/sub-routes/line';
 function App() {
   return (
     <div>

@@ -1,13 +1,13 @@
 import { DataTable } from 'primereact/datatable';
 import { TriStateCheckbox } from 'primereact/tristatecheckbox';
 import { Column } from 'primereact/column';
-import http from '../services/httpService';
+import http from '../../../services/httpService';
 
-import { getDynamics } from '../dynamics/getDynamics';
+import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import Sidebar from './sidebar';
+import Sidebar from '../../../components/sidebar';
 import { classNames } from 'primereact/utils';
-import { serverUser } from '../dynamics/column-data';
+import { serverUser } from '../../../dynamics/column-data';
 
 
 const ServerUser = () => {
