@@ -11,11 +11,14 @@ import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { role } from '../../../dynamics/column-data';
+import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
+import { ColumnMeta } from '../../../constants/interface';
 
 const Role = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
+    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(role)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: { value: null, matchMode: FilterMatchMode.CONTAINS }
@@ -26,8 +29,15 @@ const Role = () => {
     useEffect(() => {
         callAPI();
     }, []);
+
+    const onColumnToggle = (event: MultiSelectChangeEvent) => {
+        let selectedColumns = event.value;
+        let orderedSelectedColumns = role.filter((col) => selectedColumns.some((sCol: any) => sCol.field === col.field));
+
+        setVisibleColumns(orderedSelectedColumns);
+    };
     const callAPI = async (): Promise<any> => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.role}`)
+        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.role}`)
             .then(function (response) {
                 setProducts(response.data.data);
             })
@@ -49,17 +59,20 @@ const Role = () => {
     const renderHeader = () => {
         return (
             <div className='_table_header'>
+
                 <div className="flex align-items-center justify-content-end gap-2">
                     <Button type="button" icon="pi pi-file" rounded onClick={() => (false)} data-pr-tooltip="CSV" />
                     <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={() => makeEXCEL(products, role, 'testFileName')} data-pr-tooltip="XLS" />
                     <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={() => (false)} data-pr-tooltip="PDF" />
                     <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => (false)} data-pr-tooltip="+" />
                 </div>
+
                 <div className="flex justify-content-end" >
                     <IconField iconPosition="left">
                         <InputIcon className="pi pi-search" />
                         <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="جستجو در جدول" />
                     </IconField>
+                    <MultiSelect value={visibleColumns} options={role} optionLabel="header" onChange={onColumnToggle} className="w-full sm:w-20rem" display="chip" />
                 </div>
             </div>
         );
@@ -119,7 +132,7 @@ const Role = () => {
         <div>
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} header={header} stateStorage="session" stateKey="role-state" paginator rows={5} stripedRows rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={['name', 'title']} dataKey="id" metaKeySelection={metaKey} emptyMessage="موردی یافت نشد">
-                {role.map((col, i) => (
+                {visibleColumns.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder="جستجو" sortable />
                 ))}
             </DataTable>

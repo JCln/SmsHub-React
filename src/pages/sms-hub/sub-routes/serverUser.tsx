@@ -11,7 +11,6 @@ import { serverUser } from '../../../dynamics/column-data';
 
 
 const ServerUser = () => {
-    console.log('this is user all');
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
@@ -20,7 +19,7 @@ const ServerUser = () => {
         callAPI();
     }, []);
     const callAPI = async (): Promise<any> => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.serverUser}`)
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.serverUser}`)
             .then(function (response) {
                 setProducts(response.data.data);
             })
@@ -34,7 +33,6 @@ const ServerUser = () => {
 
     return (
         <div style={{ display: 'flex', direction: 'rtl' }}>
-            <Sidebar></Sidebar>
             <DataTable value={products} tableStyle={{ minWidth: '30rem', width: '100%' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {serverUser.map((col, i) => (

@@ -17,7 +17,7 @@ const Consumer = () => {
         callAPI();
     }, []);
     const callAPI = async (): Promise<any> => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.ConsumerLineGetList}`)
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.ConsumerLineGetList}`)
             .then(function (response) {
                 setProducts(response.data.data);
             })
@@ -27,7 +27,6 @@ const Consumer = () => {
     }
     return (
         <div style={{ display: 'flex', direction: 'rtl' }}>
-            <Sidebar></Sidebar>
             <DataTable value={products} tableStyle={{ minWidth: '30rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {consumerLine.map((col, i) => (

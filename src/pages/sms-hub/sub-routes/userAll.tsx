@@ -60,7 +60,7 @@ const UserAll = () => {
         callAPI();
     }, []);
     const callAPI = async (): Promise<any> => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.userAll}`)
+        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.userAll}`)
             .then(function (response) {
                 setProducts(response.data.data);
             })

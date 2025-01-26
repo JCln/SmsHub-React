@@ -55,7 +55,7 @@ export const Login = () => {
         navigate(ENRoutes.SMSHub);
     }
     const callFirstStepAPI = async () => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.firstStep}`, inputs)
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.firstStep}`, inputs)
             .then(function (response) {
                 response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
             })
@@ -64,7 +64,7 @@ export const Login = () => {
             });
     }
     const callSecondStepAPI = async () => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.secondStep}`, secondStep)
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.secondStep}`, secondStep)
             .then(function (response) {
                 getServerToken(response);
             })
@@ -73,7 +73,7 @@ export const Login = () => {
             });
     }
     const getCaptcha = async (): Promise<any> => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.loginCaptcha}`)
+        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.loginCaptcha}`)
             .then(function (response) {
                 inputs.captchaInputText = response.data.data.dntCaptchaTextValue;
                 setCaptchaImg(response.data.data.dntCaptchaImgUrl);

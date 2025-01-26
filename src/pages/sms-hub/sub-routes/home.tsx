@@ -24,7 +24,7 @@ const Home = () => {
     return (
         <div className='َapp'>
             <div style={{ display: 'flex', direction: 'rtl' }}>
-                <Sidebar></Sidebar>
+                <Sidebar user={state}></Sidebar>
                 <div className="_pages_wrapper">
                     <Header user={state} />
                     <Outlet />

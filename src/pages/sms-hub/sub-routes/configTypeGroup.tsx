@@ -16,7 +16,7 @@ const ConfigTypeGroup = () => {
         callAPI();
     }, []);
     const callAPI = async (): Promise<any> => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.interfaces.ConfigTypeGroup}`)
+        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.ConfigTypeGroup}`)
             .then(function (response) {
                 setProducts(response.data.data);
             })
