@@ -11,8 +11,8 @@ import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { role } from '../../../dynamics/column-data';
-import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 import { ColumnMeta } from '../../../constants/interface';
+import ColumnToggle from '../../../components/column-toggle';
 
 const Role = () => {
     const [products, setProducts] = useState([]);
@@ -30,12 +30,6 @@ const Role = () => {
         callAPI();
     }, []);
 
-    const onColumnToggle = (event: MultiSelectChangeEvent) => {
-        let selectedColumns = event.value;
-        let orderedSelectedColumns = role.filter((col) => selectedColumns.some((sCol: any) => sCol.field === col.field));
-
-        setVisibleColumns(orderedSelectedColumns);
-    };
     const callAPI = async (): Promise<any> => {
         await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.role}`)
             .then(function (response) {
@@ -68,11 +62,11 @@ const Role = () => {
                 </div>
 
                 <div className="flex justify-content-end" >
+                    <ColumnToggle option={role} visibleColumns={visibleColumns} setVisibleColumns={setVisibleColumns}></ColumnToggle>
                     <IconField iconPosition="left">
                         <InputIcon className="pi pi-search" />
                         <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="جستجو در جدول" />
                     </IconField>
-                    <MultiSelect value={visibleColumns} options={role} optionLabel="header" onChange={onColumnToggle} className="w-full sm:w-20rem" display="chip" />
                 </div>
             </div>
         );
