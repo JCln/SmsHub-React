@@ -8,12 +8,10 @@ import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
 import { getGlobalFilterfields, userAll } from '../../../dynamics/column-data';
 import { ColumnMeta, IUserAll } from '../../../constants/interface';
-import TableOutputs from '../../../components/table-outputs';
-import ColumnToggle from '../../../components/column-toggle';
-import TableGlobalSearch from '../../../components/table-global-search';
 import { InputText } from 'primereact/inputtext';
 import { TABLE_ICON_COLUMN_STYLE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
+import TableHeader from '../../../components/table-header';
 
 
 const UserAll = () => {
@@ -57,15 +55,17 @@ const UserAll = () => {
     }
     const renderHeader = () => {
         return (
-            <div className='_table_header'>
-
-                <TableOutputs columns={userAll} dataSource={dataSource} fileName={ENNaming.userAll}></TableOutputs>
-                <div className="flex justify-content-end _column_toggle_width" >
-                    <ColumnToggle option={userAll} visibleColumns={visibleColumns} setVisibleColumns={setVisibleColumns}></ColumnToggle>
-                    <TableGlobalSearch filters={filters} setFilters={setFilters}></TableGlobalSearch>
-                </div>
-            </div>
-        );
+            <>
+                <TableHeader dataSource={dataSource}
+                    filters={filters}
+                    setFilters={setFilters}
+                    visibleColumns={visibleColumns}
+                    setVisibleColumns={setVisibleColumns}
+                    fileName={ENNaming.userAll}
+                    option={userAll}
+                ></TableHeader>
+            </>
+        )
     };
     const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
         let _datas = [...dataSource];
@@ -92,7 +92,6 @@ const UserAll = () => {
                 ))}
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
-                <i className='pi pi-trash'></i>
             </DataTable>
         </div>
     )

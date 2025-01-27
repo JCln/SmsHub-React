@@ -4,33 +4,39 @@ import http from '../../../services/httpService';
 
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { Button } from 'primereact/button';
 import { FilterMatchMode } from 'primereact/api';
+import 'jspdf-autotable';
+import { getGlobalFilterfields, userAll } from '../../../dynamics/column-data';
+import { ColumnMeta, IUserAll } from '../../../constants/interface';
 import { InputText } from 'primereact/inputtext';
-import { getGlobalFilterfieldsLine, line } from '../../../dynamics/column-data';
-import { ColumnMeta, ILine } from '../../../constants/interface';
-import TableHeader from '../../../components/table-header';
+import { TABLE_ICON_COLUMN_STYLE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
-import { TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import TableHeader from '../../../components/table-header';
 
-const Line = () => {
-    const [dataSource, setDataSource] = useState<ILine[]>([]);
+
+const UserCreate = () => {
+    const [dataSource, setDataSource] = useState<IUserAll[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
-    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(line)
+    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(userAll)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        number: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        providerId: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        credential: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        fullName: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        displayName: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        username: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        mobile: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        mobileConfirmed: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        hasTwoStepVerification: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        invalidLoginAttemptCount: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        latestLoginDateTime: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        lockTimespan: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
-
     useEffect(() => {
-        callAPI(getDynamics.apis.lineGetList);
+        callAPI(getDynamics.apis.userAll);
     }, []);
 
     const callAPI = async (api: any) => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${api}`)
+        await http.get(`${getDynamics.configs.apiEndpoint}${api}`)
             .then(function (response) {
                 setDataSource(response.data.data);
             })
@@ -55,49 +61,39 @@ const Line = () => {
                     setFilters={setFilters}
                     visibleColumns={visibleColumns}
                     setVisibleColumns={setVisibleColumns}
-                    fileName={ENNaming.line}
-                    option={line}
+                    fileName={ENNaming.userAll}
+                    option={userAll}
                 ></TableHeader>
             </>
         )
     };
-    const actionTemplate = () => {
-        return (
-            <div className="flex flex-wrap gap-2">
-                <Button onClick={() => { callAPIPost(getDynamics.apis.lineDelete, dataSource) }} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
-            </div>
-        );
-    };
-
-
     const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
         let _datas = [...dataSource];
         let { newData, index } = e;
 
-        _datas[index] = newData as ILine;
-
+        _datas[index] = newData as IUserAll;
         setDataSource(_datas);
-        callAPIPost(getDynamics.apis.lineUpdate, _datas);
+        callAPIPost(getDynamics.apis.userEdit, _datas);
     };
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
     };
-    const allowEdit = (rowData: ILine) => {
-        return rowData.credential !== 'Blue Band';
+    const allowEdit = (rowData: IUserAll) => {
+        return rowData.username !== 'Blue Band';
     };
 
     const header = renderHeader();
     return (
         <div>
-            <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
-                onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} currentPageReportTemplate={ENNaming.currentPageReportText}>
+            <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey="userall-state" paginator rows={5} stripedRows rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
+                onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfields()} dataKey="id" metaKeySelection={metaKey} emptyMessage="موردی یافت نشد">
                 {visibleColumns.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder="جستجو" sortable />
                 ))}
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
-                <Column body={actionTemplate} headerClassName="w-10rem" />
+                <Column headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
             </DataTable>
         </div>
     )
 }
-export default Line;
+export default UserCreate;

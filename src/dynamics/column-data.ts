@@ -20,8 +20,9 @@ export const provider = [
 ];
 export const line = [
     // { field: 'id', header: 'id' },
-    { field: 'name', header: 'نام' },
-    { field: 'title', header: 'عنوان' }
+    { field: 'number', header: 'تعداد' },
+    { field: 'providerId', header: 'سرویس دهنده' },
+    { field: 'credential', header: 'مجوز' }
 ];
 export const consumerLine = [
     { field: 'title', header: 'نام' },
@@ -50,4 +51,10 @@ export const getGlobalFilterfields = () => {
 }
 export const getGlobalFilterfieldsRole = () => {
     return role.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsProvider = () => {
+    return provider.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsLine = () => {
+    return provider.map((item: { field: string; }) => item.field);
 }

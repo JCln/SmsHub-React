@@ -56,13 +56,13 @@ const Sidebar = ({ user }: { user: string }) => {
                             <div className="nav__items">
                                 <div className="nav__subtitle">
                                     <img src={simcardImage} alt="" className="sidebar_icon"></img>
-                                    <Link to={ENRoutes.provider} className="nav__dropdown-item">provider</Link>
+                                    <Link to={ENRoutes.provider} className="nav__dropdown-item">سرویس دهندگان</Link>
                                 </div>
                             </div>
                             <div className="nav__items">
                                 <div className="nav__subtitle">
                                     <img src={simcardImage} alt="" className="sidebar_icon"></img>
-                                    <Link to={ENRoutes.ConfigTypeGroup} className="nav__dropdown-item">configType</Link>
+                                    <Link to={ENRoutes.ConfigTypeGroup} className="nav__dropdown-item">تنظیمات</Link>
                                 </div>
                             </div>
                             <div className="nav__items">

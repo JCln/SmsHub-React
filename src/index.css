@@ -1,23 +1,32 @@
-@tailwind base;
-@tailwind components;
+@layer tailwind-base, primereact, tailwind-utilities;
+
+/* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
+@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+
+@layer tailwind-base {
+  @tailwind base;
+}
 
 @layer base {
   @font-face {
-    font-family: 'Vazirmatn';
+    font-family: 'Ravi';
     font-weight: 400;
-    src: url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2 supports variations'),
-      url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2-variations');
+    src: url('./fonts/Ravi-VF.woff2') format('woff2 supports variations'),
+      url('./fonts/RaviFaNum-VF.woff2') format('woff2-variations');
   }
 
   @font-face {
-    font-family: 'Vazirmatn';
+    font-family: 'Ravi';
     font-weight: 500;
-    src: url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2 supports variations'),
-      url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2-variations');
+    src: url('./fonts/Ravi-VF.woff2') format('woff2 supports variations'),
+      url('./fonts/RaviFaNum-VF.woff2') format('woff2-variations');
   }
 }
 
-@tailwind utilities;
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
 
 *,
 ::before,
@@ -27,7 +36,7 @@
 
 html,
 body {
-  font-family: "Vazirmatn" !important;
+  font-family: "Ravi" !important;
 }
 
 a {
@@ -44,5 +53,5 @@ p,
 button,
 input,
 code {
-  font-family: 'Vazirmatn' !important;
+  font-family: 'Ravi' !important;
 }

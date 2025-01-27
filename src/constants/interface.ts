@@ -21,3 +21,17 @@ export interface IUserAll {
     latestLoginDateTime: string,
     lockTimespan: string
 }
+export interface IProvider {
+    id: number,
+    title: string,
+    website: string,
+    defaultPreNumber: number,
+    batchSize: number,
+    baseUri: string,
+    fallbackBaseUri: string
+}
+export interface ILine {
+    providerId: number,
+    number: string,
+    credential: string,
+}

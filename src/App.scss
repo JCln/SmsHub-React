@@ -14,14 +14,14 @@
 
 @layer base {
   @font-face {
-    font-family: 'Vazirmatn' !important;
-    src: url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2 supports variations'),
-      url('./fonts/Vazirmatn/Vazirmatn-RD[wght].woff2') format('woff2-variations');
+    font-family: 'Ravi' !important;
+    src: url('./fonts/Ravi-VF.woff2') format('woff2 supports variations'),
+      url('./fonts/RaviFaNum-VF.woff2') format('woff2-variations');
   }
 }
 
 :root {
-  --font-family: "Vazirmatn" !important;
+  --font-family: "Ravi" !important;
 
   --clr-white: #FFFFFF;
   --clr-white20: #FFFFFF33;
@@ -42,7 +42,6 @@
   --line-height1-8: 1.8;
   --line-height2: 2;
 
-  --spacer: 2rem;
   --border-2px: 2px;
   --border-5px: 5px;
   --border-10px: 10px;
@@ -97,7 +96,7 @@ html,
 body {
   margin: 0;
   height: 100%;
-  font-family: "Vazirmatn" !important;
+  font-family: "Ravi" !important;
 }
 
 .inputs {
@@ -279,7 +278,7 @@ $blue: #5597d4;
 
 .main {
   position: relative;
-  width: var(--side_bar_width);
+  width: 20rem;
   margin-left: auto;
   margin-right: auto;
 
@@ -368,6 +367,10 @@ $blue: #5597d4;
     height: 100%;
     width: 100%;
     overflow: hidden;
+  }
+
+  .horizontalSlider___281Ls {
+    border-radius: var(--border-10px) var(--border-80px) var(--border-10px) var(--border-10px);
   }
 
 }
@@ -593,6 +596,10 @@ img {
   display: flex;
 }
 
+.gap-2 {
+  gap: 10px;
+}
+
 .header {
   width: 100%;
   padding: 0 1rem;
@@ -713,7 +720,6 @@ img {
     align-items: center;
     font-size: var(--normal-font-size);
     text-transform: uppercase;
-    letter-spacing: .1rem;
     padding: 1rem;
     border-radius: var(--border-5px);
   }

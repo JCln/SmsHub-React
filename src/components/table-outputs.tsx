@@ -28,7 +28,7 @@ export default function TableOutputs({ dataSource, columns, fileName }: { dataSo
             rows: dataSource.data
         });
 
-        worksheet.getRow(1).font = { name: 'Vazirmatn', size: 14, color: { argb: 'ffffff' } };//wrapText: true    , bold: true
+        worksheet.getRow(1).font = { name: 'Ravi', size: 14, color: { argb: 'ffffff' } };//wrapText: true    , bold: true
 
         for (let rowIndex = 2; rowIndex <= worksheet.rowCount; rowIndex++) {
             worksheet.getRow(rowIndex).alignment = { vertical: 'middle', horizontal: 'center' };//wrapText: true
