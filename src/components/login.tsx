@@ -72,7 +72,7 @@ export const Login = () => {
                 console.log(error);
             });
     }
-    const getCaptcha = async (): Promise<any> => {
+    const getCaptcha = async () => {
         await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.loginCaptcha}`)
             .then(function (response) {
                 inputs.captchaInputText = response.data.data.dntCaptchaTextValue;

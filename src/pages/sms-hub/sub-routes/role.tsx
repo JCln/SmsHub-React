@@ -1,21 +1,20 @@
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
+import { Column, ColumnEditorOptions } from 'primereact/column';
 import http from '../../../services/httpService';
 
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { Button } from 'primereact/button';
-import * as ExcelJs from "exceljs";
 import { FilterMatchMode } from 'primereact/api';
-import { InputText } from 'primereact/inputtext';
-import { IconField } from 'primereact/iconfield';
-import { InputIcon } from 'primereact/inputicon';
-import { role } from '../../../dynamics/column-data';
-import { ColumnMeta } from '../../../constants/interface';
+import { getGlobalFilterfieldsRole, role } from '../../../dynamics/column-data';
+import { ColumnMeta, IRole } from '../../../constants/interface';
 import ColumnToggle from '../../../components/column-toggle';
-
+import TableGlobalSearch from '../../../components/table-global-search';
+import TableOutputs from '../../../components/table-outputs';
+import { TABLE_ICON_COLUMN_STYLE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import { InputText } from 'primereact/inputtext';
+import { ENNaming } from '../../../constants/naming';
 const Role = () => {
-    const [products, setProducts] = useState([]);
+    const [dataSource, setDataSource] = useState<IRole[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
     const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(role)
@@ -23,112 +22,55 @@ const Role = () => {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: { value: null, matchMode: FilterMatchMode.CONTAINS }
     });
-    const [globalFilterValue, setGlobalFilterValue] = useState('');
-
 
     useEffect(() => {
-        callAPI();
+        callAPI(getDynamics.apis.role);
     }, []);
 
-    const callAPI = async (): Promise<any> => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.role}`)
+    const callAPI = async (api: any) => {
+        await http.get(`${getDynamics.configs.apiEndpoint}${api}`)
             .then(function (response) {
-                setProducts(response.data.data);
+                setDataSource(response.data.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
-    const onGlobalFilterChange = (e: any) => {
-        console.log(e);
-
-        const value = e.target.value;
-        let _filters = { ...filters };
-
-        _filters['global'].value = value;
-
-        setFilters(_filters);
-        setGlobalFilterValue(value);
-    };
     const renderHeader = () => {
         return (
             <div className='_table_header'>
 
-                <div className="flex align-items-center justify-content-end gap-2">
-                    <Button type="button" icon="pi pi-file" rounded onClick={() => (false)} data-pr-tooltip="CSV" />
-                    <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={() => makeEXCEL(products, role, 'testFileName')} data-pr-tooltip="XLS" />
-                    <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={() => (false)} data-pr-tooltip="PDF" />
-                    <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => (false)} data-pr-tooltip="+" />
-                </div>
-
+                <TableOutputs columns={role} dataSource={dataSource} fileName={ENNaming.role}></TableOutputs>
                 <div className="flex justify-content-end" >
                     <ColumnToggle option={role} visibleColumns={visibleColumns} setVisibleColumns={setVisibleColumns}></ColumnToggle>
-                    <IconField iconPosition="left">
-                        <InputIcon className="pi pi-search" />
-                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="جستجو در جدول" />
-                    </IconField>
+                    <TableGlobalSearch filters={filters} setFilters={setFilters}></TableGlobalSearch>
                 </div>
             </div>
         );
     };
-    const makeEXCEL = (datas: any, columns: any, fileName: string) => {
-        console.log(datas);
-        console.log(fileName);
+    const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
+        let _datas = [...dataSource];
+        let { newData, index } = e;
 
-        const workbook = new ExcelJs.Workbook();
-        const _exportType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-        const viewsConfig = { rightToLeft: true }
-        const worksheet = workbook.addWorksheet(
-            "Sheet1"
-            // ,{ views: [viewsConfig] }
-        );
-        worksheet.properties.defaultColWidth = 700;
+        _datas[index] = newData as IRole;
 
-        // TABLE
-        worksheet.addTable({
-            name: 'MyTable',
-            ref: 'A1',
-            headerRow: true,
-            // style: {
-            //   theme: 'TableStyleMedium2',
-            //   showRowStripes: false,
-            // },
-            columns: columns,
-            rows: datas.data
-        });
-
-        worksheet.getRow(1).font = { name: 'Vazirmatn', size: 14, color: { argb: 'ffffff' } };//wrapText: true    , bold: true
-
-        for (let rowIndex = 2; rowIndex <= worksheet.rowCount; rowIndex++) {
-            worksheet.getRow(rowIndex).alignment = { vertical: 'middle', horizontal: 'center' };//wrapText: true
-        }
-
-        const toExportFileName = 'testName';
-        workbook.xlsx.writeBuffer().then((data: any) => {
-            const blob = new Blob([data], {
-                type:
-                    _exportType
-            });
-            let url = window.URL.createObjectURL(blob);
-            let a = document.createElement("a");
-            document.body.appendChild(a);
-            a.setAttribute("style", "display: none");
-            a.href = url;
-            a.download = toExportFileName;
-            a.click();
-            window.URL.revokeObjectURL(url);
-            a.remove();
-        });
-    }
+        setDataSource(_datas);
+    };
+    const textEditor = (options: ColumnEditorOptions) => {
+        return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
+    };
+    const allowEdit = (rowData: IRole) => {
+        return rowData.name !== 'Blue Band';
+    };
 
     const header = renderHeader();
     return (
         <div>
-            <DataTable value={products} tableStyle={{ minWidth: '30rem' }} header={header} stateStorage="session" stateKey="role-state" paginator rows={5} stripedRows rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
-                onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={['name', 'title']} dataKey="id" metaKeySelection={metaKey} emptyMessage="موردی یافت نشد">
+            <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.role + 'state'} paginator rows={5} stripedRows rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
+                onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsRole()} dataKey="id" metaKeySelection={metaKey} emptyMessage="موردی یافت نشد">
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder="جستجو" sortable />
-                ))}
+                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder="جستجو" sortable />
+                ))}                
             </DataTable>
         </div>
     )

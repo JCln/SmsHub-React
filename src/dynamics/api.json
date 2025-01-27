@@ -1,5 +1,6 @@
 {
     "userAll": "/user/all",
+    "userEdit": "/user/update",
     "providerGetList": "/Provider/all",
     "ConsumerLineGetList": "/CunsumerLine/GetList",
     "ConfigTypeGroup": "/ConfigTypeGroup/GetList",

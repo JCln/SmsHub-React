@@ -5,3 +5,6 @@ export const BEARER = 'Bearer ';
 export const Authorization = 'Authorization';
 export const ACCESS_TOKEN = 'accessToken';
 export const IDENTITY_CLAIM_NAME = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
+export const TABLE_STYLE = { minWidth: '30rem' };
+export const TABLE_ICON_COLUMN_STYLE = { width: '10%', minWidth: '8rem' };
+export const TABLE_TEXTALIGN: any = { textAlign: 'center' };

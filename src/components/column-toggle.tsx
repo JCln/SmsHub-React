@@ -1,5 +1,4 @@
-import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect'
-import React, { useState } from 'react'
+import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 
 export default function ColumnToggle({ option, visibleColumns, setVisibleColumns }: { option: any, visibleColumns: any, setVisibleColumns: any }) {
     // const [, setVisibleColumns] = useState<ColumnMeta[]>(option);

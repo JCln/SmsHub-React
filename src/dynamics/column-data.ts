@@ -37,5 +37,17 @@ export const userAll = [
     { field: 'displayName', header: 'نام نمایشی' },
     { field: 'fullName', header: 'نام کامل' },
     { field: 'username', header: 'نام کاربری' },
-    { field: 'mobile', header: 'موبایل' }
+    { field: 'mobile', header: 'موبایل' },
+    { field: 'mobileConfirmed', header: 'موبایل تایید شده' },
+    { field: 'hasTwoStepVerification', header: 'دومرحله ای' },
+    { field: 'lockTimespan', header: 'قفل' },
+    // { field: 'invalidLoginAttemptCount', header: '' }
+    // { field: 'latestLoginDateTime', header: '' }
 ];
+
+export const getGlobalFilterfields = () => {
+    return userAll.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsRole = () => {
+    return role.map((item: { field: string; }) => item.field);
+}
