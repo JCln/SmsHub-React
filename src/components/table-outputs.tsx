@@ -1,7 +1,7 @@
 import { Button } from 'primereact/button';
 import * as ExcelJs from "exceljs";
 
-export default function TableOutputs({ dataSource, columns, fileName }: { dataSource: any, columns: any, fileName: string }) {
+export default function TableOutputs({ dataSource, columns, fileName, ...props }: { dataSource: any, columns: any, fileName: string }) {
     const makeEXCEL = () => {
         console.log(dataSource);
         console.log(fileName);
@@ -57,7 +57,7 @@ export default function TableOutputs({ dataSource, columns, fileName }: { dataSo
             <Button type="button" icon="pi pi-file" rounded onClick={() => (false)} data-pr-tooltip="CSV" />
             <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={() => makeEXCEL()} data-pr-tooltip="XLS" />
             <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={() => (false)} data-pr-tooltip="PDF" />
-            <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => (false)} data-pr-tooltip="+" />
+            {/* <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => props.} data-pr-tooltip="+" /> */}
         </div>
 
     )

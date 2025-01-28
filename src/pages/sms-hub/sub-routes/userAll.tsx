@@ -12,6 +12,8 @@ import { InputText } from 'primereact/inputtext';
 import { TABLE_ICON_COLUMN_STYLE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
+import { POST } from '../../../services/callAPIWrapperService';
+import { toast } from 'react-toastify';
 
 
 const UserAll = () => {
@@ -73,7 +75,9 @@ const UserAll = () => {
 
         _datas[index] = newData as IUserAll;
         setDataSource(_datas);
-        callAPIPost(getDynamics.apis.userEdit, _datas);
+        POST(getDynamics.apis.userEdit, _datas).then(() => {
+            toast.success(ENNaming.successEdit);
+        })
     };
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;

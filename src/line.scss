@@ -1,0 +1,26 @@
+.create-line-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr,
+}
+
+._section_view {
+    margin: var(--size-1rem);
+    padding: var(--size-1rem);
+    border-radius: var(--border-10px);
+    box-shadow: 0px 0px 30px 0px #00000040;
+}
+
+.brand-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--size-2rem);
+}
+
+.brand-logo {
+    height: var(--size-10rem);
+    width: var(--size-10rem);
+}
+
+.input-wrapper {
+    width: var(--size-10rem);
+}

@@ -25,10 +25,11 @@ export interface IProvider {
     id: number,
     title: string,
     website: string,
-    defaultPreNumber: number,
-    batchSize: number,
+    defaultPreNumber: number | null,
+    batchSize: number | null,
     baseUri: string,
-    fallbackBaseUri: string
+    fallbackBaseUri: string,
+    credentialTemplate: string
 }
 export interface ILine {
     providerId: number,

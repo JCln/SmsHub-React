@@ -46,25 +46,34 @@ const Sidebar = ({ user }: { user: string }) => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="nav__dropdown">
+                                <div className="nav__items">
+                                    <div className="nav__subtitle">
+                                        <img src={simcardImage} alt="" className="sidebar_icon"></img>
+                                        خطوط
+                                        <img src={arrowImage} alt="" className="-icon"></img>
+                                    </div>
 
-                            <div className="nav__items">
-                                <div className="nav__subtitle">
-                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>
-                                    <Link to={ENRoutes.line} className="nav__dropdown-item">خطوط</Link>
+                                    <div className="nav__dropdown-collapse">
+                                        <div className="nav__dropdown-content">
+                                            <Link to={ENRoutes.line} className="nav__dropdown-item">همه خطوط</Link>
+                                            <Link to={ENRoutes.lineCreate} className="nav__dropdown-item">افزودن خط</Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="nav__items">
+                            <Link to={ENRoutes.provider} className="nav__items">
                                 <div className="nav__subtitle">
                                     <img src={simcardImage} alt="" className="sidebar_icon"></img>
-                                    <Link to={ENRoutes.provider} className="nav__dropdown-item">سرویس دهندگان</Link>
+                                    <div className="nav__dropdown-item">سرویس دهندگان</div>
                                 </div>
-                            </div>
-                            <div className="nav__items">
+                            </Link>
+                            <Link to={ENRoutes.ConfigTypeGroup} className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>
-                                    <Link to={ENRoutes.ConfigTypeGroup} className="nav__dropdown-item">تنظیمات</Link>
+                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>                                    
+                                    <div className="nav__dropdown-item">تنظیمات</div>
                                 </div>
-                            </div>
+                            </Link>
                             <div className="nav__items">
                                 <div className="nav__subtitle">
                                     <img src={sendImage} alt="" className="sidebar_icon"></img>
@@ -115,7 +124,7 @@ const Sidebar = ({ user }: { user: string }) => {
                         <div className="nav__list">
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={infoImage} alt="" className="sidebar_icon"></img>
+                                    <i className="pi pi-circle-info sidebar_icon"></i>
                                     راهنما سایت
                                 </div>
                             </div>

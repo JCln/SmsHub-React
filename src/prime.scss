@@ -1,6 +1,13 @@
 .p-datatable .p-datatable-tbody>tr>td {
+    padding: .5rem;
     text-align: right;
 }
+
 .p-column-filter-overlay {
     text-align: right;
+}
+
+.p-button.p-button-icon-only {
+    width: var(--size-2rem);
+    height: var(--size-2rem);
 }

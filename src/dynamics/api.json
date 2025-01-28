@@ -3,6 +3,7 @@
     "userEdit": "/user/update",
     "providerGetList": "/Provider/all",
     "providerUpdate": "/Provider/update",
+    "providerCreate": "/Provider/create",
     "providerDelete": "/Provider/delete",
     "ConsumerLineGetList": "/CunsumerLine/GetList",
     "ConfigTypeGroup": "/ConfigTypeGroup/GetList",

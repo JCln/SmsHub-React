@@ -1,0 +1,41 @@
+import { addLocale } from "primereact/api";
+
+addLocale('fa', {
+    firstDayOfWeek: 1,
+    dayNames: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'],
+    dayNamesShort: ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'],
+    dayNamesMin: ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'],
+    monthNames: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+    monthNamesShort: ['فر', 'ار', 'خ', 'ت', 'م', 'ش', 'مهر', 'آبان', 'آذر', 'دی', 'ب', 'اس'],
+    today: 'امروز',
+    close: 'بستن',
+    noFilter: 'حذف فیلتر',
+    accept: 'تایید',
+    reject: 'بازگشت',
+    startsWith: ' شروع با',
+    contains: 'شامل باشد',
+    notContains: ' شامل نباشد',
+    endsWith: ' پایان با',
+    equals: 'برابر',
+    notEquals: 'نا برابر',
+    lt: ' کمتر از',
+    lte: 'کمتر یا برابر',
+    gt: 'بزرگتر',
+    gte: 'بزرگتر یا برابر',
+    dateBefore: 'قبل',
+    dateAfter: 'بعد',
+    clear: 'پاک کردن',
+    apply: 'تایید',
+    matchAll: 'مطابقت با همه',
+    matchAny: ' مطابقت',
+    addRule: 'جستجو براساس',
+    removeRule: 'حذف جستجو',
+    choose: ' انتخاب',
+    upload: 'ارسال',
+    cancel: 'بازگشت',
+    emptyMessage: 'موردی یافت نشد',
+    emptyFilterMessage: 'موردی یافت نشد'
+});
+export const primeLocal = {
+    locale: 'fa',
+};

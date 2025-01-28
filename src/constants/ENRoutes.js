@@ -6,6 +6,7 @@ export const serveruser = '/smshub/serveruser';
 export const userAll = '/smshub/userall';
 export const role = '/smshub/role';
 export const line = '/smshub/line';
+export const lineCreate = '/smshub/createLine';
 export const provider = '/smshub/provider';
 export const consumerLine = '/smshub/consumerLine';
 export const ConfigTypeGroup = '/smshub/ConfigTypeGroup';
