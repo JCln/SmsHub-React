@@ -20,8 +20,12 @@
     height: var(--size-10rem);
     width: var(--size-10rem);
 }
+
 .text-area-line {
+    width: 100%;
+    min-width: 20rem;
+    max-width: 21rem;
     direction: ltr;
     min-height: 10rem;
-    max-width: inherit;
+    max-width: 20rem;
 }

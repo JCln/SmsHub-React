@@ -26,20 +26,15 @@ export default function LineCreate() {
         setCreateLine(values => ({ ...values, [name]: value }))
     }
     const changeSelectedProvider = (e: any) => {
-        console.log(e.target.value);        
-        console.log(e.target.value.credentialTemplate);        
-        createLine.credential = e.target.value.credentialTemplate;
+        setSelectedProvider(e);
+        setCreateLine(values => ({ ...values, credential: e.credentialTemplate, providerId: e.id }))
     }
     const callAPI = async () => {
-        createLine.providerId = selectedProvider;
-        console.log(createLine);
-
-        // POST(getDynamics.apis.lineCreate, createLine).then(() => {
-        //     POST(getDynamics.apis.providerGetList).then((res: any) => {
-        //         console.log(res);
-        //         toast.success(ENNaming.successCreate);
-        //     })
-        // })
+        POST(getDynamics.apis.lineCreate, createLine).then(() => {
+            POST(getDynamics.apis.providerGetList).then((res: any) => {
+                toast.success(ENNaming.successCreate);
+            })
+        })
     }
 
     return (
@@ -54,8 +49,8 @@ export default function LineCreate() {
                                     <div className='captcha-refresh-wrapper'>
                                         <i className="captcha-refresh pi pi-arrow-right-arrow-left"></i>
                                     </div>
-                                    <Dropdown name='providerId' value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e)} options={providers} optionLabel="title"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" />
+                                    <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
+                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                 </div>
                             </div>
                         </div>

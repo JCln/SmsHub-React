@@ -12,6 +12,8 @@ import { ColumnMeta, ILine } from '../../../constants/interface';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import { POST } from '../../../services/callAPIWrapperService';
+import { toast } from 'react-toastify';
 
 const Line = () => {
     const [dataSource, setDataSource] = useState<ILine[]>([]);
@@ -47,6 +49,14 @@ const Line = () => {
                 console.log(error);
             });
     }
+    const callAPIPostDelete = async (e: ILine) => {
+        POST(getDynamics.apis.lineDelete, { id: e.providerId }).then(() => {
+            toast.success(ENNaming.successRemove);
+            POST(getDynamics.apis.lineGetList).then((res: any) => {
+                setDataSource(res.data.data);
+            })
+        })
+    }
     const renderHeader = () => {
         return (
             <>
@@ -61,10 +71,10 @@ const Line = () => {
             </>
         )
     };
-    const actionTemplate = () => {
+    const actionTemplate = (rowData: ILine) => {
         return (
             <div className="flex flex-wrap gap-2">
-                <Button onClick={() => { callAPIPost(getDynamics.apis.lineDelete, dataSource) }} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+                <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
             </div>
         );
     };

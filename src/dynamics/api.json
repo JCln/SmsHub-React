@@ -1,6 +1,9 @@
 {
     "userAll": "/user/all",
     "userEdit": "/user/update",
+    "userLineCreate": "/user/all",
+    "userLineDelete": "/user-line/update",
+    "userLineUpdate": "/user-line/update",
     "providerGetList": "/Provider/all",
     "providerUpdate": "/Provider/update",
     "providerCreate": "/Provider/create",

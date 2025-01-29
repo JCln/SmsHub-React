@@ -101,6 +101,11 @@ body {
   font-family: "Ravi" !important;
 }
 
+.Toastify__toast-theme--light {
+  direction: rtl;
+  font-family: inherit;
+}
+
 .inputs {
   padding: 1rem;
   border: 1px solid var(--clr-lightgray);
@@ -270,6 +275,8 @@ $blue: #5597d4;
 }
 
 ._pages_wrapper {
+  height: 100vh;
+  overflow: auto;
   width: calc(100% - var(--side_bar_width));
   background: url('./images/back1.png');
 }

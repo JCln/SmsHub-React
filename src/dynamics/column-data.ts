@@ -22,7 +22,6 @@ export const line = [
     // { field: 'id', header: 'id' },
     { field: 'number', header: 'تعداد' },
     { field: 'providerId', header: 'سرویس دهنده' },
-    { field: 'credential', header: 'مجوز' }
 ];
 export const consumerLine = [
     { field: 'title', header: 'نام' },
