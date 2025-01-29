@@ -3,6 +3,7 @@ export enum ENNaming {
     role = 'role',
     provider = 'provider',
     line = 'line',
+    choose = 'انتخاب کنید',
     tableEmptyMessage = 'موردی یافت نشد',
     currentPageReportText = 'Showing {first} to {last} of {totalRecords} entries',
     successRemove = 'حذف با موفقیت انجام شد',

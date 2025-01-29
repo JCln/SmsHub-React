@@ -20,7 +20,8 @@
     height: var(--size-10rem);
     width: var(--size-10rem);
 }
-
-.input-wrapper {
-    width: var(--size-10rem);
+.text-area-line {
+    direction: ltr;
+    min-height: 10rem;
+    max-width: inherit;
 }

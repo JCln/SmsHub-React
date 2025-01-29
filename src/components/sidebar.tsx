@@ -7,7 +7,6 @@ import logImage from '../images/log.jpg';
 import patternImage from '../images/pattern.jpg';
 import reportImage from '../images/report.jpg';
 import sendImage from '../images/send.jpg';
-import arrowImage from '../images/arrow.jpg';
 import { Link } from 'react-router';
 import * as ENRoutes from '../constants/ENRoutes';
 import RouterService from '../services/routerService';
@@ -35,13 +34,17 @@ const Sidebar = ({ user }: { user: string }) => {
                                     <div className="nav__subtitle">
                                         <img src={userImage} alt="" className="sidebar_icon"></img>
                                         کاربران
-                                        <img src={arrowImage} alt="" className="-icon"></img>
+                                        <i className="-icon pi pi-angle-down"></i>
                                     </div>
 
                                     <div className="nav__dropdown-collapse">
                                         <div className="nav__dropdown-content">
-                                            <Link to={ENRoutes.userAll} className="nav__dropdown-item">همه کاربران</Link>
-                                            <Link to={ENRoutes.role} className="nav__dropdown-item">نقش ها</Link>
+                                            <div className="nav__dropdown-item">
+                                                <Link to={ENRoutes.userAll}>همه کاربران</Link>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <Link to={ENRoutes.role} className="nav__dropdown-item">نقش ها</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -51,13 +54,17 @@ const Sidebar = ({ user }: { user: string }) => {
                                     <div className="nav__subtitle">
                                         <img src={simcardImage} alt="" className="sidebar_icon"></img>
                                         خطوط
-                                        <img src={arrowImage} alt="" className="-icon"></img>
+                                        <i className="-icon pi pi-angle-down"></i>
                                     </div>
 
                                     <div className="nav__dropdown-collapse">
                                         <div className="nav__dropdown-content">
-                                            <Link to={ENRoutes.line} className="nav__dropdown-item">همه خطوط</Link>
-                                            <Link to={ENRoutes.lineCreate} className="nav__dropdown-item">افزودن خط</Link>
+                                            <div className="nav__dropdown-item">
+                                                <Link to={ENRoutes.line} >همه خطوط</Link>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <Link to={ENRoutes.lineCreate} className="nav__dropdown-item">افزودن خط</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +77,7 @@ const Sidebar = ({ user }: { user: string }) => {
                             </Link>
                             <Link to={ENRoutes.ConfigTypeGroup} className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>                                    
+                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>
                                     <div className="nav__dropdown-item">تنظیمات</div>
                                 </div>
                             </Link>

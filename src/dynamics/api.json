@@ -10,6 +10,7 @@
     "serverUser": "/ServerUser/GetAll",
     "firstStep": "/login/first-step",
     "lineGetList": "/line/all",
+    "lineCreate": "/line/create",
     "lineUpdate": "/line/update",
     "lineDelete": "/line/delete",
     "secondStep": "/login/second-step",
