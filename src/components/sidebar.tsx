@@ -7,7 +7,7 @@ import logImage from '../images/log.jpg';
 import patternImage from '../images/pattern.jpg';
 import reportImage from '../images/report.jpg';
 import sendImage from '../images/send.jpg';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import * as ENRoutes from '../constants/ENRoutes';
 import RouterService from '../services/routerService';
 
@@ -63,7 +63,7 @@ const Sidebar = ({ user }: { user: string }) => {
                                                 <Link to={ENRoutes.line} >همه خطوط</Link>
                                             </div>
                                             <div className="nav__dropdown-item">
-                                                <Link to={ENRoutes.lineCreate} className="nav__dropdown-item">افزودن خط</Link>
+                                                <NavLink to={ENRoutes.lineCreate} className="nav__dropdown-item">افزودن خط</NavLink>
                                             </div>
                                         </div>
                                     </div>

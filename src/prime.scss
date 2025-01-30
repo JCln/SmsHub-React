@@ -15,3 +15,9 @@
 .p-dropdown-items {
     direction: rtl;
 }
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item .p-dropdown-check-icon {
+    position: relative;
+    margin-right: -var(--size-05rem);
+    margin-left: var(--size-05rem);
+}

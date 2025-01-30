@@ -15,7 +15,6 @@ const Home = () => {
         try {
             const jwt = localStorage.getItem(ACCESS_TOKEN) as any;
             const jwtToken: any = jwtDecode<JwtPayload>(jwt);
-            console.log(jwtToken);
             const currentUser = jwtToken[IDENTITY_CLAIM_NAME];
             setState(currentUser);
         } catch (ex) {

@@ -3,7 +3,7 @@ import './App.scss';
 import 'primeicons/primeicons.css';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { addLocale, PrimeReactProvider } from 'primereact/api';
+import { PrimeReactProvider } from 'primereact/api';
 import * as ENRoutes from './constants/ENRoutes';
 import NotFound from './components/NotFound';
 // import Announcement from './components/Announcement';
@@ -19,6 +19,7 @@ import Role from './pages/sms-hub/sub-routes/role';
 import Line from './pages/sms-hub/sub-routes/line';
 import LineCreate from './pages/sms-hub/sub-routes/line-create';
 import { primeLocal } from './constants/prime-local';
+import LineEdit from './pages/sms-hub/sub-routes/line-edit';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                     <Route path={ENRoutes.provider} element={<Providers />}></Route>
                     <Route path={ENRoutes.role} element={<Role />}></Route>
                     <Route path={ENRoutes.line} element={<Line />}></Route>
+                    <Route path={ENRoutes.lineEdit} element={<LineEdit />}></Route>
                     <Route path={ENRoutes.lineCreate} element={<LineCreate />}></Route>
                     <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>
                   </>

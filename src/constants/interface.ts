@@ -32,6 +32,7 @@ export interface IProvider {
     credentialTemplate: string
 }
 export interface ILine {
+    id?: number,
     providerId: number,
     number: string,
     credential: string,

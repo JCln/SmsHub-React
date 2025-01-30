@@ -15,6 +15,7 @@
     "lineGetList": "/line/all",
     "lineCreate": "/line/create",
     "lineUpdate": "/line/update",
+    "lineSingle": "/line/single",
     "lineDelete": "/line/delete",
     "secondStep": "/login/second-step",
     "role": "/role/all",

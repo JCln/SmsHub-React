@@ -14,8 +14,11 @@ import { ENNaming } from '../../../constants/naming';
 import { TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
+import { Link, NavLink, useNavigate } from 'react-router';
+import * as ENRoutes from '../../../constants/ENRoutes';
 
 const Line = () => {
+    let navigate = useNavigate();
     const [dataSource, setDataSource] = useState<ILine[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
@@ -57,6 +60,12 @@ const Line = () => {
             })
         })
     }
+    // const routeToEdit = (rowData: any) => {
+    //     console.log(rowData);
+
+    //     navigate(ENRoutes.lineEdit, { id: rowData.id })
+
+    // }
     const renderHeader = () => {
         return (
             <>
@@ -73,8 +82,14 @@ const Line = () => {
     };
     const actionTemplate = (rowData: ILine) => {
         return (
-            <div className="flex flex-wrap gap-2">
-                <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+            <div className='flex flex-wrap gap-2'>
+                <div>
+                    {/* <Button onClick={() => routeToEdit(rowData)} type="button" icon="pi pi-pencil" severity="info" rounded></Button> */}
+                    <NavLink className="pi pi-pencil info" to={`${ENRoutes.lineEdit}/${rowData.id}`}></NavLink>
+                </div>
+                <div>
+                    <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+                </div>
             </div>
         );
     };
@@ -92,10 +107,6 @@ const Line = () => {
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
     };
-    const allowEdit = (rowData: ILine) => {
-        return rowData.credential !== 'Blue Band';
-    };
-
     const header = renderHeader();
     return (
         <div>
@@ -104,7 +115,6 @@ const Line = () => {
                 {visibleColumns.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder="جستجو" sortable />
                 ))}
-                <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column body={actionTemplate} headerClassName="w-10rem" />
             </DataTable>
         </div>
