@@ -65,6 +65,15 @@ const Sidebar = ({ user }: { user: string }) => {
                                             <div className="nav__dropdown-item">
                                                 <NavLink to={ENRoutes.lineCreate} className="nav__dropdown-item">افزودن خط</NavLink>
                                             </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.UserLineCreate} className="nav__dropdown-item">افزودن کاربر- خط</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.lineByUserIds} className="nav__dropdown-item">مشاهده خط کاربر</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.userByLineIds} className="nav__dropdown-item">مشاهده کاربر خط</NavLink>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -87,10 +96,24 @@ const Sidebar = ({ user }: { user: string }) => {
                                     ارسال
                                 </div>
                             </div>
-                            <div className="nav__items">
-                                <div className="nav__subtitle">
-                                    <img src={patternImage} alt="" className="sidebar_icon"></img>
-                                    قالب
+                            <div className="nav__dropdown">
+                                <div className="nav__items">
+                                    <div className="nav__subtitle">
+                                        <img src={patternImage} alt="" className="sidebar_icon"></img>
+                                        قالب
+                                        <i className="-icon pi pi-angle-down"></i>
+                                    </div>
+
+                                    <div className="nav__dropdown-collapse">
+                                        <div className="nav__dropdown-content">
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.templateCategroy} className="nav__dropdown-item">نمایش</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.templateCategroyCreate} className="nav__dropdown-item">افزودن</NavLink>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="nav__items">

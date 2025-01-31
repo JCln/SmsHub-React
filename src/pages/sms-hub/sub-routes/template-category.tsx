@@ -2,8 +2,8 @@ import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { ColumnMeta, IProvider } from '../../../constants/interface';
-import { getGlobalFilterfieldsProvider, provider } from '../../../dynamics/column-data';
+import { ColumnMeta, ITemplateCategoryDTO } from '../../../constants/interface';
+import { getGlobalFilterfieldsProvider, getGlobalFilterfieldsTemplate, provider, templateCategory } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
@@ -14,26 +14,18 @@ import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 
 
-const Providers = () => {
-    const [dataSource, setDataSource] = useState<IProvider[]>([]);
+const TemplateCategory = () => {
+    const [dataSource, setDataSource] = useState<ITemplateCategoryDTO[]>([]);
     const [isNew, setIsNew] = useState<boolean>(true);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
-    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(provider)
+    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(templateCategory)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        title: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        website: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        defaultPreNumber: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        batchSize: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        baseUri: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        fallbackBaseUri: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
 
     useEffect(() => {
-        POST(getDynamics.apis.providerGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+        callAPI();
     }, []);
 
     const renderHeader = () => {
@@ -44,14 +36,13 @@ const Providers = () => {
                     setFilters={setFilters}
                     visibleColumns={visibleColumns}
                     setVisibleColumns={setVisibleColumns}
-                    fileName={ENNaming.provider}
-                    option={provider}
+                    fileName={ENNaming.templateCategory}
+                    option={templateCategory}
                 ></TableHeader>
-                <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+" />
             </>
         )
     };
-    const actionTemplate = (rowData: IProvider) => {
+    const actionTemplate = (rowData: ITemplateCategoryDTO) => {
         return (
             <div className="flex flex-wrap gap-2">
                 <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
@@ -59,67 +50,21 @@ const Providers = () => {
         );
     };
 
-    const onRowAdd = () => {
-        if (isNew) {
-            setIsNew(false);
-
-            let _datas = [...dataSource];
-            _datas.unshift(
-                {
-                    id: 0,
-                    title: '',
-                    website: '',
-                    defaultPreNumber: null,
-                    batchSize: null,
-                    baseUri: '',
-                    fallbackBaseUri: '',
-                    credentialTemplate: ''
-                }
-            )
-            setDataSource(_datas);
-        }
-    }
-    const addNew = (e: DataTableRowEditCompleteEvent) => {
-        let _datas = [...dataSource];
-        let { newData, index } = e;
-
-        _datas[index] = newData as IProvider;
-
-        setDataSource(_datas);
-        POST(getDynamics.apis.providerCreate, newData).then(() => {
-            toast.success(ENNaming.successCreate);
+    const callAPI = async () => {
+        POST(getDynamics.apis.TemplateCategoryGetList).then((res: any) => {
+            setDataSource(res.data.data);
         })
-        setIsNew(true);
     }
-    const updateRow = (e: DataTableRowEditCompleteEvent) => {
-
-        let _datas = [...dataSource];
-        let { newData, index } = e;
-
-        _datas[index] = newData as IProvider;
-
-        setDataSource(_datas);
-        POST(getDynamics.apis.providerUpdate, _datas).then(() => {
-            toast.success(ENNaming.successEdit);
-        })
-        setIsNew(true);
-    }
-    const callAPIPostDelete = async (e: IProvider) => {
-        POST(getDynamics.apis.providerDelete, { id: e.id }).then(() => {
+    const callAPIPostDelete = async (e: ITemplateCategoryDTO) => {
+        POST(getDynamics.apis.TemplateCategoryDelete, { id: e.id }).then(() => {
             toast.success(ENNaming.successRemove);
-            POST(getDynamics.apis.providerGetList).then((res: any) => {
-                setDataSource(res.data.data);
-            })
+            callAPI();
         })
     }
-    const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
-        console.log(e);
-        e.data.id === 0 ? addNew(e) : updateRow(e)
-    };
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
     };
-    const allowEdit = (rowData: IProvider) => {
+    const allowEdit = (rowData: ITemplateCategoryDTO) => {
         return rowData.title !== 'Blue Band';
     };
 
@@ -130,9 +75,8 @@ const Providers = () => {
                 tableStyle={TABLE_STYLE}
                 editMode="row"
                 header={header}
-                onRowEditComplete={onRowEditComplete}
                 stateStorage="session"
-                stateKey={ENNaming.provider + 'state'}
+                stateKey={ENNaming.templateCategory + 'state'}
                 paginator
                 rows={TABLE_NUMBER_OF_ROWS}
                 stripedRows
@@ -142,7 +86,7 @@ const Providers = () => {
                 selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)}
                 filterDisplay="row"
-                globalFilterFields={getGlobalFilterfieldsProvider()}
+                globalFilterFields={getGlobalFilterfieldsTemplate()}
                 dataKey="id"
                 metaKeySelection={metaKey}
                 emptyMessage={ENNaming.tableEmptyMessage}
@@ -157,4 +101,4 @@ const Providers = () => {
         </div>
     )
 }
-export default Providers;
+export default TemplateCategory;

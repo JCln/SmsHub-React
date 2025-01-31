@@ -10,6 +10,11 @@ export const serverUser = [
     { field: 'deleteDateTime', header: 'تاریخ حذف' },
     // { field: 'apiKeyHash', header: 'موبایل' }
 ];
+export const templateCategory = [
+    // { field: 'id', header: 'id' },
+    { field: 'title', header: 'عنوان' },
+    { field: 'description', header: 'توضیحات' },
+]
 export const provider = [
     { field: 'title', header: 'نام' },
     { field: 'website', header: 'وب سایت' },
@@ -32,6 +37,16 @@ export const configTypeGroup = [
     { field: 'title', header: 'نام' },
     { field: 'configTypeId', header: 'کانفیگ' },
     { field: 'description', header: 'توضیحات' },
+];
+export const userLineGetByUserId = [
+    // { field: 'id', header: '' },
+    { field: 'lineId', header: 'شناسه خط' },
+    { field: 'lineNumber', header: 'شماره خط' },
+];
+export const lineGetByUserId = [
+    // { field: 'id', header: '' },
+    { field: 'userId', header: 'کاربری' },
+    { field: 'fullName', header: 'نام کامل' },
 ];
 export const userAll = [
     { field: 'displayName', header: 'نام نمایشی' },
@@ -56,4 +71,7 @@ export const getGlobalFilterfieldsProvider = () => {
 }
 export const getGlobalFilterfieldsLine = () => {
     return provider.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsTemplate = () => {
+    return templateCategory.map((item: { field: string; }) => item.field);
 }

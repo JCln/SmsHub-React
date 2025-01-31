@@ -1,7 +1,10 @@
 export enum ENNaming {
     userAll = 'userAll',
+    userLineGetByUserId = 'userLineGetByUserId',
+    userLineGetByLineId = 'userLineGetByLineId',
     role = 'role',
     provider = 'provider',
+    templateCategory = 'templateCategory',
     line = 'line',
     choose = 'انتخاب کنید',
     tableEmptyMessage = 'موردی یافت نشد',

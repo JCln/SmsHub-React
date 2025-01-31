@@ -37,3 +37,12 @@ export interface ILine {
     number: string,
     credential: string,
 }
+export interface ICreateUserLineDto {
+    lineId: number,
+    userId: string,
+}
+export interface ITemplateCategoryDTO {
+    id?: number,
+    title: string,
+    description: string
+}

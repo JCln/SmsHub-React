@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import Sidebar from '../../../components/sidebar';
 import { classNames } from 'primereact/utils';
 import { serverUser } from '../../../dynamics/column-data';
+import { TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE } from '../../../constants/ActionTypes';
 
 
 const ServerUser = () => {
@@ -33,7 +34,7 @@ const ServerUser = () => {
 
     return (
         <div style={{ display: 'flex', direction: 'rtl' }}>
-            <DataTable value={products} tableStyle={{ minWidth: '30rem', width: '100%' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
+            <DataTable value={products} tableStyle={{ minWidth: '30rem', width: '100%' }} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {serverUser.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} dataType={col.isCheckbox ? 'boolean' : ''} />

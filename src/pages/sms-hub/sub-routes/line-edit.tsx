@@ -46,7 +46,7 @@ const LineEdit = () => {
 
     return (
         <>
-            <div className='create-line-wrapper'>
+            <div className='d-grid'>
                 <div>
                     <div className='_section_view'>
                         <div>

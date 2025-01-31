@@ -20,6 +20,11 @@ import Line from './pages/sms-hub/sub-routes/line';
 import LineCreate from './pages/sms-hub/sub-routes/line-create';
 import { primeLocal } from './constants/prime-local';
 import LineEdit from './pages/sms-hub/sub-routes/line-edit';
+import UserLineCreate from './pages/sms-hub/sub-routes/user-line-create';
+import LineByUserIds from './pages/sms-hub/sub-routes/line-by-user-ids';
+import UserByLineIds from './pages/sms-hub/sub-routes/user-by-line-ids';
+import TemplateCategoryCreate from './pages/sms-hub/sub-routes/template-category-create';
+import TemplateCategory from './pages/sms-hub/sub-routes/template-category';
 
 function App() {
   return (
@@ -39,6 +44,11 @@ function App() {
                     <Route path={ENRoutes.line} element={<Line />}></Route>
                     <Route path={ENRoutes.lineEdit} element={<LineEdit />}></Route>
                     <Route path={ENRoutes.lineCreate} element={<LineCreate />}></Route>
+                    <Route path={ENRoutes.UserLineCreate} element={<UserLineCreate />}></Route>
+                    <Route path={ENRoutes.lineByUserIds} element={<LineByUserIds />}></Route>
+                    <Route path={ENRoutes.userByLineIds} element={<UserByLineIds />}></Route>
+                    <Route path={ENRoutes.templateCategroy} element={<TemplateCategory />}></Route>
+                    <Route path={ENRoutes.templateCategroyCreate} element={<TemplateCategoryCreate />}></Route>
                     <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>
                   </>
                 }

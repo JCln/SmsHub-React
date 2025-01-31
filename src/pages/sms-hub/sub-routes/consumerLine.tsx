@@ -6,6 +6,7 @@ import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import Sidebar from '../../../components/sidebar';
 import { consumerLine } from '../../../dynamics/column-data';
+import { TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE } from '../../../constants/ActionTypes';
 
 
 const Consumer = () => {
@@ -27,7 +28,7 @@ const Consumer = () => {
     }
     return (
         <div style={{ display: 'flex', direction: 'rtl' }}>
-            <DataTable value={products} tableStyle={{ minWidth: '30rem' }} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} removableSort selectionMode="single" selection={selectedProduct}
+            <DataTable value={products} tableStyle={{ minWidth: '30rem' }} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {consumerLine.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} />

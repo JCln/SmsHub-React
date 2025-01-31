@@ -25,7 +25,10 @@
     width: 100%;
     min-width: 20rem;
     max-width: 21rem;
-    direction: ltr;
+    padding: var(--size-5px);
+    font-family: inherit;
+    border-radius: var(--border-10px);
+    border: 1px solid var(--clr-lightgray);
     min-height: 10rem;
     max-width: 20rem;
 }

@@ -39,7 +39,7 @@ export default function LineCreate() {
 
     return (
         <>
-            <div className='create-line-wrapper'>
+            <div className='create-line-wrapper d-grid'>
                 <div>
                     <div className='_section_view'>
                         <div>
