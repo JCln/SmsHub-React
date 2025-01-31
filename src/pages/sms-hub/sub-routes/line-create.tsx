@@ -72,7 +72,7 @@ export default function LineCreate() {
                         <div>
                             <h3>مجوزها</h3>
                             <div>
-                                <textarea className='w-full text-area-line' name='credential' value={createLine.credential} onChange={setForm}>
+                                <textarea className='w-full text-area-line dir-ltr' name='credential' value={createLine.credential} onChange={setForm}>
                                 </textarea>
                             </div>
                         </div>

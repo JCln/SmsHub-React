@@ -15,6 +15,15 @@ export const templateCategory = [
     { field: 'title', header: 'عنوان' },
     { field: 'description', header: 'توضیحات' },
 ]
+export const template = [
+    // { field: 'id', header: 'id' },
+    { field: 'title', header: 'عنوان' },
+    { field: 'expression', header: 'expression' },
+    { field: 'templateCategoryId', header: 'templateCategoryId' },
+    { field: 'isActive', header: 'isActive' },
+    { field: 'minCredit', header: 'minCredit' },
+    { field: 'configTypeGroupId', header: 'configTypeGroupId' }
+]
 export const provider = [
     { field: 'title', header: 'نام' },
     { field: 'website', header: 'وب سایت' },
@@ -72,6 +81,9 @@ export const getGlobalFilterfieldsProvider = () => {
 export const getGlobalFilterfieldsLine = () => {
     return provider.map((item: { field: string; }) => item.field);
 }
-export const getGlobalFilterfieldsTemplate = () => {
+export const getGlobalFilterfieldsTemplateCategory = () => {
     return templateCategory.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsTemplate = () => {
+    return template.map((item: { field: string; }) => item.field);
 }

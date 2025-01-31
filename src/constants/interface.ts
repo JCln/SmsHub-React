@@ -46,3 +46,23 @@ export interface ITemplateCategoryDTO {
     title: string,
     description: string
 }
+export interface ITemplateDTO {
+    id?: number,
+    expression: string,
+    title: string,
+    templateCategoryId: number,
+    isActive: boolean,
+    minCredit: number,
+    configTypeGroupId: number
+}
+export interface IConfigeTypeGroupDTO {
+    id?: number,
+    title: string,
+    description: string
+}
+export interface ISendManagerDTO {
+    id?: number,
+    mobile: string,
+    text: string
+    localId: number
+}

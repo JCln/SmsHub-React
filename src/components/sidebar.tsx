@@ -84,18 +84,32 @@ const Sidebar = ({ user }: { user: string }) => {
                                     <div className="nav__dropdown-item">سرویس دهندگان</div>
                                 </div>
                             </Link>
-                            <Link to={ENRoutes.ConfigTypeGroup} className="nav__items">
-                                <div className="nav__subtitle">
-                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>
-                                    <div className="nav__dropdown-item">تنظیمات</div>
-                                </div>
-                            </Link>
-                            <div className="nav__items">
-                                <div className="nav__subtitle">
-                                    <img src={sendImage} alt="" className="sidebar_icon"></img>
-                                    ارسال
+                            <div className="nav__dropdown">
+                                <div className="nav__items">
+                                    <div className="nav__subtitle">
+                                        <img src={patternImage} alt="" className="sidebar_icon"></img>
+                                        تنظیمات
+                                        <i className="-icon pi pi-angle-down"></i>
+                                    </div>
+
+                                    <div className="nav__dropdown-collapse">
+                                        <div className="nav__dropdown-content">
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.ConfigTypeGroup} className="nav__dropdown-item">نمایش تنظیمات</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.ConfigTypeGroupCreate} className="nav__dropdown-item">افزودن تنظیمات</NavLink>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <Link to={ENRoutes.SendManager} className="nav__items">
+                                <div className="nav__subtitle">
+                                    <img src={sendImage} alt="" className="sidebar_icon"></img>
+                                    <div className="nav__dropdown-item">ارسال</div>
+                                </div>
+                            </Link>
                             <div className="nav__dropdown">
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
@@ -107,10 +121,16 @@ const Sidebar = ({ user }: { user: string }) => {
                                     <div className="nav__dropdown-collapse">
                                         <div className="nav__dropdown-content">
                                             <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.templateCategroy} className="nav__dropdown-item">نمایش</NavLink>
+                                                <NavLink to={ENRoutes.templateCategroy} className="nav__dropdown-item">نمایش دسته‌بندی‌ها</NavLink>
                                             </div>
                                             <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.templateCategroyCreate} className="nav__dropdown-item">افزودن</NavLink>
+                                                <NavLink to={ENRoutes.templateCategroyCreate} className="nav__dropdown-item">افزودن دسته‌بندی</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.template} className="nav__dropdown-item">نمایش قالب</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.templateCreate} className="nav__dropdown-item">افزودن قالب</NavLink>
                                             </div>
                                         </div>
                                     </div>

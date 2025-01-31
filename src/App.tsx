@@ -25,6 +25,9 @@ import LineByUserIds from './pages/sms-hub/sub-routes/line-by-user-ids';
 import UserByLineIds from './pages/sms-hub/sub-routes/user-by-line-ids';
 import TemplateCategoryCreate from './pages/sms-hub/sub-routes/template-category-create';
 import TemplateCategory from './pages/sms-hub/sub-routes/template-category';
+import TemplateCreate from './pages/sms-hub/sub-routes/template-create';
+import ConfigTypeGroupCreate from './pages/sms-hub/sub-routes/config-type-group-create';
+import SendManager from './pages/sms-hub/sub-routes/send-manager';
 
 function App() {
   return (
@@ -49,7 +52,11 @@ function App() {
                     <Route path={ENRoutes.userByLineIds} element={<UserByLineIds />}></Route>
                     <Route path={ENRoutes.templateCategroy} element={<TemplateCategory />}></Route>
                     <Route path={ENRoutes.templateCategroyCreate} element={<TemplateCategoryCreate />}></Route>
+                    <Route path={ENRoutes.template} element={<template />}></Route>
+                    <Route path={ENRoutes.templateCreate} element={<TemplateCreate />}></Route>
                     <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>
+                    <Route path={ENRoutes.ConfigTypeGroupCreate} element={<ConfigTypeGroupCreate />}></Route>
+                    <Route path={ENRoutes.SendManager} element={<SendManager />}></Route>
                   </>
                 }
               </Route>

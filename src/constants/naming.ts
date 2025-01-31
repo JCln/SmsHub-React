@@ -5,6 +5,7 @@ export enum ENNaming {
     role = 'role',
     provider = 'provider',
     templateCategory = 'templateCategory',
+    template = 'template',
     line = 'line',
     choose = 'انتخاب کنید',
     tableEmptyMessage = 'موردی یافت نشد',

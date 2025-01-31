@@ -594,6 +594,10 @@ $slider_content: 75%;
   align-items: center;
 }
 
+.two_columns {
+  grid-template-columns: 1fr 1fr;
+}
+
 .dir-ltr {
   direction: ltr;
 }
