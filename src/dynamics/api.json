@@ -13,7 +13,7 @@
     "TemplateCategoryGetUpdate": "/template-category/",
     "TemplateCreate": "/template/create",
     "TemplateDelete": "/template/delete",
-    "TemplateGetList": "/template/alll",
+    "TemplateGetList": "/template/all",
     "TemplateGetSingle": "/template/signle",
     "TemplateGetUpdate": "/template/",
     "userLineCreate": "/user-line/create",

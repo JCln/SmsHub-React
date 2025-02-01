@@ -62,7 +62,5 @@ export interface IConfigeTypeGroupDTO {
 }
 export interface ISendManagerDTO {
     id?: number,
-    mobile: string,
-    text: string
-    localId: number
+    text: any
 }

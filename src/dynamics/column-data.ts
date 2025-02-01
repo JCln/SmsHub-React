@@ -18,11 +18,11 @@ export const templateCategory = [
 export const template = [
     // { field: 'id', header: 'id' },
     { field: 'title', header: 'عنوان' },
-    { field: 'expression', header: 'expression' },
-    { field: 'templateCategoryId', header: 'templateCategoryId' },
-    { field: 'isActive', header: 'isActive' },
-    { field: 'minCredit', header: 'minCredit' },
-    { field: 'configTypeGroupId', header: 'configTypeGroupId' }
+    { field: 'expression', header: 'عبارت' },
+    { field: 'templateCategoryId', header: 'دسته‌بندی' },
+    { field: 'isActive', header: 'فعال' },
+    { field: 'minCredit', header: 'حداقل اعتبار' },
+    { field: 'configTypeGroupId', header: 'تنظیمات' }
 ]
 export const provider = [
     { field: 'title', header: 'نام' },

@@ -12,9 +12,7 @@ export default function SendManager() {
     const [selectedTemplateId, setSelectedTemplateId] = useState<any>()
     const [selectedLineId, setSelectedLineId] = useState<any>()
     const [sendMessageDTO, setSendMessageDTO] = useState<ISendManagerDTO>({
-        mobile: '',
-        text: '',
-        localId: 0
+        text: ''
     });
     useEffect(() => {
         GET(getDynamics.apis.templateGetDictionary).then((res: any) => {
@@ -30,11 +28,11 @@ export default function SendManager() {
         setSendMessageDTO(values => ({ ...values, [name]: value }))
     }
     const callAPI = async () => {
-        console.log(sendMessageDTO);
+        sendMessageDTO.text = [JSON.parse(sendMessageDTO.text)];
 
-        // POST(getDynamics.apis.sendManagerCreate, sendMessageDTO).then(() => {
-        //     toast.success(ENNaming.successCreate);
-        // })
+        POST(getDynamics.apis.sendManagerCreate + '/' + selectedTemplateId.id + '/' + selectedLineId.id, sendMessageDTO.text).then(() => {
+            toast.success(ENNaming.successCreate);
+        })
     }
 
     return (
