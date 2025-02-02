@@ -60,7 +60,7 @@ export const permittedTime: ColumnMetaS[] = [
     // { field: 'dynamicId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
 ];
 export const disallowedPhrase: ColumnMetaS[] = [
-    { field: 'کلمه', header: 'کلمه', types: ENCellTypes.inputs },
+    { field: 'phrase', header: 'کلمه', types: ENCellTypes.inputs },
     { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
     // { field: 'dynamicId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
 ];
