@@ -566,12 +566,20 @@ $slider_content: 75%;
   align-items: center;
 }
 
+.special-font-family {
+  font-family: cursive, monospace;
+}
+
 .justify-content-center {
   justify-content: center;
 }
 
 .d-flex {
   display: flex;
+}
+
+.gap-5 {
+  gap: 5px;
 }
 
 .w-full {

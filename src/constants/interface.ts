@@ -1,6 +1,15 @@
+export enum ENCellTypes {
+    inputs = 'input',
+    dropdowns = 'dropdown'
+}
 export interface ColumnMeta {
     field: string;
     header: string;
+}
+export interface ColumnMetaS {
+    field: string;
+    header: string;
+    types: ENCellTypes;
 }
 export interface IRole {
     id: string;
@@ -22,7 +31,7 @@ export interface IUserAll {
     lockTimespan: string
 }
 export interface IProvider {
-    id: number,
+    id?: number,
     title: string,
     website: string,
     defaultPreNumber: number | null,
@@ -59,6 +68,25 @@ export interface IConfigeTypeGroupDTO {
     id?: number,
     title: string,
     description: string
+}
+export interface ICcSend {
+    id?: number,
+    mobile: string,
+    configTypeGroupId: number
+    dynamicId?: any
+}
+export interface IPermittedTime {
+    id?: number,
+    configTypeGroupId: number
+    dynamicId?: any
+    fromTime: string,
+    toTime: string
+}
+export interface IDisallowedPhrase {
+    id?: number,
+    configTypeGroupId: number
+    dynamicId?: any
+    phrase: string
 }
 export interface ISendManagerDTO {
     id?: number,

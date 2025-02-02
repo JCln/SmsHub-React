@@ -6,7 +6,7 @@ import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
 import { getGlobalFilterfields, userAll, lineGetByUserId } from '../../../dynamics/column-data';
 import { ColumnMeta, IUserAll } from '../../../constants/interface';
-import { TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
 import { GET, POST, POSTBYID } from '../../../services/callAPIWrapperService';
@@ -74,7 +74,7 @@ const UserByLineIds = () => {
             <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} stateStorage="session" stateKey="userall-state" paginator rows={TABLE_NUMBER_OF_ROWS} stripedRows rowsPerPageOptions={TABLE_ROWS_PER_PAGE} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfields()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage}>
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder="جستجو" sortable />
+                    <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
             </DataTable>
         </div>

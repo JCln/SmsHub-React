@@ -95,10 +95,16 @@ const Sidebar = ({ user }: { user: string }) => {
                                     <div className="nav__dropdown-collapse">
                                         <div className="nav__dropdown-content">
                                             <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.ConfigTypeGroup} className="nav__dropdown-item">نمایش تنظیمات</NavLink>
+                                                <NavLink to={ENRoutes.ConfigTypeGroup} className="nav__dropdown-item">تنظیم گروه</NavLink>
                                             </div>
                                             <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.ConfigTypeGroupCreate} className="nav__dropdown-item">افزودن تنظیمات</NavLink>
+                                                <NavLink to={ENRoutes.CCSend} className="nav__dropdown-item">ارسال مجدد</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.Permittedtime} className="nav__dropdown-item">بازه مجاز</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.disallowedPhrase} className="nav__dropdown-item">کلمات غیر مجاز</NavLink>
                                             </div>
                                         </div>
                                     </div>

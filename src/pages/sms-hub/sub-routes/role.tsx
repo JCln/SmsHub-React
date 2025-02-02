@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import { getGlobalFilterfieldsRole, role } from '../../../dynamics/column-data';
 import { ColumnMeta, IRole } from '../../../constants/interface';
-import { TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { InputText } from 'primereact/inputtext';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
@@ -68,7 +68,7 @@ const Role = () => {
             <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.role + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} stripedRows rowsPerPageOptions={TABLE_ROWS_PER_PAGE} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsRole()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} currentPageReportTemplate={ENNaming.currentPageReportText}>
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder="جستجو" sortable />
+                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
             </DataTable>
         </div>

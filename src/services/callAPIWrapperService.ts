@@ -1,7 +1,7 @@
 import { getDynamics } from "../dynamics/getDynamics";
 import httpService from "../services/httpService";
 
-export const POST = async (API: string, BODY?: object) => {
+export const POST = async (API: string, BODY?: object): Promise<any> => {
     return new Promise(async (resolve, rejects) => {
         const res = await httpService.post(`${getDynamics.configs.apiEndpoint}${API}`, BODY).catch(function (error: any) {
             console.log(error);
@@ -12,7 +12,7 @@ export const POST = async (API: string, BODY?: object) => {
         )
     });
 }
-export const POSTBYID = async (API: string, ID?: string) => {
+export const POSTBYID = async (API: string, ID?: string): Promise<any> => {
     return new Promise(async (resolve, rejects) => {
         const res = await httpService.post(`${getDynamics.configs.apiEndpoint}${API}/${ID}`).catch(function (error: any) {
             console.log(error);

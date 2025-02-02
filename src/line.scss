@@ -22,13 +22,13 @@
 }
 
 .text-area-line {
-    width: 100%;
-    min-width: 20rem;
-    max-width: 21rem;
     padding: var(--size-5px);
     font-family: inherit;
     border-radius: var(--border-10px);
     border: 1px solid var(--clr-lightgray);
+    font-size: var(--size-1-2rem);
     min-height: 10rem;
-    max-width: 20rem;
+    max-width: 70vw;
+    width: 100%;
+    min-width: 20rem;
 }

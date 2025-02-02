@@ -28,7 +28,12 @@ export default function SendManager() {
         setSendMessageDTO(values => ({ ...values, [name]: value }))
     }
     const callAPI = async () => {
-        sendMessageDTO.text = [JSON.parse(sendMessageDTO.text)];
+        try {
+            sendMessageDTO.text = JSON.parse(sendMessageDTO.text);
+        } catch (error) {
+            console.error(error);
+        }
+        console.log(sendMessageDTO.text);
 
         POST(getDynamics.apis.sendManagerCreate + '/' + selectedTemplateId.id + '/' + selectedLineId.id, sendMessageDTO.text).then(() => {
             toast.success(ENNaming.successCreate);
@@ -77,7 +82,7 @@ export default function SendManager() {
                                         <i className="captcha-refresh pi pi-bookmark"></i>
                                     </div>
                                     <textarea
-                                        className='w-full text-area-line dir-ltr'
+                                        className='w-full text-area-line special-font-family dir-ltr'
                                         placeholder='
                                         {
                                          "text" : "متن مورد نظر",

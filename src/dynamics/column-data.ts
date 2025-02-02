@@ -1,3 +1,5 @@
+import { ColumnMetaS, ENCellTypes } from './../constants/interface';
+
 export const role = [
     // { field: 'id', header: 'id' },
     { field: 'name', header: 'نام' },
@@ -22,7 +24,7 @@ export const template = [
     { field: 'templateCategoryId', header: 'دسته‌بندی' },
     { field: 'isActive', header: 'فعال' },
     { field: 'minCredit', header: 'حداقل اعتبار' },
-    { field: 'configTypeGroupId', header: 'تنظیمات' }
+    { field: 'configTypeGroupId', header: 'گروه دسته‌بندی' }
 ]
 export const provider = [
     { field: 'title', header: 'نام' },
@@ -44,8 +46,23 @@ export const consumerLine = [
 ];
 export const configTypeGroup = [
     { field: 'title', header: 'نام' },
-    { field: 'configTypeId', header: 'کانفیگ' },
     { field: 'description', header: 'توضیحات' },
+];
+export const ccSend: ColumnMetaS[] = [
+    { field: 'mobile', header: 'موبایل', types: ENCellTypes.inputs },
+    // { field: 'dynamicId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
+    { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
+];
+export const permittedTime: ColumnMetaS[] = [
+    { field: 'fromTime', header: 'از زمان', types: ENCellTypes.inputs },
+    { field: 'toTime', header: 'تا زمان', types: ENCellTypes.inputs },
+    { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
+    // { field: 'dynamicId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
+];
+export const disallowedPhrase: ColumnMetaS[] = [
+    { field: 'کلمه', header: 'کلمه', types: ENCellTypes.inputs },
+    { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
+    // { field: 'dynamicId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
 ];
 export const userLineGetByUserId = [
     // { field: 'id', header: '' },
@@ -86,4 +103,16 @@ export const getGlobalFilterfieldsTemplateCategory = () => {
 }
 export const getGlobalFilterfieldsTemplate = () => {
     return template.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsConfigTypeGroup = () => {
+    return configTypeGroup.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsCcSend = () => {
+    return ccSend.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsPermittedTime = () => {
+    return permittedTime.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsDisallowedPhrase = () => {
+    return disallowedPhrase.map((item: { field: string; }) => item.field);
 }

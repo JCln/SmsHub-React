@@ -9,4 +9,5 @@ export const TABLE_STYLE = { minWidth: '30rem' };
 export const TABLE_ICON_COLUMN_STYLE = { width: '10%', minWidth: '6rem' };
 export const TABLE_TEXTALIGN: any = { textAlign: 'center' };
 export const TABLE_NUMBER_OF_ROWS: number = 5;
+export const TABLE_FILTER_PLACEHOLDER: string = 'جستجو';
 export const TABLE_ROWS_PER_PAGE: number[] = [5, 10, 25, 50];

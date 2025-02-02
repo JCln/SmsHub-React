@@ -26,9 +26,11 @@ import UserByLineIds from './pages/sms-hub/sub-routes/user-by-line-ids';
 import TemplateCategoryCreate from './pages/sms-hub/sub-routes/template-category-create';
 import TemplateCategory from './pages/sms-hub/sub-routes/template-category';
 import TemplateCreate from './pages/sms-hub/sub-routes/template-create';
-import ConfigTypeGroupCreate from './pages/sms-hub/sub-routes/config-type-group-create';
 import SendManager from './pages/sms-hub/sub-routes/send-manager';
 import Template from './pages/sms-hub/sub-routes/template';
+import CcSend from './pages/sms-hub/sub-routes/cc-send';
+import PermittedTime from './pages/sms-hub/sub-routes/permitted-time';
+import DisallowedPhrase from './pages/sms-hub/sub-routes/disallowed-phrase';
 
 function App() {
   return (
@@ -56,8 +58,10 @@ function App() {
                     <Route path={ENRoutes.template} element={<Template />}></Route>
                     <Route path={ENRoutes.templateCreate} element={<TemplateCreate />}></Route>
                     <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>
-                    <Route path={ENRoutes.ConfigTypeGroupCreate} element={<ConfigTypeGroupCreate />}></Route>
                     <Route path={ENRoutes.SendManager} element={<SendManager />}></Route>
+                    <Route path={ENRoutes.CCSend} element={<CcSend />}></Route>
+                    <Route path={ENRoutes.Permittedtime} element={<PermittedTime />}></Route>
+                    <Route path={ENRoutes.disallowedPhrase} element={<DisallowedPhrase />}></Route>
                   </>
                 }
               </Route>
@@ -67,7 +71,7 @@ function App() {
           </div>
         </BrowserRouter>
       </PrimeReactProvider>
-    </div >
+    </div>
   );
 }
 

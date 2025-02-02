@@ -33,7 +33,7 @@ const ServerUser = () => {
     };
 
     return (
-        <div style={{ display: 'flex', direction: 'rtl' }}>
+        <div>
             <DataTable value={products} tableStyle={{ minWidth: '30rem', width: '100%' }} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" metaKeySelection={metaKey}>
                 {serverUser.map((col, i) => (

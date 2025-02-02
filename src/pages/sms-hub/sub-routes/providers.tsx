@@ -8,7 +8,7 @@ import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { InputText } from 'primereact/inputtext';
-import { TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
@@ -31,11 +31,14 @@ const Providers = () => {
     });
 
     useEffect(() => {
+        callAPI();
+    }, []);
+
+    const callAPI = async () => {
         POST(getDynamics.apis.providerGetList).then((res: any) => {
             setDataSource(res.data.data);
         })
-    }, []);
-
+    }
     const renderHeader = () => {
         return (
             <>
@@ -47,7 +50,9 @@ const Providers = () => {
                     fileName={ENNaming.provider}
                     option={provider}
                 ></TableHeader>
-                <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+" />
+                <div className="d-flex">
+                    <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
+                </div>
             </>
         )
     };
@@ -66,7 +71,6 @@ const Providers = () => {
             let _datas = [...dataSource];
             _datas.unshift(
                 {
-                    id: 0,
                     title: '',
                     website: '',
                     defaultPreNumber: null,
@@ -87,6 +91,7 @@ const Providers = () => {
 
         setDataSource(_datas);
         POST(getDynamics.apis.providerCreate, newData).then(() => {
+            callAPI();
             toast.success(ENNaming.successCreate);
         })
         setIsNew(true);
@@ -98,10 +103,14 @@ const Providers = () => {
 
         _datas[index] = newData as IProvider;
 
-        setDataSource(_datas);
-        POST(getDynamics.apis.providerUpdate, _datas).then(() => {
+        POST(getDynamics.apis.providerUpdate, newData).then(() => {
+            setDataSource(_datas);
+            callAPI();
             toast.success(ENNaming.successEdit);
-        })
+        }).catch(e => {
+            setDataSource(dataSource);
+        }
+        )
         setIsNew(true);
     }
     const callAPIPostDelete = async (e: IProvider) => {
@@ -149,7 +158,7 @@ const Providers = () => {
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder="جستجو" sortable />
+                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column body={actionTemplate} headerClassName="w-10rem" />

@@ -3,12 +3,12 @@ import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import { ColumnMeta, ITemplateCategoryDTO } from '../../../constants/interface';
-import { getGlobalFilterfieldsProvider, getGlobalFilterfieldsTemplate, getGlobalFilterfieldsTemplateCategory, provider, templateCategory } from '../../../dynamics/column-data';
+import { getGlobalFilterfieldsTemplateCategory, provider, templateCategory } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { InputText } from 'primereact/inputtext';
-import { TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
@@ -93,7 +93,7 @@ const TemplateCategory = () => {
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder="جستجو" sortable />
+                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column body={actionTemplate} headerClassName="w-10rem" />
