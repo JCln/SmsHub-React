@@ -117,10 +117,9 @@ const PermittedTime = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.permittedTime}
                     option={permittedTime}
+                    onClicked={() => onRowAdd()}
+                    hasClick={true}
                 ></TableHeader>
-                <div className="d-flex">
-                    <Button type="button" key={ENNaming.permittedTime} icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
-                </div>
             </>
         )
     };

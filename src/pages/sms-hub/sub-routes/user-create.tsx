@@ -63,6 +63,7 @@ const UserCreate = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.userAll}
                     option={userAll}
+                    hasClick={false}
                 ></TableHeader>
             </>
         )

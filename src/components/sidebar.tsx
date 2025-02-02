@@ -132,9 +132,6 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                                 <NavLink to={ENRoutes.templateCategroy} className="nav__dropdown-item">نمایش دسته‌بندی‌ها</NavLink>
                                             </div>
                                             <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.templateCategroyCreate} className="nav__dropdown-item">افزودن دسته‌بندی</NavLink>
-                                            </div>
-                                            <div className="nav__dropdown-item">
                                                 <NavLink to={ENRoutes.template} className="nav__dropdown-item">نمایش قالب</NavLink>
                                             </div>
                                             <div className="nav__dropdown-item">

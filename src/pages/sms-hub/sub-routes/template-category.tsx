@@ -3,7 +3,7 @@ import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import { ColumnMeta, ITemplateCategoryDTO } from '../../../constants/interface';
-import { getGlobalFilterfieldsTemplateCategory, provider, templateCategory } from '../../../dynamics/column-data';
+import { getGlobalFilterfieldsTemplateCategory, templateCategory } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
@@ -28,6 +28,53 @@ const TemplateCategory = () => {
         callAPI();
     }, []);
 
+    const onRowAdd = () => {
+        if (isNew) {
+            setIsNew(false);
+
+            let _datas = [...dataSource];
+            _datas.unshift(
+                {
+                    title: '',
+                    description: ''
+                }
+            )
+            setDataSource(_datas);
+        }
+    }
+    const addNew = (e: DataTableRowEditCompleteEvent) => {
+        let _datas = [...dataSource];
+        let { newData, index } = e;
+
+        _datas[index] = newData as ITemplateCategoryDTO;
+
+        setDataSource(_datas);
+        POST(getDynamics.apis.TemplateCategoryCreate, newData).then(() => {
+            callAPI();
+            toast.success(ENNaming.successCreate);
+        })
+        setIsNew(true);
+    }
+    const updateRow = (e: DataTableRowEditCompleteEvent) => {
+
+        let _datas = [...dataSource];
+        let { newData, index } = e;
+
+        _datas[index] = newData as ITemplateCategoryDTO;
+
+        POST(getDynamics.apis.TemplateCategoryGetUpdate, newData).then(() => {
+            setDataSource(_datas);
+            callAPI();
+            toast.success(ENNaming.successEdit);
+        }).catch(e => {
+            setDataSource(dataSource);
+        }
+        )
+        setIsNew(true);
+    }
+    const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
+        e.data.id ? updateRow(e) : addNew(e)
+    };
     const renderHeader = () => {
         return (
             <>
@@ -38,6 +85,8 @@ const TemplateCategory = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.templateCategory}
                     option={templateCategory}
+                    onClicked={() => onRowAdd()}
+                    hasClick={true}
                 ></TableHeader>
             </>
         )
@@ -45,6 +94,7 @@ const TemplateCategory = () => {
     const actionTemplate = (rowData: ITemplateCategoryDTO) => {
         return (
             <div className="flex flex-wrap gap-2">
+                <Button onClick={() => toShowTemplate(rowData)} type="button" icon="pi pi-objects-column" severity="secondary" rounded></Button>
                 <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
             </div>
         );
@@ -61,6 +111,10 @@ const TemplateCategory = () => {
             callAPI();
         })
     }
+    const toShowTemplate = (e: ITemplateCategoryDTO) => {
+        console.log(1);
+
+    }
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
     };
@@ -75,6 +129,7 @@ const TemplateCategory = () => {
                 tableStyle={TABLE_STYLE}
                 editMode="row"
                 header={header}
+                onRowEditComplete={onRowEditComplete}
                 stateStorage="session"
                 stateKey={ENNaming.templateCategory + 'state'}
                 paginator

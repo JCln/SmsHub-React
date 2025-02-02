@@ -38,6 +38,7 @@ const Template = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.template}
                     option={template}
+                    hasClick={false}
                 ></TableHeader>
             </>
         )

@@ -43,6 +43,7 @@ const Role = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.role}
                     option={role}
+                    hasClick={false}
                 ></TableHeader>
             </>
         )

@@ -116,10 +116,9 @@ const DisallowedPhrase = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.disallowedPhrase}
                     option={disallowedPhrase}
+                    onClicked={() => onRowAdd()}
+                    hasClick={true}
                 ></TableHeader>
-                <div className="d-flex">
-                    <Button type="button" key={ENNaming.disallowedPhrase} icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
-                </div>
             </>
         )
     };

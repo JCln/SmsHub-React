@@ -47,6 +47,7 @@ const UserByLineIds = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.userLineGetByLineId}
                     option={lineGetByUserId}
+                    hasClick={false}
                 ></TableHeader>
             </>
         )

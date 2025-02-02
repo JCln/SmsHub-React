@@ -10,7 +10,7 @@
     "TemplateCategoryDelete": "/template-category/delete",
     "TemplateCategoryGetList": "/template-category/alll",
     "TemplateCategoryGetSingle": "/template-category/signle",
-    "TemplateCategoryGetUpdate": "/template-category/",
+    "TemplateCategoryGetUpdate": "/template-category/update",
     "TemplateCreate": "/template/create",
     "TemplateDelete": "/template/delete",
     "TemplateGetList": "/template/all",

@@ -66,6 +66,7 @@ const Line = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.line}
                     option={line}
+                    hasClick={false}
                 ></TableHeader>
             </>
         )

@@ -11,7 +11,6 @@ export const UserLineCreate = '/smshub/createUserLine';
 export const lineEdit = '/smshub/editLine';
 export const lineByUserIds = '/smshub/lineByUserIds';
 export const userByLineIds = '/smshub/userByLineIds';
-export const templateCategroyCreate = '/smshub/templateCategoryCreate';
 export const templateCategroy = '/smshub/templateCategory';
 export const template = '/smshub/template';
 export const templateCreate = '/smshub/templateCreate';

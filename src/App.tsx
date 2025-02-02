@@ -23,7 +23,6 @@ import LineEdit from './pages/sms-hub/sub-routes/line-edit';
 import UserLineCreate from './pages/sms-hub/sub-routes/user-line-create';
 import LineByUserIds from './pages/sms-hub/sub-routes/line-by-user-ids';
 import UserByLineIds from './pages/sms-hub/sub-routes/user-by-line-ids';
-import TemplateCategoryCreate from './pages/sms-hub/sub-routes/template-category-create';
 import TemplateCategory from './pages/sms-hub/sub-routes/template-category';
 import TemplateCreate from './pages/sms-hub/sub-routes/template-create';
 import SendManager from './pages/sms-hub/sub-routes/send-manager';
@@ -54,7 +53,6 @@ function App() {
                     <Route path={ENRoutes.lineByUserIds} element={<LineByUserIds />}></Route>
                     <Route path={ENRoutes.userByLineIds} element={<UserByLineIds />}></Route>
                     <Route path={ENRoutes.templateCategroy} element={<TemplateCategory />}></Route>
-                    <Route path={ENRoutes.templateCategroyCreate} element={<TemplateCategoryCreate />}></Route>
                     <Route path={ENRoutes.template} element={<Template />}></Route>
                     <Route path={ENRoutes.templateCreate} element={<TemplateCreate />}></Route>
                     <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>

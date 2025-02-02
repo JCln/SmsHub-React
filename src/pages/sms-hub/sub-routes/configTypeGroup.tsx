@@ -52,10 +52,9 @@ const ConfigTypeGroup = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.template}
                     option={configTypeGroup}
+                    onClicked={() => onRowAdd()}
+                    hasClick={true}
                 ></TableHeader>
-                <div className="d-flex">
-                    <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
-                </div>
             </>
         )
     };
@@ -103,7 +102,7 @@ const ConfigTypeGroup = () => {
     }
     const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
         console.log(e);
-        e.data.id === 0 ? addNew(e) : updateRow(e)
+        e.data.id ? updateRow(e) : addNew(e)
     };
     const actionTemplate = (rowData: IConfigeTypeGroupDTO) => {
         return (

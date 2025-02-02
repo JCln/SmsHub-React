@@ -284,8 +284,15 @@ $blue: #5597d4;
 }
 
 .global-search {
-  min-width: 10rem;
+  min-width: 7rem;
+  width: 9rem;
   margin-right: var(--size-5px);
+  margin-left: var(--size-5px);
+
+  input {
+    height: 3.2rem;
+    font-size: var(--size-12px);
+  }
 }
 
 .main {
@@ -629,6 +636,10 @@ $slider_content: 75%;
   grid-template-columns: 2fr 1fr;
 }
 
+.one_two_columns {
+  grid-template-columns: 1fr 2fr;
+}
+
 .dir-ltr {
   direction: ltr;
 }
@@ -671,4 +682,8 @@ $slider_content: 75%;
 
 .m-12px {
   margin: var(--size-12px);
+}
+
+.h-15rem {
+  height: var(--size-15rem);
 }

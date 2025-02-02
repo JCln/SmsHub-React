@@ -10,7 +10,8 @@ export default function TableHeader(
         setFilters,
         option,
         fileName,
-        // onClick
+        onClicked,
+        hasClick
     }:
         {
             dataSource: any,
@@ -20,16 +21,17 @@ export default function TableHeader(
             setFilters: any,
             option: any,
             fileName: any,
-            // onClick: any
+            onClicked?: any
+            hasClick: boolean
         }) {
     return (
         <div className='_table_header'>
 
-            <div className="flex justify-content-end _column_toggle_width" >
+            <div className="flex justify-content-end" >
                 <ColumnToggle option={option} visibleColumns={visibleColumns} setVisibleColumns={setVisibleColumns}></ColumnToggle>
                 <TableGlobalSearch filters={filters} setFilters={setFilters}></TableGlobalSearch>
             </div>
-            <TableOutputs columns={option} dataSource={dataSource} fileName={fileName}></TableOutputs>
+            <TableOutputs columns={option} dataSource={dataSource} fileName={fileName} hasClick={hasClick} onClicked={() => onClicked()}></TableOutputs>
         </div>
     )
 }

@@ -117,10 +117,9 @@ const CcSend = () => {
                     setVisibleColumns={setVisibleColumns}
                     fileName={ENNaming.ccSend}
                     option={ccSend}
+                    onClicked={() => onRowAdd()}
+                    hasClick={true}
                 ></TableHeader>
-                <div className="d-flex">
-                    <Button type="button" key={ENNaming.ccSend} icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
-                </div>
             </>
         )
     };

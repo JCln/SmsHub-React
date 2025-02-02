@@ -43,7 +43,6 @@ const Providers = () => {
         return (
             <>
                 <div className='d-flex'>
-                    <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
                     <TableHeader dataSource={dataSource}
                         filters={filters}
                         setFilters={setFilters}
@@ -51,10 +50,9 @@ const Providers = () => {
                         setVisibleColumns={setVisibleColumns}
                         fileName={ENNaming.provider}
                         option={provider}
-                        // onClick={onRowAdd()}
+                        onClicked={() => onRowAdd()}
+                        hasClick={true}
                     ></TableHeader>
-                    <div className="d-flex">
-                    </div>
                 </div>
             </>
         )
@@ -68,6 +66,8 @@ const Providers = () => {
     };
 
     const onRowAdd = () => {
+        console.log('hid');
+
         if (isNew) {
             setIsNew(false);
 
@@ -126,7 +126,7 @@ const Providers = () => {
     }
     const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
         console.log(e);
-        e.data.id === 0 ? addNew(e) : updateRow(e)
+        e.data.id ? updateRow(e) : addNew(e)
     };
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
