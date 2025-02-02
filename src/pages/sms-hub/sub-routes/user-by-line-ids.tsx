@@ -55,7 +55,7 @@ const UserByLineIds = () => {
     return (
         <div>
             <div className='_section_view'>
-                <div>
+                <div className='d-flex align-items-center gap-12'>
                     <h3>خط</h3>
                     <div className="w-20rem">
                         <div className='_captcha'>

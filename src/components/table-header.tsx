@@ -9,7 +9,8 @@ export default function TableHeader(
         filters,
         setFilters,
         option,
-        fileName
+        fileName,
+        // onClick
     }:
         {
             dataSource: any,
@@ -18,7 +19,8 @@ export default function TableHeader(
             filters: any,
             setFilters: any,
             option: any,
-            fileName: any
+            fileName: any,
+            // onClick: any
         }) {
     return (
         <div className='_table_header'>

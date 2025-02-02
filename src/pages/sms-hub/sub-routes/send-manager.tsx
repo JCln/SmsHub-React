@@ -42,7 +42,7 @@ export default function SendManager() {
 
     return (
         <>
-            <div className='d-grid'>
+            <div className='d-grid two_columns'>
                 <div>
                     <div className='_section_view'>
                         <div>

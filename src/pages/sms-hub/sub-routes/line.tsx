@@ -35,22 +35,12 @@ const Line = () => {
     }, []);
 
     const callAPI = async (api: any) => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${api}`)
-            .then(function (response) {
-                setDataSource(response.data.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        POST(api).then((res: any) => {
+            setDataSource(res.data.data);
+        })
     }
     const callAPIPost = async (api: any, body: object) => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${api}`, body)
-            .then(function (response) {
-                setDataSource(response.data.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        callAPI(api);
     }
     const callAPIPostDelete = async (e: ILine) => {
         POST(getDynamics.apis.lineDelete, { id: e.providerId }).then(() => {

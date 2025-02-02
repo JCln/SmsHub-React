@@ -21,3 +21,31 @@
     margin-right: -var(--size-05rem);
     margin-left: var(--size-05rem);
 }
+
+.p-multiselect.p-multiselect-chip .p-multiselect-token {
+    direction: ltr;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    text-align: right;
+    padding: var(--size-05rem);
+}
+
+.p-column-filter-row {
+    min-width: var(--size-7rem);
+}
+
+.p-column-filter p-inputtext,
+.p-column-filter,
+.p-inputtext p-component {
+    font-size: var(--size-12px);
+}
+
+.p-inputtext p-component {
+    height: 3.2rem;
+}
+
+.p-column-filter-clear-button {
+    margin-left: 0;
+    display: none;
+}

@@ -1,7 +1,9 @@
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
+import { IUserClaims } from '../constants/interface';
+import profileImage from '../images/profile.png';
 
-const Header = ({ user }: { user: any }) => {
+const Header = ({ user }: { user: IUserClaims }) => {
     return (
         <>
             <header className="header">
@@ -18,13 +20,13 @@ const Header = ({ user }: { user: any }) => {
                             <i className='bx bx-menu' id="header-toggle"></i>
                         </div>
                         <div className='header_display_name'>
-                            {user && (
+                            {(
                                 <>
-                                    <div>
-                                        <i className='pi pi-angle-down' id="header-toggle"></i>
+                                    <div className='w-3rem h-3rem'>
+                                        <img src={profileImage} alt="" className=""></img>
                                     </div>
                                     <div>
-                                        {user}
+                                        {user.givenName}
                                     </div>
                                 </>
                             )}

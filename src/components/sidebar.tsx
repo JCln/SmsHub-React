@@ -1,21 +1,23 @@
 import smsHubLogo from '../images/smsHubLogo.png';
-import userImage from '../images/user.jpg';
-import infoImage from '../images/info.jpg';
-import simcardImage from '../images/simcard.jpg';
-import developerImage from '../images/developer.jpg';
-import logImage from '../images/log.jpg';
-import patternImage from '../images/pattern.jpg';
-import reportImage from '../images/report.jpg';
-import sendImage from '../images/send.jpg';
+import userImage from '../images/user1.png';
+import infoImage from '../images/info.png';
+import simcardImage from '../images/simcrd.png';
+import developerImage from '../images/developer.png';
+import logImage from '../images/refresh.png';
+import patternImage from '../images/message2.png';
+import reportImage from '../images/report.png';
+import sendImage from '../images/message.png';
 import { Link, NavLink } from 'react-router';
 import * as ENRoutes from '../constants/ENRoutes';
-import RouterService from '../services/routerService';
+import { IUserClaims } from '../constants/interface';
 
 
-const Sidebar = ({ user }: { user: string }) => {
+const Sidebar = ({ user }: { user: IUserClaims }) => {
+    console.log(user);
+
     return (
         <>
-            {user === 'admin' ? (
+            {user.role === 'admin' || user.role === 'Programmer' ? (
                 <div className="nav" id="navbar">
                     <nav className="nav__container">
                         <Link to={ENRoutes.SMSHub} className="nav__link nav__logo">

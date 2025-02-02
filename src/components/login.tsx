@@ -11,6 +11,7 @@ import { useNavigate } from "react-router";
 import SlidershowTextPanel from './slidershow-text-panel';
 import { BEARER } from '../constants/ActionTypes';
 import { AxiosResponse } from 'axios';
+import { GET, POST } from '../services/callAPIWrapperService';
 
 export const Login = () => {
     let navigate = useNavigate();
@@ -32,6 +33,15 @@ export const Login = () => {
 
     useEffect(() => {
         getCaptcha();
+        const enterButton = document.querySelector<HTMLInputElement>('#enter-button');
+        enterButton?.addEventListener('keypress', (event) => {
+            // check if event.target is instanceof HTMLInputElement
+            // this check tells typescript to then treat "event.target" as an HTMLInputElement
+
+            if (event.key === 'Enter' && event.target instanceof HTMLInputElement) {
+                callFirstStepAPI();
+            }
+        });
     }, []);
 
     const setLoginForm = (e: any) => {
@@ -55,39 +65,25 @@ export const Login = () => {
         navigate(ENRoutes.SMSHub);
     }
     const callFirstStepAPI = async () => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.firstStep}`, inputs)
-            .then(function (response) {
-                response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        POST(getDynamics.apis.firstStep, inputs).then((response: any) => {
+            response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
+        })
     }
     const callSecondStepAPI = async () => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.secondStep}`, secondStep)
-            .then(function (response) {
-                getServerToken(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        POST(getDynamics.apis.secondStep, secondStep).then((response: any) => {
+            getServerToken(response);
+        })
     }
     const getCaptcha = async () => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${getDynamics.apis.loginCaptcha}`)
-            .then(function (response) {
-                inputs.captchaInputText = response.data.data.dntCaptchaTextValue;
-                setCaptchaImg(response.data.data.dntCaptchaImgUrl);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
+        GET(getDynamics.apis.loginCaptcha).then((response: any) => {
+            inputs.captchaInputText = response.data.data.dntCaptchaTextValue;
+            setCaptchaImg(response.data.data.dntCaptchaImgUrl);
+        })
     }
     return (
         <>
             <div className="wrapper">
                 <section className="main">
-                    <img className="w-100 h-100" src={back1} alt="" />
                     <div className="_content">
                         <div className="inner_content">
                             {nextAction ?
@@ -126,7 +122,7 @@ export const Login = () => {
                                     </div>
                                     <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
 
-                                    <button className="_button" onClick={e => {
+                                    <button id="enter-button" className="_button" onClick={e => {
                                         callFirstStepAPI()
                                     }}>
                                         ورود

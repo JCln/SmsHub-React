@@ -183,8 +183,8 @@ img {
     &__dropdown {
         overflow: hidden;
         max-height: 3.6rem;
-        transition: 250ms ease-in-out;
-        margin: 0 5px;
+        transition: 250ms ease-in-out 350ms;
+        margin: 0;
         cursor: pointer;
 
         .nav__items {

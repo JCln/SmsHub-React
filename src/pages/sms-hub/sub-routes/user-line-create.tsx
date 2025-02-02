@@ -33,7 +33,7 @@ export default function UserLineCreate() {
 
     return (
         <>
-            <div className='d-grid'>
+            <div className='d-grid border-10 card-box-shadow p-1-0 m-12px justify-content-center'>
                 <div>
                     <div className='_section_view'>
                         <div>
@@ -48,8 +48,6 @@ export default function UserLineCreate() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='_section_view'>
                         <div>
                             <h3>خط</h3>
                             <div className="w-20rem">
@@ -62,21 +60,16 @@ export default function UserLineCreate() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='_section_view'>
                         <div>
-                            <h3>افزودن</h3>
-                            <p>برای افزودن کاربر-خط  برروی «افزودن کاربر- خط» کلیک نمایید</p>
                             {
-                                <div>
-                                    <button onClick={() => callAPI()} className="_button w-20rem">
-                                        افزودن کاربر- خط
-                                    </button>
-                                </div>}
+                                <button onClick={() => callAPI()} className="_button w-20rem mt-1-2">
+                                    افزودن کاربر- خط
+                                </button>
+                            }
                         </div>
                     </div>
-
                 </div>
+
                 <div>
                     {/* image section */}
                     <div className='brand-wrapper'>

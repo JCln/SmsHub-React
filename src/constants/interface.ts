@@ -92,3 +92,7 @@ export interface ISendManagerDTO {
     id?: number,
     text: any
 }
+export interface IUserClaims {
+    givenName: string,
+    role: string
+}

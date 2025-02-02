@@ -39,65 +39,53 @@ export default function LineCreate() {
 
     return (
         <>
-            <div className='create-line-wrapper d-grid'>
-                <div>
+            <div className='d-grid border-10 card-box-shadow p-1-0 m-12px'>
+                <div className='d-grid two_columns'>
                     <div className='_section_view'>
                         <div>
                             <h3>سرویس دهنده</h3>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-arrow-right-arrow-left"></i>
+                                        <i className="captcha-refresh pi pi-bookmark"></i>
                                     </div>
                                     <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='_section_view'>
                         <div>
                             <h3>خط</h3>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-arrow-right-arrow-left"></i>
+                                        <i className="captcha-refresh pi pi-bookmark"></i>
                                     </div>
                                     <input name='number' placeholder='شماره' type="number" dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='_section_view'>
                         <div>
-                            <h3>مجوزها</h3>
-                            <div>
-                                <textarea className='w-full text-area-line dir-ltr' name='credential' value={createLine.credential} onChange={setForm}>
-                                </textarea>
-                            </div>
+                            <button onClick={() => callAPI()} className="_button w-20rem mt-1-2">
+                                افزودن خط
+                            </button>
                         </div>
                     </div>
                     <div className='_section_view'>
+                        <h3>مجوزها</h3>
                         <div>
-                            <h3>افزودن</h3>
-                            <p>برای افزودن برروی «افزودن خط» کلیک نمایید</p>
-                            {
-                                <div>
-                                    <button onClick={() => callAPI()} className="_button w-20rem">
-                                        افزودن خط
-                                    </button>
-                                </div>}
+                            <textarea className='w-full text-area-line dir-ltr' name='credential' value={createLine.credential} onChange={setForm}>
+                            </textarea>
                         </div>
                     </div>
-
                 </div>
-                <div>
-                    {/* image section */}
-                    <div className='brand-wrapper'>
-                        <img className='brand-logo' src={brandLogo} alt="" />
-                    </div>
-                </div>
-            </div>
+                {/* <div> */}
+                {/* image section */}
+                {/* <div className='brand-wrapper'> */}
+                {/* <img className='brand-logo' src={brandLogo} alt="" /> */}
+                {/* </div> */}
+                {/* </div> */}
+            </div >
         </>
     )
 }

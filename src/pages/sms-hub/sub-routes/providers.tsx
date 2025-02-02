@@ -42,16 +42,19 @@ const Providers = () => {
     const renderHeader = () => {
         return (
             <>
-                <TableHeader dataSource={dataSource}
-                    filters={filters}
-                    setFilters={setFilters}
-                    visibleColumns={visibleColumns}
-                    setVisibleColumns={setVisibleColumns}
-                    fileName={ENNaming.provider}
-                    option={provider}
-                ></TableHeader>
-                <div className="d-flex">
+                <div className='d-flex'>
                     <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onRowAdd()} data-pr-tooltip="+">افزودن</Button>
+                    <TableHeader dataSource={dataSource}
+                        filters={filters}
+                        setFilters={setFilters}
+                        visibleColumns={visibleColumns}
+                        setVisibleColumns={setVisibleColumns}
+                        fileName={ENNaming.provider}
+                        option={provider}
+                        // onClick={onRowAdd()}
+                    ></TableHeader>
+                    <div className="d-flex">
+                    </div>
                 </div>
             </>
         )
