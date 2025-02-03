@@ -14,7 +14,7 @@ import { ENNaming } from '../../../constants/naming';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router';
 import * as ENRoutes from '../../../constants/ENRoutes';
 
 const Line = () => {
@@ -73,10 +73,9 @@ const Line = () => {
     };
     const actionTemplate = (rowData: ILine) => {
         return (
-            <div className='flex flex-wrap gap-2'>
-                <div>
-                    {/* <Button onClick={() => routeToEdit(rowData)} type="button" icon="pi pi-pencil" severity="info" rounded></Button> */}
-                    <NavLink className="pi pi-pencil info" to={`${ENRoutes.lineEdit}/${rowData.id}`}></NavLink>
+            <div className='flex flex-wrap gap-5'>
+                <div className='flex align-items-center'>
+                    <NavLink className="pi pi-objects-column table-icon" to={`${ENRoutes.line}/${rowData.id}`}></NavLink>
                 </div>
                 <div>
                     <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
@@ -100,15 +99,18 @@ const Line = () => {
     };
     const header = renderHeader();
     return (
-        <div>
-            <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
+        <>
+            <div>
+                <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
                 onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} currentPageReportTemplate={ENNaming.currentPageReportText}>
                 {visibleColumns.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
                 <Column body={actionTemplate} headerClassName="w-10rem" />
             </DataTable>
-        </div>
+            </div >
+    <Outlet />
+        </>
     )
 }
 export default Line;

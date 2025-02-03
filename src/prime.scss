@@ -49,3 +49,15 @@
     margin-left: 0;
     display: none;
 }
+
+.p-datatable .p-datatable-tbody>tr.p-highlight {
+    background: var(--clr-1);
+    color: var(--clr-4);
+}
+
+.table-icon {
+    background: var(--clr-gray);
+    color: var(--clr-white);
+    padding: var(--size-05rem);
+    border-radius: 50%;
+}

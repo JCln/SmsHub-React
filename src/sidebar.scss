@@ -259,7 +259,9 @@ img {
 }
 
 /*===== Active link =====*/
-.active {
+.active,
+a.active {
+    background: var(--clr-1);
     color: var(--clr-2-5);
 }
 

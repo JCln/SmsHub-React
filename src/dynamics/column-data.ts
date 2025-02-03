@@ -19,12 +19,12 @@ export const templateCategory = [
 ]
 export const template = [
     // { field: 'id', header: 'id' },
-    { field: 'title', header: 'عنوان' },
-    { field: 'expression', header: 'عبارت' },
-    { field: 'templateCategoryId', header: 'دسته‌بندی' },
-    { field: 'isActive', header: 'فعال' },
-    { field: 'minCredit', header: 'حداقل اعتبار' },
-    { field: 'configTypeGroupId', header: 'گروه دسته‌بندی' }
+    { field: 'title', header: 'عنوان', types: ENCellTypes.inputs },
+    { field: 'expression', header: 'عبارت', types: ENCellTypes.inputs },
+    { field: 'templateCategoryId', header: 'دسته‌بندی', types: ENCellTypes.inputs },
+    { field: 'isActive', header: 'فعال', types: ENCellTypes.booleans },
+    { field: 'minCredit', header: 'حداقل اعتبار', types: ENCellTypes.inputs },
+    { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.inputs }
 ]
 export const provider = [
     { field: 'title', header: 'نام' },

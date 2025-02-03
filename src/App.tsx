@@ -46,14 +46,14 @@ function App() {
                     <Route path={ENRoutes.userAll} element={<UserAll />}></Route>
                     <Route path={ENRoutes.provider} element={<Providers />}></Route>
                     <Route path={ENRoutes.role} element={<Role />}></Route>
-                    <Route path={ENRoutes.line} element={<Line />}></Route>
-                    <Route path={ENRoutes.lineEdit} element={<LineEdit />}></Route>
+                    <Route index path={ENRoutes.line} element={<Line />}></Route>
+                    <Route path={ENRoutes.lineDynamic} element={<LineEdit />}></Route>
                     <Route path={ENRoutes.lineCreate} element={<LineCreate />}></Route>
                     <Route path={ENRoutes.UserLineCreate} element={<UserLineCreate />}></Route>
                     <Route path={ENRoutes.lineByUserIds} element={<LineByUserIds />}></Route>
                     <Route path={ENRoutes.userByLineIds} element={<UserByLineIds />}></Route>
-                    <Route path={ENRoutes.templateCategroy} element={<TemplateCategory />}></Route>
-                    <Route path={ENRoutes.template} element={<Template />}></Route>
+                    <Route index path={ENRoutes.templateCategroy} element={<TemplateCategory />}></Route>
+                    <Route path={ENRoutes.templateCategroyDynamic} element={<Template />}></Route>
                     <Route path={ENRoutes.templateCreate} element={<TemplateCreate />}></Route>
                     <Route path={ENRoutes.ConfigTypeGroup} element={<ConfigTypeGroup />}></Route>
                     <Route path={ENRoutes.SendManager} element={<SendManager />}></Route>
@@ -69,7 +69,7 @@ function App() {
           </div>
         </BrowserRouter>
       </PrimeReactProvider>
-    </div>
+    </div >
   );
 }
 

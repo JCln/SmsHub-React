@@ -1,6 +1,7 @@
 export enum ENCellTypes {
     inputs = 'input',
-    dropdowns = 'dropdown'
+    dropdowns = 'dropdown',
+    booleans = 'boolean'
 }
 export interface ColumnMeta {
     field: string;

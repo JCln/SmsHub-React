@@ -12,6 +12,8 @@ import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS
 import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
+import * as ENRoutes from '../../../constants/ENRoutes';
+import { NavLink, Outlet } from 'react-router';
 
 
 const TemplateCategory = () => {
@@ -93,9 +95,13 @@ const TemplateCategory = () => {
     };
     const actionTemplate = (rowData: ITemplateCategoryDTO) => {
         return (
-            <div className="flex flex-wrap gap-2">
-                <Button onClick={() => toShowTemplate(rowData)} type="button" icon="pi pi-objects-column" severity="secondary" rounded></Button>
-                <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+            <div className='flex flex-wrap align-items-center gap-5'>
+                <div className="flex flex-wrap align-items-center">
+                    <NavLink className="pi pi-objects-column table-icon" to={`${ENRoutes.templateCategroy}/${rowData.id}`}></NavLink>
+                </div>
+                <div>
+                    <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+                </div>
             </div>
         );
     };
@@ -110,10 +116,6 @@ const TemplateCategory = () => {
             toast.success(ENNaming.successRemove);
             callAPI();
         })
-    }
-    const toShowTemplate = (e: ITemplateCategoryDTO) => {
-        console.log(1);
-
     }
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
@@ -153,6 +155,7 @@ const TemplateCategory = () => {
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column body={actionTemplate} headerClassName="w-10rem" />
             </DataTable>
+            <Outlet />
         </div>
     )
 }
