@@ -2,7 +2,7 @@ import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { ColumnMeta, ITemplateDTO } from '../../../constants/interface';
+import { ColumnMeta, ColumnMetaS, ENCellTypes, ITemplateDTO } from '../../../constants/interface';
 import { getGlobalFilterfieldsTemplate, template } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
@@ -12,6 +12,7 @@ import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS
 import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
+import { classNames } from 'primereact/utils';
 
 
 const Template = () => {
@@ -19,7 +20,7 @@ const Template = () => {
     const [isNew, setIsNew] = useState<boolean>(true);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
-    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(template)
+    const [visibleColumns, setVisibleColumns] = useState<ColumnMetaS[]>(template)
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
@@ -68,7 +69,9 @@ const Template = () => {
     const allowEdit = (rowData: ITemplateDTO) => {
         return rowData.title !== 'Blue Band';
     };
-
+    const booleanBodyTemplate = (rowData: ITemplateDTO) => {
+        return <i className={classNames('pi', { 'true-icon pi-check-circle': rowData.isActive, 'false-icon pi-times-circle': !rowData.isActive })}></i>;
+    };
     const header = renderHeader();
     return (
         <div>
@@ -94,7 +97,7 @@ const Template = () => {
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                    <Column key={col.field} field={col.field} header={col.header} body={col.types === ENCellTypes.booleans ? booleanBodyTemplate : null} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column body={actionTemplate} headerClassName="w-10rem" />
