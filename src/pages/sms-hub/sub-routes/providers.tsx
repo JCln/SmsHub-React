@@ -8,8 +8,7 @@ import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { InputText } from 'primereact/inputtext';
-import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
-import { Button } from 'primereact/button';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 
@@ -57,14 +56,6 @@ const Providers = () => {
             </>
         )
     };
-    const actionTemplate = (rowData: IProvider) => {
-        return (
-            <div className="flex flex-wrap gap-2">
-                <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
-            </div>
-        );
-    };
-
     const onRowAdd = () => {
         console.log('hid');
 
@@ -99,34 +90,9 @@ const Providers = () => {
         })
         setIsNew(true);
     }
-    const updateRow = (e: DataTableRowEditCompleteEvent) => {
-
-        let _datas = [...dataSource];
-        let { newData, index } = e;
-
-        _datas[index] = newData as IProvider;
-
-        POST(getDynamics.apis.providerUpdate, newData).then(() => {
-            setDataSource(_datas);
-            callAPI();
-            toast.success(ENNaming.successEdit);
-        }).catch(e => {
-            setDataSource(dataSource);
-        }
-        )
-        setIsNew(true);
-    }
-    const callAPIPostDelete = async (e: IProvider) => {
-        POST(getDynamics.apis.providerDelete, { id: e.id }).then(() => {
-            toast.success(ENNaming.successRemove);
-            POST(getDynamics.apis.providerGetList).then((res: any) => {
-                setDataSource(res.data.data);
-            })
-        })
-    }
     const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
         console.log(e);
-        e.data.id ? updateRow(e) : addNew(e)
+        addNew(e)
     };
     const textEditor = (options: ColumnEditorOptions) => {
         return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
@@ -163,8 +129,6 @@ const Providers = () => {
                 {visibleColumns.map((col, i) => (
                     <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
-                <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
-                <Column body={actionTemplate} headerClassName="w-10rem" />
             </DataTable>
         </div>
     )

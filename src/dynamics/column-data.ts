@@ -75,13 +75,13 @@ export const lineGetByUserId = [
     { field: 'fullName', header: 'نام کامل' },
 ];
 export const userAll = [
-    { field: 'displayName', header: 'نام نمایشی' },
-    { field: 'fullName', header: 'نام کامل' },
-    { field: 'username', header: 'نام کاربری' },
-    { field: 'mobile', header: 'موبایل' },
-    { field: 'mobileConfirmed', header: 'موبایل تایید شده' },
-    { field: 'hasTwoStepVerification', header: 'دومرحله ای' },
-    { field: 'lockTimespan', header: 'قفل' },
+    { field: 'displayName', header: 'نام نمایشی', types: ENCellTypes.inputs },
+    { field: 'fullName', header: 'نام کامل', types: ENCellTypes.inputs },
+    { field: 'username', header: 'نام کاربری', types: ENCellTypes.inputs },
+    { field: 'mobile', header: 'موبایل', types: ENCellTypes.inputs },
+    { field: 'mobileConfirmed', header: 'موبایل تایید شده', types: ENCellTypes.booleans },
+    { field: 'hasTwoStepVerification', header: 'دومرحله ای', types: ENCellTypes.booleans },
+    { field: 'lockTimespan', header: 'قفل', types: ENCellTypes.inputs },
     // { field: 'invalidLoginAttemptCount', header: '' }
     // { field: 'latestLoginDateTime', header: '' }
 ];

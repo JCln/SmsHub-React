@@ -13,6 +13,7 @@ import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
+import BooleanTableBody from '../../../components/boolean-table-body';
 
 
 const Template = () => {
@@ -69,9 +70,11 @@ const Template = () => {
     const allowEdit = (rowData: ITemplateDTO) => {
         return rowData.title !== 'Blue Band';
     };
-    const booleanBodyTemplate = (rowData: ITemplateDTO) => {
+    const verifiedBodyTemplate = (rowData: ITemplateDTO) => {
         return <i className={classNames('pi', { 'true-icon pi-check-circle': rowData.isActive, 'false-icon pi-times-circle': !rowData.isActive })}></i>;
     };
+
+
     const header = renderHeader();
     return (
         <div>
@@ -97,7 +100,7 @@ const Template = () => {
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} body={col.types === ENCellTypes.booleans ? booleanBodyTemplate : null} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                    <Column key={col.field} field={col.field} header={col.header} body={col.types === ENCellTypes.booleans ? verifiedBodyTemplate : null} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                 ))}
                 <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
                 <Column body={actionTemplate} headerClassName="w-10rem" />

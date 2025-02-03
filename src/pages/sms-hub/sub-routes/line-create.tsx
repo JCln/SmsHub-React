@@ -33,6 +33,7 @@ export default function LineCreate() {
         POST(getDynamics.apis.lineCreate, createLine).then(() => {
             POST(getDynamics.apis.providerGetList).then((res: any) => {
                 toast.success(ENNaming.successCreate);
+                setCreateLine(values => ({ ...values, credential: '', providerId: 1, number: '' }));
             })
         })
     }

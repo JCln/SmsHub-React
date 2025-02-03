@@ -28,6 +28,7 @@ export default function UserLineCreate() {
         setCreateUserLineDTo({ userId: selectedUserId.id, lineId: selectedLineId.id })
         POST(getDynamics.apis.userLineCreate, createUserLineDTo).then((res: any) => {
             toast.success(ENNaming.successCreate);
+            setCreateUserLineDTo({ userId: '', lineId: 0 });
         })
     }
 

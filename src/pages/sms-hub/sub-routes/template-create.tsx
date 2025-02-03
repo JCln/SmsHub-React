@@ -91,7 +91,7 @@ export default function TemplateCreate() {
                                 <div className='captcha-refresh-wrapper'>
                                     <i className="captcha-refresh pi pi-bookmark"></i>
                                 </div>
-                                <Dropdown value={selectedConfigType} onChange={(e: DropdownChangeEvent) => setConfigTypeGroup(e.value)} options={configTypeGroup} optionLabel="title"
+                                <Dropdown value={selectedConfigType} onChange={(e: DropdownChangeEvent) => setSelectedConfigType(e.value)} options={configTypeGroup} optionLabel="title"
                                     placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                             </div>
                         </div>
