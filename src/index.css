@@ -2,6 +2,7 @@
 
 /* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
 @import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+@import '../node_modules/spin.js/spin.css';
 
 @layer tailwind-base {
   @tailwind base;

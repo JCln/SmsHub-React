@@ -1,18 +1,16 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
-import http from '../../../services/httpService';
-
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
 import { getGlobalFilterfields, userAll } from '../../../dynamics/column-data';
-import { ColumnMeta, ColumnMetaS, ENCellTypes, IUserAll } from '../../../constants/interface';
+import { ColumnMetaS, ENCellTypes, IUserAll } from '../../../constants/interface';
 import { InputText } from 'primereact/inputtext';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
-import { POST } from '../../../services/callAPIWrapperService';
+import { GET, POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
 
@@ -39,22 +37,9 @@ const UserAll = () => {
     }, []);
 
     const callAPI = async (api: any) => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${api}`)
-            .then(function (response) {
-                setDataSource(response.data.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-    const callAPIPost = async (api: any, body: object) => {
-        await http.post(`${getDynamics.configs.apiEndpoint}${api}`, body)
-            .then(function (response) {
-                setDataSource(response.data.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        GET(api).then((res: any) => {
+            setDataSource(res.data.data);
+        })
     }
     const renderHeader = () => {
         return (

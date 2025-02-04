@@ -1,8 +1,7 @@
 import loginLogo from '../images/abfa_logo.png';
-import back1 from '../images/back1.png';
 import refreshIcon from '../images/refresh.png';
-import { useEffect, useRef, useState } from 'react';
-import http, { setAxiosHeader } from '../services/httpService';
+import { useEffect, useState } from 'react';
+import { setAxiosHeader } from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
 import * as ENRoutes from '../constants/ENRoutes';
 import SlidershowCarousel from './slideshow-carousel';
@@ -117,7 +116,7 @@ export const Login = () => {
                                         {captchaImg ?
                                             <img className="captcha-image" src={captchaImg} alt="" />
                                             :
-                                            <div className="spinner"></div>
+                                            <div className="spinner_"></div>
                                         }
                                     </div>
                                     <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />

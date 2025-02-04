@@ -10,6 +10,7 @@ import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TA
 import { InputText } from 'primereact/inputtext';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
+import { GET } from '../../../services/callAPIWrapperService';
 const Role = () => {
     const [dataSource, setDataSource] = useState<IRole[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
@@ -25,13 +26,9 @@ const Role = () => {
     }, []);
 
     const callAPI = async (api: any) => {
-        await http.get(`${getDynamics.configs.apiEndpoint}${api}`)
-            .then(function (response) {
-                setDataSource(response.data.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        GET(api).then((res: any) => {
+            setDataSource(res.data.data);
+        })
     }
     const renderHeader = () => {
         return (

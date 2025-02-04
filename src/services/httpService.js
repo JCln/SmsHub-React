@@ -3,7 +3,16 @@ import { toast } from "react-toastify";
 import { ACCESS_TOKEN, Authorization } from "../constants/ActionTypes";
 import routerService from "./routerService";
 
-axios.interceptors.response.use(null, error => {
+axios.interceptors.response.use(config => {
+  console.log(1);
+
+  console.log(config);
+  return config;
+}, error => { })
+axios.interceptors.response.use(response => {
+  console.log(2);
+  return response;
+}, error => {
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
