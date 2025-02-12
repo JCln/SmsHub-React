@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { ACCESS_TOKEN, IDENTITY_CLAIM_GIVENNAME, IDENTITY_CLAIM_ROLE } from "../../../constants/ActionTypes";
 import { IUserClaims } from "../../../constants/interface";
+import CustomBreadcrumb from "../../../components/custom-breadcrumb";
 
 const Home = () => {
     const [userClaim, setUserClaim] = useState<IUserClaims>({ givenName: '', role: '' });
@@ -27,6 +28,7 @@ const Home = () => {
                 <SidebarNav user={userClaim}></SidebarNav>
                 <div className="_pages_wrapper">
                     <Header user={userClaim} />
+                    {/* <CustomBreadcrumb></CustomBreadcrumb> */}
                     <Outlet />
                 </div>
             </div>

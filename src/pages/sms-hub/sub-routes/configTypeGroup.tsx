@@ -12,6 +12,8 @@ import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
+
 
 
 const ConfigTypeGroup = () => {
@@ -103,7 +105,7 @@ const ConfigTypeGroup = () => {
     const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
         e.data.id ? updateRow(e) : addNew(e)
     };
-    const actionTemplate = (rowData: IConfigeTypeGroupDTO) => {
+    const actionTemplate = (rowData: any) => {
         return (
             <div className="flex flex-wrap gap-2">
                 <TableDeleteButton onClicked={() => callAPIPostDelete(rowData)} rowData={rowData} key={rowData.id}></TableDeleteButton>

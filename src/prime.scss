@@ -11,6 +11,11 @@
     direction: ltr;
 }
 
+.p-confirm-popup .p-confirm-popup-message {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
 .p-button.p-button-icon-only {
     width: var(--size-2rem);
     height: var(--size-2rem);

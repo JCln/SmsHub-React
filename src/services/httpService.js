@@ -4,13 +4,9 @@ import { ACCESS_TOKEN, Authorization } from "../constants/ActionTypes";
 import routerService from "./routerService";
 
 axios.interceptors.response.use(config => {
-  console.log(1);
-
-  console.log(config);
   return config;
 }, error => { })
 axios.interceptors.response.use(response => {
-  console.log(2);
   return response;
 }, error => {
   const expectedError =
@@ -25,7 +21,6 @@ axios.interceptors.response.use(response => {
     alert('no internet connection');
     // dispatch({type: RELOAD});
   }
-  console.log(expectedError);
 
   const possibleErrors = error.response.data.errors;
   for (let index = 0; index < possibleErrors.length; index++) {
