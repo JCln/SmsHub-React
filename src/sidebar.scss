@@ -89,6 +89,7 @@ img {
 
 /*========== NAV ==========*/
 .nav {
+    --side_bar_width: 16rem;
     width: var(--side_bar_width);
     min-width: var(--side_bar_width);
     height: 100vh;

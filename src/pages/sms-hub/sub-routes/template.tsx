@@ -1,19 +1,18 @@
-import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
+import { DataTable } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { ColumnMeta, ColumnMetaS, ENCellTypes, ITemplateDTO } from '../../../constants/interface';
+import { ColumnMetaS, ENCellTypes, ITemplateDTO } from '../../../constants/interface';
 import { getGlobalFilterfieldsTemplate, template } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { InputText } from 'primereact/inputtext';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
-import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
-import BooleanTableBody from '../../../components/boolean-table-body';
+import TableDeleteButton from '../../../components/table-delete-button';
 
 
 const Template = () => {
@@ -48,7 +47,7 @@ const Template = () => {
     const actionTemplate = (rowData: ITemplateDTO) => {
         return (
             <div className="flex flex-wrap gap-2">
-                <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+                <TableDeleteButton onClicked={() => callAPIPostDelete(rowData)} rowData={rowData} key={rowData.id}></TableDeleteButton>
             </div>
         );
     };
@@ -97,6 +96,7 @@ const Template = () => {
                 dataKey="id"
                 metaKeySelection={metaKey}
                 emptyMessage={ENNaming.tableEmptyMessage}
+                paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (

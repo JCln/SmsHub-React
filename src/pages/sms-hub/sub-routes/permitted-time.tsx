@@ -8,12 +8,11 @@ import { ENNaming } from '../../../constants/naming';
 import { ColumnMetaS, ENCellTypes, IPermittedTime } from '../../../constants/interface';
 import TableHeader from '../../../components/table-header';
 import { FilterMatchMode } from 'primereact/api';
-import { Button } from 'primereact/button';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-import { Converter } from '../../../components/converter';
+import TableDeleteButton from '../../../components/table-delete-button';
 
 const PermittedTime = () => {
     const [dataSource, setDataSource] = useState<IPermittedTime[]>([]);
@@ -126,7 +125,7 @@ const PermittedTime = () => {
     const actionTemplate = (rowData: IPermittedTime) => {
         return (
             <div className="flex flex-wrap gap-2">
-                <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+                <TableDeleteButton onClicked={() => callAPIPostDelete(rowData)} rowData={rowData} key={rowData.id}></TableDeleteButton>
             </div>
         );
     };
@@ -172,6 +171,7 @@ const PermittedTime = () => {
                 dataKey="id"
                 metaKeySelection={metaKey}
                 emptyMessage={ENNaming.tableEmptyMessage}
+                paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (

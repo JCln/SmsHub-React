@@ -14,9 +14,10 @@ export enum ENNaming {
     line = 'line',
     choose = 'انتخاب کنید',
     tableEmptyMessage = 'موردی یافت نشد',
-    currentPageReportText = 'Showing {first} to {last} of {totalRecords} entries',
+    paginatorTemplate = 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown',
+    currentPageReportText = 'نمایش از {first} تا {last} از {totalRecords} مورد',
     successRemove = 'حذف با موفقیت انجام شد',
     successEdit = 'ویرایش با موفقیت انجام شد',
     successCreate = 'افزودن با موفقیت انجام شد',
-    deleteConfirmMessage= 'شما درحال حذف این مورد هستید، اطمینان دارید؟'
+    deleteConfirmMessage = 'شما درحال حذف این مورد هستید، اطمینان دارید؟'
 }    

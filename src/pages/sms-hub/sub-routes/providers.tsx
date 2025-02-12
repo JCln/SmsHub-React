@@ -124,6 +124,7 @@ const Providers = () => {
                 dataKey="id"
                 metaKeySelection={metaKey}
                 emptyMessage={ENNaming.tableEmptyMessage}
+                paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
                 currentPageReportTemplate={ENNaming.currentPageReportText}
             >
                 {visibleColumns.map((col, i) => (

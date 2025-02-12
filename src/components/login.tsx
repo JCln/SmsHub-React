@@ -32,15 +32,6 @@ export const Login = () => {
 
     useEffect(() => {
         getCaptcha();
-        const enterButton = document.querySelector<HTMLInputElement>('#enter-button');
-        enterButton?.addEventListener('keypress', (event) => {
-            // check if event.target is instanceof HTMLInputElement
-            // this check tells typescript to then treat "event.target" as an HTMLInputElement
-
-            if (event.key === 'Enter' && event.target instanceof HTMLInputElement) {
-                callFirstStepAPI();
-            }
-        });
     }, []);
 
     const setLoginForm = (e: any) => {
@@ -58,16 +49,23 @@ export const Login = () => {
         setSecondStep({ id: response.data.data.id, confirmCode: '' });
     }
     const getServerToken = (response: AxiosResponse) => {
-        setNextAction(false);// after return to this main page another login will have being needs, so next action should not shown                            
+        console.log('1');
+        setNextAction(false);// after return to the main page, another login will have been needed, so next action should not shown                            
         const AUTH_TOKEN = BEARER + response.data.data.accessToken;
         setAxiosHeader(AUTH_TOKEN);
         navigate(ENRoutes.SMSHub);
     }
-    const callFirstStepAPI = async () => {
+    const callFirstStepAPI = async (event: any) => {
+        event.preventDefault()
         POST(getDynamics.apis.firstStep, inputs).then((response: any) => {
             response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
         })
     }
+    const onSubmit = (event: any) => {
+        console.log(event);
+
+    }
+
     const callSecondStepAPI = async () => {
         POST(getDynamics.apis.secondStep, secondStep).then((response: any) => {
             getServerToken(response);
@@ -81,7 +79,7 @@ export const Login = () => {
     }
     return (
         <>
-            <div className="wrapper">
+            <form onSubmit={callFirstStepAPI} className="wrapper">
                 <section className="main">
                     <div className="_content">
                         <div className="inner_content">
@@ -121,9 +119,7 @@ export const Login = () => {
                                     </div>
                                     <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
 
-                                    <button id="enter-button" className="_button" onClick={e => {
-                                        callFirstStepAPI()
-                                    }}>
+                                    <button id="enter-button" type='submit' className="_button">
                                         ورود
                                     </button>
                                 </>
@@ -149,7 +145,7 @@ export const Login = () => {
                     <div className="bubble bubble6"></div>
                     <div className="bubble bubble7"></div>
                 </section>
-            </div>
+            </form>
         </>
     )
 }

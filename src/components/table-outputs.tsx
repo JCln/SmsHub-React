@@ -55,12 +55,12 @@ export default function TableOutputs(
     }
 
     return (
-        <div className="flex align-items-center justify-content-end gap-2">
-            <Button type="button" icon="pi pi-file" rounded onClick={() => (false)} data-pr-tooltip="CSV" />
-            <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={() => makeEXCEL()} data-pr-tooltip="XLS" />
-            <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={() => (false)} data-pr-tooltip="PDF" />
+        <div className="flex align-items-center justify-content-end gap-5">
+            <Button type="button" icon="pi pi-file" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود CSV" onClick={() => (false)} />
+            <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => makeEXCEL()} />
+            <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => (false)} />
             {hasClick ?
-                <Button type="button" icon="pi pi-plus" severity='info' rounded onClick={() => onClicked()} data-pr-tooltip="+">افزودن</Button>
+                <Button type="button" icon="pi pi-plus" severity='info' rounded tooltipOptions={{ position: 'mouse' }} tooltip="افزودن مورد" onClick={() => onClicked()}></Button>
                 :
                 <></>
             }

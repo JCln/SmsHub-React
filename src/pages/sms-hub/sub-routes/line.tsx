@@ -1,21 +1,19 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
-import http from '../../../services/httpService';
-
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
-import { Button } from 'primereact/button';
 import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { getGlobalFilterfieldsLine, line } from '../../../dynamics/column-data';
 import { ColumnMeta, ILine } from '../../../constants/interface';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
-import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
-import { Link, NavLink, Outlet, useNavigate } from 'react-router';
+import { NavLink, Outlet, useNavigate } from 'react-router';
 import * as ENRoutes from '../../../constants/ENRoutes';
+import TableDeleteButton from '../../../components/table-delete-button';
 
 const Line = () => {
     let navigate = useNavigate();
@@ -78,7 +76,7 @@ const Line = () => {
                     <NavLink className="pi pi-objects-column table-icon" to={`${ENRoutes.line}/${rowData.id}`}></NavLink>
                 </div>
                 <div>
-                    <Button onClick={() => callAPIPostDelete(rowData)} type="button" icon="pi pi-trash" severity="danger" rounded></Button>
+                    <TableDeleteButton onClicked={() => callAPIPostDelete(rowData)} rowData={rowData} key={rowData.id}></TableDeleteButton>
                 </div>
             </div>
         );
@@ -102,14 +100,14 @@ const Line = () => {
         <>
             <div>
                 <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
-                onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} currentPageReportTemplate={ENNaming.currentPageReportText}>
-                {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
-                ))}
-                <Column body={actionTemplate} headerClassName="w-10rem" />
-            </DataTable>
+                    onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown' currentPageReportTemplate={ENNaming.currentPageReportText}>
+                    {visibleColumns.map((col, i) => (
+                        <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                    ))}
+                    <Column body={actionTemplate} headerClassName="w-10rem" />
+                </DataTable>
             </div >
-    <Outlet />
+            <Outlet />
         </>
     )
 }
