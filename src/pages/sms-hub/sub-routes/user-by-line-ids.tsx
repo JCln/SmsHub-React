@@ -1,17 +1,16 @@
-import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
-import { Column, ColumnEditorOptions } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
-import { getGlobalFilterfields, userAll, lineGetByUserId } from '../../../dynamics/column-data';
+import { getGlobalFilterfields, lineGetByUserId } from '../../../dynamics/column-data';
 import { ColumnMeta, IUserAll } from '../../../constants/interface';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
-import { GET, POST, POSTBYID } from '../../../services/callAPIWrapperService';
+import { POST, POSTBYID } from '../../../services/callAPIWrapperService';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-import { toast } from 'react-toastify';
 
 
 const UserByLineIds = () => {
@@ -61,7 +60,7 @@ const UserByLineIds = () => {
                     <div className="w-20rem">
                         <div className='_captcha'>
                             <div className='captcha-refresh-wrapper'>
-                                <i className="captcha-refresh pi pi-pi-arrow-down-left-and-arrow-up-right-to-center"></i>
+                                <i className="-input-icon pi pi-pi-arrow-down-left-and-arrow-up-right-to-center"></i>
                             </div>
                             <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="number"
                                 placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />

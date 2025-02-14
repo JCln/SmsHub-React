@@ -8,8 +8,8 @@ import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { Checkbox } from 'primereact/checkbox';
 
 export default function TemplateCreate() {
-    const [categoryDictionary, setCategoryDictionary] = useState<any>([]);
-    const [configTypeGroup, setConfigTypeGroup] = useState<any>([]);
+    const [categoryDictionary, setCategoryDictionary] = useState<any[]>([]);
+    const [configTypeGroup, setConfigTypeGroup] = useState<any[]>([]);
     const [isActive, setIsActive] = useState<any>(false);
     const [selectedCategory, setSelectedCategory] = useState<any>();
     const [selectedConfigType, setSelectedConfigType] = useState<any>();
@@ -55,7 +55,7 @@ export default function TemplateCreate() {
                         <div className="">
                             <div className='content-wrapper align-items-center'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <input name='title' placeholder='عنوان' type="text" className='inputs' value={templateDTO.title} onChange={setForm} />
                             </div>
@@ -66,7 +66,7 @@ export default function TemplateCreate() {
                         <div className="">
                             <div className='content-wrapper align-items-center'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <input name='expression' placeholder='عبارت' type="text" className='inputs' value={templateDTO.expression} onChange={setForm} />
                             </div>
@@ -77,7 +77,7 @@ export default function TemplateCreate() {
                         <div className="">
                             <div className='content-wrapper align-items-center'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <Dropdown value={selectedCategory} onChange={(e: DropdownChangeEvent) => setSelectedCategory(e.value)} options={categoryDictionary} optionLabel="title"
                                     placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
@@ -89,7 +89,7 @@ export default function TemplateCreate() {
                         <div className="">
                             <div className='content-wrapper align-items-center'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <Dropdown value={selectedConfigType} onChange={(e: DropdownChangeEvent) => setSelectedConfigType(e.value)} options={configTypeGroup} optionLabel="title"
                                     placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
@@ -101,7 +101,7 @@ export default function TemplateCreate() {
                         <div className="">
                             <div className='content-wrapper align-items-center'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <Checkbox onChange={e => setIsActive(e.checked)} checked={isActive}></Checkbox>
                             </div>
@@ -112,7 +112,7 @@ export default function TemplateCreate() {
                         <div className="">
                             <div className='content-wrapper align-items-center'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <input name='minCredit' placeholder='عبارت' type="number" className='inputs' value={templateDTO.minCredit} onChange={setForm} />
                             </div>

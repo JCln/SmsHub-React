@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import brandLogo from '../../../images/Magfa.jpg';
+// import brandLogo from '../../../images/Magfa.jpg';
 import { ILine } from '../../../constants/interface';
 import { POST } from '../../../services/callAPIWrapperService';
 import { getDynamics } from '../../../dynamics/getDynamics';
@@ -8,7 +8,7 @@ import { ENNaming } from '../../../constants/naming';
 import { toast } from 'react-toastify';
 
 export default function LineCreate() {
-    const [providers, setProviders] = useState<any>();
+    const [providers, setProviders] = useState<any[]>([]);
     const [selectedProvider, setSelectedProvider] = useState<any>();
     const [createLine, setCreateLine] = useState<ILine>({
         providerId: 1,
@@ -48,7 +48,7 @@ export default function LineCreate() {
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-bookmark"></i>
+                                        <i className="-input-icon pi pi-bookmark"></i>
                                     </div>
                                     <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
@@ -60,9 +60,9 @@ export default function LineCreate() {
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-bookmark"></i>
+                                        <i className="-input-icon pi pi-bookmark"></i>
                                     </div>
-                                    <input name='number' placeholder='شماره' type="number" dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
+                                    <input name='number' placeholder='شماره' dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
                                 </div>
                             </div>
                         </div>

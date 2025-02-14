@@ -7,8 +7,8 @@ import { ENNaming } from '../../../constants/naming';
 import { toast } from 'react-toastify';
 
 export default function UserLineCreate() {
-    const [userId, setUserId] = useState<any>();
-    const [lineId, setLineId] = useState<any>();
+    const [userId, setUserId] = useState<any[]>([]);
+    const [lineId, setLineId] = useState<any[]>([]);
     const [selectedUserId, setSelectedUserId] = useState<any>()
     const [selectedLineId, setSelectedLineId] = useState<any>()
     const [createUserLineDTo, setCreateUserLineDTo] = useState<ICreateUserLineDto>({
@@ -42,7 +42,7 @@ export default function UserLineCreate() {
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-user"></i>
+                                        <i className="-input-icon pi pi-user"></i>
                                     </div>
                                     <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
@@ -54,7 +54,7 @@ export default function UserLineCreate() {
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-arrow-right-arrow-left"></i>
+                                        <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
                                     </div>
                                     <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="number"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />

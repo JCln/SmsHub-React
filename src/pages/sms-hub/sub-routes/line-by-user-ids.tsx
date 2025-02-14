@@ -61,7 +61,7 @@ const LineByUserIds = () => {
                     <div className="w-20rem">
                         <div className='_captcha'>
                             <div className='captcha-refresh-wrapper'>
-                                <i className="captcha-refresh pi pi-user"></i>
+                                <i className="-input-icon pi pi-user"></i>
                             </div>
                             <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
                                 placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />

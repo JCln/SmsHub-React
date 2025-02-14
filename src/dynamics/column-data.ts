@@ -71,7 +71,7 @@ export const userLineGetByUserId = [
 ];
 export const lineGetByUserId = [
     // { field: 'id', header: '' },
-    { field: 'userId', header: 'کاربری' },
+    // { field: 'userId', header: 'کاربری' },
     { field: 'fullName', header: 'نام کامل' },
 ];
 export const userAll = [

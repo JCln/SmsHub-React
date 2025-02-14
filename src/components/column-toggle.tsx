@@ -13,9 +13,10 @@ export default function ColumnToggle({ option, visibleColumns, setVisibleColumns
         <MultiSelect
             value={visibleColumns}
             options={option}
+            filter
             optionLabel="header"
             onChange={onColumnToggle}
             className="w-full sm:w-20rem _column_toggle_width"
-            display="chip" />
+        />
     )
 }

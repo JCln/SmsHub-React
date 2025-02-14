@@ -9,7 +9,7 @@ import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 
 const LineEdit = () => {
     const [dataSource, setDataSource] = useState<ILine>();
-    const [providers, setProviders] = useState<any>();
+    const [providers, setProviders] = useState<any[]>([]);
     const [selectedProvider, setSelectedProvider] = useState<any>();
     const [createLine, setCreateLine] = useState<ILine>({
         id: 0,
@@ -54,7 +54,7 @@ const LineEdit = () => {
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-arrow-right-arrow-left"></i>
+                                        <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
                                     </div>
                                     <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
@@ -68,7 +68,7 @@ const LineEdit = () => {
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
-                                        <i className="captcha-refresh pi pi-arrow-right-arrow-left"></i>
+                                        <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
                                     </div>
                                     <input name='number' placeholder='شماره' type="number" dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
                                 </div>

@@ -7,8 +7,8 @@ import { ISendManagerDTO } from '../../../constants/interface';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 
 export default function SendManager() {
-    const [templateId, setTemplateDictionary] = useState<any>();
-    const [lineId, setLineDictionary] = useState<any>();
+    const [templateId, setTemplateDictionary] = useState<any[]>([]);
+    const [lineId, setLineDictionary] = useState<any[]>([]);
     const [selectedTemplateId, setSelectedTemplateId] = useState<any>()
     const [selectedLineId, setSelectedLineId] = useState<any>()
     const [sendMessageDTO, setSendMessageDTO] = useState<ISendManagerDTO>({
@@ -49,7 +49,7 @@ export default function SendManager() {
                         <div className="w-full">
                             <div className='_captcha'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <textarea
                                     className='w-full text-area-line special-font-family dir-ltr h-15rem'
@@ -73,7 +73,7 @@ export default function SendManager() {
                         <div className="w-20rem">
                             <div className='_captcha'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="lineNumber"
                                     placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
@@ -85,7 +85,7 @@ export default function SendManager() {
                         <div className="w-20rem">
                             <div className='_captcha'>
                                 <div className='captcha-refresh-wrapper'>
-                                    <i className="captcha-refresh pi pi-bookmark"></i>
+                                    <i className="-input-icon pi pi-bookmark"></i>
                                 </div>
                                 <Dropdown value={selectedTemplateId} onChange={(e: DropdownChangeEvent) => setSelectedTemplateId(e.value)} options={templateId} optionLabel="title"
                                     placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
