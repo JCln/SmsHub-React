@@ -13,7 +13,11 @@ import { IUserClaims } from '../constants/interface';
 
 
 const Sidebar = ({ user }: { user: IUserClaims }) => {
-    console.log(user);
+    const toggleSubItem = (e: any) => {
+        const angleIcon = e.currentTarget.firstChild.firstChild.childNodes[2].classList;
+        e.currentTarget.classList.toggle('toggle-sidebar');
+        angleIcon.toggle('rotate-current-angle');
+    }
 
     return (
         <>
@@ -31,7 +35,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                 </div>
                             </div>
 
-                            <div className="nav__dropdown">
+                            <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
                                         <img src={userImage} alt="" className="sidebar_icon"></img>
@@ -51,7 +55,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="nav__dropdown">
+                            <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
                                         <img src={simcardImage} alt="" className="sidebar_icon"></img>
@@ -86,7 +90,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                     <div className="nav__dropdown-item">سرویس دهندگان</div>
                                 </div>
                             </Link>
-                            <div className="nav__dropdown">
+                            <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
                                         <img src={patternImage} alt="" className="sidebar_icon"></img>
@@ -118,7 +122,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                     <div className="nav__dropdown-item">ارسال</div>
                                 </div>
                             </Link>
-                            <div className="nav__dropdown">
+                            <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
                                         <img src={patternImage} alt="" className="sidebar_icon"></img>

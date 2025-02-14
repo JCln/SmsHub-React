@@ -184,7 +184,7 @@ img {
     &__dropdown {
         overflow: hidden;
         max-height: 3.6rem;
-        transition: 250ms ease-in-out 350ms;
+        transition: 250ms ease-in-out;
         margin: 0;
         cursor: pointer;
 
@@ -238,20 +238,16 @@ img {
             margin-right: auto;
             transition: 250ms;
         }
-
-        /* Show collapse */
-        &:hover,
-        &:focus-visible,
-        &:active {
-            max-height: 30rem;
-            background-color: var(--clr-0);
-        }
-
-        /*Rotate icon arrow*/
-        &:hover .-icon {
-            transform: rotate(180deg);
-        }
     }
+}
+
+.toggle-sidebar {
+    max-height: 30rem;
+    background-color: var(--clr-0);
+}
+
+.rotate-current-angle {
+    transform: rotate(180deg);
 }
 
 /*===== Show menu =====*/
