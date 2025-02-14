@@ -8,7 +8,7 @@ export default function DashboardKnob({ maxNumber }: { maxNumber: string }) {
 
     ChartJS.register(ArcElement, Tooltip, Legend);
     const options = {
-        aspectRatio: 6,
+        aspectRatio: 2,
         layout: {
             padding: {
                 left: 0,
@@ -18,29 +18,33 @@ export default function DashboardKnob({ maxNumber }: { maxNumber: string }) {
             }
         },
         responsive: true,
-        cutoutPercentage: 100,
+        cutoutPercentage: '80%',
         legend: {
             display: false,
         },
         title: {
             display: false,
         },
+        circumference: 300,
     }
     const data = {
         labels: [],
         datasets: [
             {
-                label: '',
-                data: [maxNumber],
+                data: [maxNumber, 1000],
                 backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                    
+                    'rgb(6 80 186)',
+                    'rgb(234 245 254)',
+
                 ],
                 borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                    
+                    'rgb(6 80 186)',
+                    'rgb(234 245 254)',
                 ],
                 borderWidth: 1,
+                cutout: '60%',
+                rotation: 210,
+                label: '',
             },
         ],
     };

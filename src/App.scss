@@ -558,6 +558,14 @@ $slider_content: 75%;
   display: flex;
 }
 
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.flex-direction-reverse {
+  flex-direction: row-reverse;
+}
+
 .gap-2 {
   gap: 2px;
 }
