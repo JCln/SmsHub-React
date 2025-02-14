@@ -13,7 +13,7 @@ export enum ENNaming {
     disallowedPhrase = 'disallowedPhrase',
     line = 'line',
     choose = 'انتخاب کنید',
-    tableEmptyMessage = 'موردی یافت نشد',
+    tableEmptyMessage = 'اطلاعاتی برای نمایش وجود ندارد',
     paginatorTemplate = 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown',
     currentPageReportText = 'نمایش از {first} تا {last} از {totalRecords} مورد',
     successRemove = 'حذف با موفقیت انجام شد',
