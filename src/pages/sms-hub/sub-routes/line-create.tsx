@@ -40,8 +40,11 @@ export default function LineCreate() {
 
     return (
         <>
-            <div className='d-grid border-10 card-box-shadow p-1-0 m-12px'>
-                <div className='d-grid two_columns'>
+            <div className='outer-container'>
+                <h3 className='dashboard-title'>
+                    افزودن خط
+                </h3>
+                <div className='d-grid two_columns bg-white border-15'>
                     <div className='_section_view'>
                         <div>
                             <h3>سرویس دهنده</h3>
@@ -79,13 +82,7 @@ export default function LineCreate() {
                             </textarea>
                         </div>
                     </div>
-                </div>
-                {/* <div> */}
-                {/* image section */}
-                {/* <div className='brand-wrapper'> */}
-                {/* <img className='brand-logo' src={brandLogo} alt="" /> */}
-                {/* </div> */}
-                {/* </div> */}
+                </div>                
             </div >
         </>
     )

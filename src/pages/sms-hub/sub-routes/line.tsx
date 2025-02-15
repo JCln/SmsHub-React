@@ -8,19 +8,18 @@ import { getGlobalFilterfieldsLine, line } from '../../../dynamics/column-data';
 import { ColumnMeta, ILine } from '../../../constants/interface';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
-import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
+import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
-import { toast } from 'react-toastify';
-import { NavLink, Outlet, useNavigate } from 'react-router';
+import { NavLink, Outlet } from 'react-router';
 import * as ENRoutes from '../../../constants/ENRoutes';
-import TableDeleteButton from '../../../components/table-delete-button';
+import { Converter } from '../../../components/converter';
 
 const Line = () => {
-    let navigate = useNavigate();
     const [dataSource, setDataSource] = useState<ILine[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
     const [metaKey, setMetaKey] = useState<boolean>(true);
-    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(line)
+    const [visibleColumns, setVisibleColumns] = useState<ColumnMeta[]>(line);
+    const [providers, setProviders] = useState<any[]>([]);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         number: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -32,28 +31,25 @@ const Line = () => {
         callAPI(getDynamics.apis.lineGetList);
     }, []);
 
+    const insertToAux = () => {
+        if (dataSource.length && dataSource)
+            dataSource.forEach(item => {
+                item.dynamicId = item.providerId;
+            })
+    }
     const callAPI = async (api: any) => {
         POST(api).then((res: any) => {
             setDataSource(res.data.data);
         })
-    }
-    const callAPIPost = async (api: any, body: object) => {
-        callAPI(api);
-    }
-    const callAPIPostDelete = async (e: ILine) => {
-        POST(getDynamics.apis.lineDelete, { id: e.providerId }).then(() => {
-            toast.success(ENNaming.successRemove);
-            POST(getDynamics.apis.lineGetList).then((res: any) => {
-                setDataSource(res.data.data);
-            })
+        POST(getDynamics.apis.providerGetList).then((res: any) => {
+            setProviders(res.data.data);
         })
+        insertToAux();
+        console.log(dataSource);
+        Converter.convertIdToTitle(dataSource, providers, ENNaming.DYNAMICID);
+        console.log(dataSource);
+        setDataSource(dataSource);
     }
-    // const routeToEdit = (rowData: any) => {
-    //     console.log(rowData);
-
-    //     navigate(ENRoutes.lineEdit, { id: rowData.id })
-
-    // }
     const renderHeader = () => {
         return (
             <>
@@ -75,34 +71,18 @@ const Line = () => {
                 <div className='flex align-items-center'>
                     <NavLink className="pi pi-objects-column table-icon" to={`${ENRoutes.line}/${rowData.id}`}></NavLink>
                 </div>
-                <div>
-                    <TableDeleteButton onClicked={() => callAPIPostDelete(rowData)} rowData={rowData} key={rowData.id}></TableDeleteButton>
-                </div>
             </div>
         );
     };
 
-
-    const onRowEditComplete = (e: DataTableRowEditCompleteEvent) => {
-        let _datas = [...dataSource];
-        let { newData, index } = e;
-
-        _datas[index] = newData as ILine;
-
-        setDataSource(_datas);
-        callAPIPost(getDynamics.apis.lineUpdate, _datas);
-    };
-    const textEditor = (options: ColumnEditorOptions) => {
-        return <InputText type="text" value={options.value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => options.editorCallback!(e.target.value)} />;
-    };
     const header = renderHeader();
     return (
         <>
             <div>
-                <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} onRowEditComplete={onRowEditComplete} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
+                <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
                     onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown' currentPageReportTemplate={ENNaming.currentPageReportText}>
                     {visibleColumns.map((col, i) => (
-                        <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                        <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                     ))}
                     <Column body={actionTemplate} headerClassName="w-10rem" />
                 </DataTable>

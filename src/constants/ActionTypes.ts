@@ -12,3 +12,4 @@ export const TABLE_TEXTALIGN: any = { textAlign: 'center' };
 export const TABLE_NUMBER_OF_ROWS: number = 5;
 export const TABLE_FILTER_PLACEHOLDER: string = 'جستجو';
 export const TABLE_ROWS_PER_PAGE: number[] = [5, 10, 25, 50];
+export const PARAMSTAR = '*';

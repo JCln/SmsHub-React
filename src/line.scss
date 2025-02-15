@@ -20,3 +20,21 @@
     max-width: 70vw;
     width: 100%;
 }
+
+.-danger {
+    cursor: pointer;
+    padding: var(--size-12px);
+    border-radius: var(--border-10px);
+    font-weight: 600;
+    font-size: var(--size-1rem);
+    border: 0;
+    outline: var(--red-500);
+    color: var(--red-500);
+    background-color: var(--clr-white);
+
+    &:hover,
+    &:active,
+    &:focus-visible {
+        box-shadow: 0 0 5px 0 var(--red-700);
+    }
+}

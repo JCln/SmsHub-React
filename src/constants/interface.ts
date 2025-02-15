@@ -43,6 +43,7 @@ export interface IProvider {
 }
 export interface ILine {
     id?: number,
+    dynamicId?: any,
     providerId: number,
     number: string,
     credential: string,

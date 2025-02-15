@@ -5,6 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 
 export default function DashboardKnob({ maxNumber }: { maxNumber: string }) {
     let [counterValue, setCounterValue] = useState(0);
+    // const test = Number(maxNumber) * 10;
 
     ChartJS.register(ArcElement, Tooltip, Legend);
     const options = {
@@ -31,7 +32,7 @@ export default function DashboardKnob({ maxNumber }: { maxNumber: string }) {
         labels: [],
         datasets: [
             {
-                data: [maxNumber, 1000],
+                data: [maxNumber],
                 backgroundColor: [
                     'rgb(6 80 186)',
                     'rgb(234 245 254)',
@@ -53,6 +54,5 @@ export default function DashboardKnob({ maxNumber }: { maxNumber: string }) {
         <>
             <Doughnut options={options} data={data} />
         </>
-        /* <Knob value={counterValue} readOnly /> */
     )
 }

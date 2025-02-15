@@ -37,7 +37,8 @@ export const provider = [
 export const line = [
     // { field: 'id', header: 'id' },
     { field: 'number', header: 'تعداد' },
-    { field: 'providerId', header: 'سرویس دهنده' },
+    { field: 'dynamicId', header: 'سرویس دهنده' },
+    // { field: 'providerId', header: 'سرویس دهنده' },
 ];
 export const consumerLine = [
     { field: 'title', header: 'نام' },

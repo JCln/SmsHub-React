@@ -2,106 +2,122 @@ import { getDynamics } from '../../../dynamics/getDynamics';
 import { useEffect, useState } from 'react';
 import { ILine } from '../../../constants/interface';
 import { ENNaming } from '../../../constants/naming';
-import { POST } from '../../../services/callAPIWrapperService';
+import { GET, POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
-import brandLogo from '../../../images/Magfa.jpg';
+// import brandLogo from '../../../images/Magfa.jpg';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
+import { useParams, useSearchParams } from 'react-router';
+import { PARAMSTAR } from '../../../constants/ActionTypes';
 
 const LineEdit = () => {
-    const [dataSource, setDataSource] = useState<ILine>();
-    const [providers, setProviders] = useState<any[]>([]);
-    const [selectedProvider, setSelectedProvider] = useState<any>();
-    const [createLine, setCreateLine] = useState<ILine>({
+    const [dataSource, setDataSource] = useState<ILine>({
         id: 0,
         providerId: 1,
         number: '',
         credential: ''
     });
-
+    const [lineId, setLineDictionary] = useState<any[]>([]);
+    const [selectedLineId, setSelectedLineId] = useState<any>();
+    const [providers, setProviders] = useState<any[]>([]);
+    const [selectedProvider, setSelectedProvider] = useState<any>();
+    let params = useParams()
 
     useEffect(() => {
         callAPI();
     }, []);
 
     const callAPI = async () => {
-        // POST(getDynamics.apis.lineSingle, { id: id }).then((response: any) => {
-        //     console.log(response)
-        //     setDataSource(response)
-        // })
+        GET(getDynamics.apis.lineGetDictionary).then((res: any) => {
+            setLineDictionary(res.data.data);
+        })
+        POST(getDynamics.apis.providerGetList).then((res: any) => {
+            setProviders(res.data.data);
+        })
+        POST(getDynamics.apis.lineSingle, { id: params[PARAMSTAR] }).then((response: any) => {
+            setDataSource(response.data.data);
+            setSelectedLineId(response.data.data.number);
+            setSelectedProvider(response.data.data.providerId);
+        })
     }
-    const callAPIPost = async (api: any, body: object) => {
-        console.log(api);
-        console.log(body);
+    const callAPIPost = async () => {
+        console.log(dataSource);
+        POST(getDynamics.apis.lineUpdate, { dataSource }).then((res: any) => {
+            console.log(res);
 
+            toast.success(ENNaming.successEdit);
+        })
     }
     const changeSelectedProvider = (e: any) => {
         setSelectedProvider(e);
-        setCreateLine(values => ({ ...values, credential: e.credentialTemplate, providerId: e.id }))
+        setDataSource(values => ({ ...values, credential: e.credentialTemplate, providerId: e.id }))
+    }
+    const changeSelectedLine = (e: any) => {
+        setSelectedLineId(e);
+        setDataSource(values => ({ ...values, number: e.lineNumber }))
     }
     const setForm = (e: any) => {
         const value = e.target.value;
         const name = e.target.name;
-        setCreateLine(values => ({ ...values, [name]: value }))
+        setDataSource(values => ({ ...values, [name]: value }))
+    }
+    const callAPIPostDelete = async () => {
+        POST(getDynamics.apis.lineDelete, { id: dataSource.id }).then(() => {
+            toast.success(ENNaming.successRemove);
+            POST(getDynamics.apis.lineGetList).then((res: any) => {
+                setDataSource(res.data.data);
+            })
+        })
     }
 
     return (
         <>
-            <div className='d-grid'>
-                <div>
-                    <div className='_section_view'>
-                        <div>
-                            <h3>سرویس دهنده</h3>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
+            <div className='outer-container'>
+                <h3 className='dashboard-title'>
+                    اطلاعات خط
+                </h3>
+                <div className="bg-white border-15">
+                    <div className='d-grid two_columns'>
+                        <div className='_section_view'>
+                            <div>
+                                <h3>سرویس دهنده</h3>
+                                <div className="w-20rem">
+                                    <div className='_captcha'>
+                                        <div className='captcha-refresh-wrapper'>
+                                            <i className="-input-icon pi pi-bookmark"></i>
+                                        </div>
+                                        <Dropdown value={dataSource.providerId} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
+                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                     </div>
-                                    <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
+                                </div>
+                            </div>
+                            <div>
+                                <h3>خط</h3>
+                                <div className="w-20rem">
+                                    <div className='_captcha'>
+                                        <div className='captcha-refresh-wrapper'>
+                                            <i className="-input-icon pi pi-bookmark"></i>
+                                        </div>
+                                        <Dropdown value={dataSource.number} onChange={(e: DropdownChangeEvent) => changeSelectedLine(e.value)} options={lineId} optionLabel="lineNumber"
+                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className='_section_view'>
-                        <div>
-                            <h3>خط</h3>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
-                                    </div>
-                                    <input name='number' placeholder='شماره' type="number" dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='_section_view'>
-                        <div>
+                        <div className='_section_view'>
                             <h3>مجوزها</h3>
                             <div>
-                                <textarea className='w-full text-area-line' name='credential' value={createLine.credential} onChange={setForm}>
+                                <textarea className='w-full text-area-line dir-ltr' name='credential' value={dataSource.credential} onChange={setForm}>
                                 </textarea>
                             </div>
                         </div>
                     </div>
-                    <div className='_section_view'>
-                        <div>
-                            <h3>افزودن</h3>
-                            <p>برای افزودن برروی «افزودن خط» کلیک نمایید</p>
-                            {
-                                <div>
-                                    <button onClick={() => callAPI()} className="_button w-20rem">
-                                        افزودن خط
-                                    </button>
-                                </div>}
-                        </div>
-                    </div>
-
-                </div>
-                <div>
-                    {/* image section */}
-                    <div className='brand-wrapper'>
-                        <img className='brand-logo' src={brandLogo} alt="" />
+                    <div className='d-flex gap-5 p-1rem'>
+                        <button onClick={() => callAPIPost()} className="_button w-20rem mt-1-2">
+                            ویرایش خط
+                        </button>
+                        <button onClick={() => callAPIPostDelete()} className="mt-1-2 -danger">
+                            حذف خط
+                        </button>
                     </div>
                 </div>
             </div>

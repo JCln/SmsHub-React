@@ -35,7 +35,10 @@ export default function UserLineCreate() {
     return (
         <>
             <div className='d-grid border-10 card-box-shadow p-1-0 m-12px justify-content-center'>
-                <div>
+                <div className='outer-container'>
+                    <h3 className='dashboard-title'>
+                        افزودن کاربر- خط
+                    </h3>
                     <div className='_section_view'>
                         <div>
                             <h3>کاربر</h3>
