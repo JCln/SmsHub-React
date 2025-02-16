@@ -78,7 +78,7 @@ const LineEdit = () => {
                     <div className='d-grid two_columns'>
                         <div className='_section_view'>
                             <div>
-                                <h3>سرویس دهنده</h3>
+                                <p>سرویس دهنده</p>
                                 <div className="w-20rem">
                                     <div className='_captcha'>
                                         <div className='captcha-refresh-wrapper'>
@@ -90,7 +90,7 @@ const LineEdit = () => {
                                 </div>
                             </div>
                             <div>
-                                <h3>خط</h3>
+                                <p>خط</p>
                                 <div className="w-20rem">
                                     <div className='_captcha'>
                                         <div className='captcha-refresh-wrapper'>
@@ -103,7 +103,7 @@ const LineEdit = () => {
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <h3>مجوزها</h3>
+                            <p>مجوزها</p>
                             <div>
                                 <textarea className='w-full text-area-line dir-ltr' name='credential' value={dataSource.credential} onChange={setForm}>
                                 </textarea>

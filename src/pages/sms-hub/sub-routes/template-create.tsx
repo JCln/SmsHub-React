@@ -54,7 +54,7 @@ export default function TemplateCreate() {
                 <div className="bg-white border-15 p-1rem">
                     <div className='d-grid two_columns'>
                         <div className='_section_view'>
-                            <h3>عنوان</h3>
+                            <p>عنوان</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
@@ -65,7 +65,7 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <h3>عبارت</h3>
+                            <p>عبارت</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
@@ -76,7 +76,7 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <h3>دسته‌بندی</h3>
+                            <p>دسته‌بندی</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
@@ -88,7 +88,7 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <h3>تنظیمات</h3>
+                            <p>تنظیمات</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
@@ -100,7 +100,7 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <h3>فعال</h3>
+                            <p>فعال</p>
                             <div className="w-20rem">
                                 <div className='_captcha justify-space-between pr-1'>
                                     <div className='captcha-refresh-wrapper'>
@@ -113,7 +113,7 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <h3>حداقل اعتبار</h3>
+                            <p>حداقل اعتبار</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>

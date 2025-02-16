@@ -40,7 +40,7 @@ export default function UserLineCreate() {
                     <PageTitle title='افزودن کاربر- خط' className='simcrd.png' isIcon={false}></PageTitle>
                     <div className='_section_view'>
                         <div>
-                            <h3>کاربر</h3>
+                            <p>کاربر</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
@@ -52,7 +52,7 @@ export default function UserLineCreate() {
                             </div>
                         </div>
                         <div>
-                            <h3>خط</h3>
+                            <p>خط</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>

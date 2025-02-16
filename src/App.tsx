@@ -20,8 +20,6 @@ import LineCreate from './pages/sms-hub/sub-routes/line-create';
 import { primeLocal } from './constants/prime-local';
 import LineEdit from './pages/sms-hub/sub-routes/line-edit';
 import UserLineCreate from './pages/sms-hub/sub-routes/user-line-create';
-import LineByUserIds from './pages/sms-hub/sub-routes/line-by-user-ids';
-import UserByLineIds from './pages/sms-hub/sub-routes/user-by-line-ids';
 import TemplateCategory from './pages/sms-hub/sub-routes/template-category';
 import TemplateCreate from './pages/sms-hub/sub-routes/template-create';
 import SendManager from './pages/sms-hub/sub-routes/send-manager';
@@ -30,6 +28,7 @@ import CcSend from './pages/sms-hub/sub-routes/cc-send';
 import PermittedTime from './pages/sms-hub/sub-routes/permitted-time';
 import DisallowedPhrase from './pages/sms-hub/sub-routes/disallowed-phrase';
 import ImageWrapper from './components/image';
+import UserLineGet from './pages/sms-hub/sub-routes/user-line-get';
 
 function App() {
   return (
@@ -50,8 +49,7 @@ function App() {
                     <Route path={ENRoutes.lineDynamic} element={<LineEdit />}></Route>
                     <Route path={ENRoutes.lineCreate} element={<LineCreate />}></Route>
                     <Route path={ENRoutes.UserLineCreate} element={<UserLineCreate />}></Route>
-                    <Route path={ENRoutes.lineByUserIds} element={<LineByUserIds />}></Route>
-                    <Route path={ENRoutes.userByLineIds} element={<UserByLineIds />}></Route>
+                    <Route path={ENRoutes.userLineGetSearch} element={<UserLineGet />}></Route>
                     <Route index path={ENRoutes.templateCategroy} element={<TemplateCategory />}></Route>
                     <Route path={ENRoutes.templateCategroyDynamic} element={<Template />}></Route>
                     <Route path={ENRoutes.templateCreate} element={<TemplateCreate />}></Route>

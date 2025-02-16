@@ -48,16 +48,17 @@ const LineByUserIds = () => {
                     fileName={ENNaming.userLineGetByUserId}
                     option={userLineGetByUserId}
                     hasClick={false}
+                    hasOutput={false}
                 ></TableHeader>
             </>
         )
     };
     const header = renderHeader();
     return (
-        <div>
+        <div className='bg-white border-15'>
             <div className='_section_view'>
-                <div className='d-flex align-items-center gap-12'>
-                    <h3>کاربر</h3>
+                <div className='d-grid align-items-center'>
+                    <p>کاربر</p>
                     <div className="w-20rem">
                         <div className='_captcha'>
                             <div className='captcha-refresh-wrapper'>
@@ -66,10 +67,10 @@ const LineByUserIds = () => {
                             <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
                                 placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                         </div>
+                        <button onClick={() => callAPI()} className="_button w-20rem mt-1">
+                            مشاهده
+                        </button>
                     </div>
-                    <button onClick={() => callAPI()} className="_button w-20rem">
-                        مشاهده
-                    </button>
                 </div>
             </div>
             <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} stateStorage="session" stateKey="userall-state" paginator rows={TABLE_NUMBER_OF_ROWS} stripedRows rowsPerPageOptions={TABLE_ROWS_PER_PAGE} removableSort selectionMode="single" selection={selectedProduct}

@@ -6,8 +6,6 @@ import ImageWrapper from './image';
 
 const Sidebar = ({ user }: { user: IUserClaims }) => {
     const toggleSubItem = (e: any) => {
-        console.log(e.target.className);
-        console.log(e.currentTarget.classList);
         if (
             e.target.className === 'nav__subtitle' ||
             e.target.className === 'nav__dropdown' ||
@@ -76,10 +74,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                                 <NavLink to={ENRoutes.UserLineCreate} className="nav__dropdown-item">افزودن کاربر- خط</NavLink>
                                             </div>
                                             <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.lineByUserIds} className="nav__dropdown-item">مشاهده خط کاربر</NavLink>
-                                            </div>
-                                            <div className="nav__dropdown-item">
-                                                <NavLink to={ENRoutes.userByLineIds} className="nav__dropdown-item">مشاهده کاربر خط</NavLink>
+                                                <NavLink to={ENRoutes.userLineGetSearch} className="nav__dropdown-item">جستجو</NavLink>
                                             </div>
                                         </div>
                                     </div>

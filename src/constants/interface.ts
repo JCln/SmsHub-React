@@ -41,6 +41,18 @@ export interface IProvider {
     fallbackBaseUri: string,
     credentialTemplate: string
 }
+export interface ITableHeader {
+    dataSource: any,
+    visibleColumns: any,
+    setVisibleColumns: any,
+    filters: any,
+    setFilters: any,
+    option: any,
+    fileName: any,
+    onClicked?: any
+    hasClick: boolean,
+    hasOutput?: boolean
+}
 export interface ILine {
     id?: number,
     dynamicId?: any,

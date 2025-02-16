@@ -47,7 +47,7 @@ export default function SendManager() {
                 <div className='d-grid two_one_columns d-grid border-10 card-box-shadow p-1-0 m-12px bg-white'>
                     <div className='_section_view'>
                         <div>
-                            <h3>اطلاعات کاربران</h3>
+                            <p>اطلاعات کاربران</p>
                             {/* <p>اطلاعات کاربران را بصورت JSON وارد نمایید</p> */}
                             <div className="w-full">
                                 <div className='_captcha'>
@@ -72,7 +72,7 @@ export default function SendManager() {
                     </div>
                     <div className='_section_view'>
                         <div>
-                            <h3>شماره خط</h3>
+                            <p>شماره خط</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
@@ -84,7 +84,7 @@ export default function SendManager() {
                             </div>
                         </div>
                         <div>
-                            <h3>قالب پیام</h3>
+                            <p>قالب پیام</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
                                     <div className='captcha-refresh-wrapper'>
