@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { useParams, useSearchParams } from 'react-router';
 import { PARAMSTAR } from '../../../constants/ActionTypes';
+import PageTitle from '../../../components/page-title';
 
 const LineEdit = () => {
     const [dataSource, setDataSource] = useState<ILine>({
@@ -72,9 +73,7 @@ const LineEdit = () => {
     return (
         <>
             <div className='outer-container'>
-                <h3 className='dashboard-title'>
-                    اطلاعات خط
-                </h3>
+                <PageTitle title='اطلاعات خط' className='simcrd.png' isIcon={false}></PageTitle>
                 <div className="bg-white border-15">
                     <div className='d-grid two_columns'>
                         <div className='_section_view'>

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { ENNaming } from '../../../constants/naming';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { Checkbox } from 'primereact/checkbox';
+import PageTitle from '../../../components/page-title';
 
 export default function TemplateCreate() {
     const [categoryDictionary, setCategoryDictionary] = useState<any[]>([]);
@@ -49,9 +50,7 @@ export default function TemplateCreate() {
     return (
         <>
             <div className='outer-container'>
-                <h3 className='dashboard-title'>
-                    افزودن قالب
-                </h3>
+                <PageTitle title='افزودن قالب' className='message2.png' isIcon={false}></PageTitle>
                 <div className="bg-white border-15 p-1rem">
                     <div className='d-grid two_columns'>
                         <div className='_section_view'>

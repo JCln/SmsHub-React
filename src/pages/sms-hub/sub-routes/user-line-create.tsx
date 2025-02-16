@@ -5,6 +5,7 @@ import { getDynamics } from '../../../dynamics/getDynamics';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { ENNaming } from '../../../constants/naming';
 import { toast } from 'react-toastify';
+import PageTitle from '../../../components/page-title';
 
 export default function UserLineCreate() {
     const [userId, setUserId] = useState<any[]>([]);
@@ -36,9 +37,7 @@ export default function UserLineCreate() {
         <>
             <div className='d-grid border-10 card-box-shadow p-1-0 m-12px justify-content-center'>
                 <div className='outer-container'>
-                    <h3 className='dashboard-title'>
-                        افزودن کاربر- خط
-                    </h3>
+                    <PageTitle title='افزودن کاربر- خط' className='simcrd.png' isIcon={false}></PageTitle>
                     <div className='_section_view'>
                         <div>
                             <h3>کاربر</h3>

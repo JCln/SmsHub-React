@@ -1,5 +1,3 @@
-import loginLogo from '../images/abfa_logo.png';
-import refreshIcon from '../images/refresh.png';
 import { useEffect, useState } from 'react';
 import { setAxiosHeader } from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
@@ -11,6 +9,7 @@ import SlidershowTextPanel from './slidershow-text-panel';
 import { BEARER } from '../constants/ActionTypes';
 import { AxiosResponse } from 'axios';
 import { GET, POST } from '../services/callAPIWrapperService';
+import ImageWrapper from './image';
 
 export const Login = () => {
     let navigate = useNavigate();
@@ -86,7 +85,7 @@ export const Login = () => {
                             {nextAction ?
                                 <>
                                     <div className='mb-8 _logo-wrapper'>
-                                        <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
+                                        <ImageWrapper className='w-100 h-100 _logo' alt='' fileName='abfa_logo.png'></ImageWrapper>
                                     </div>
                                     <h3>مرحله دوم احراز هویت</h3>
                                     <p>کد تایید ارسال شده به شماره همراه را وارد نمایید</p>
@@ -100,16 +99,13 @@ export const Login = () => {
                                 </> :
                                 <>
                                     <div className='mb-8 _logo-wrapper'>
-                                        <img className="w-100 h-100 _logo" src={loginLogo} alt="" />
+                                        <ImageWrapper className='w-100 h-100 _logo' alt='' fileName='abfa_logo.png'></ImageWrapper>
                                     </div>
                                     <input name='username' placeholder='نام کاربری' type="text" dir='rtl' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
                                     <input name='password' placeholder='گذرواژه' type="password" dir='rtl' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
                                     <div className='_captcha'>
-                                        <div className='captcha-refresh-wrapper'>
-                                            <img onClick={() => {
-                                                getCaptcha()
-                                            }}
-                                                className="captcha-refresh" src={refreshIcon} alt="" />
+                                        <div className='captcha-refresh-wrapper' onClick={() => getCaptcha()}>
+                                            <ImageWrapper className='captcha-refresh' alt='' fileName='refresh.png'></ImageWrapper>
                                         </div>
                                         {captchaImg ?
                                             <img className="captcha-image" src={captchaImg} alt="" />

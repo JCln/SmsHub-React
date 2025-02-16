@@ -5,6 +5,7 @@ import { ENNaming } from '../../../constants/naming';
 import { toast } from 'react-toastify';
 import { ISendManagerDTO } from '../../../constants/interface';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
+import PageTitle from '../../../components/page-title';
 
 export default function SendManager() {
     const [templateId, setTemplateDictionary] = useState<any[]>([]);
@@ -42,9 +43,7 @@ export default function SendManager() {
     return (
         <>
             <div className='outer-container'>
-                <h3 className='dashboard-title'>
-                    ارسال پیام
-                </h3>
+                <PageTitle title='ارسال پیام' className='message.png' isIcon={false}></PageTitle>
                 <div className='d-grid two_one_columns d-grid border-10 card-box-shadow p-1-0 m-12px bg-white'>
                     <div className='_section_view'>
                         <div>

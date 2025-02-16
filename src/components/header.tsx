@@ -1,7 +1,7 @@
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { IUserClaims } from '../constants/interface';
-import profileImage from '../images/profile.png';
+import ImageWrapper from './image';
 
 const Header = ({ user }: { user: IUserClaims }) => {
     return (
@@ -23,7 +23,7 @@ const Header = ({ user }: { user: IUserClaims }) => {
                             {(
                                 <>
                                     <div className='w-3rem h-3rem'>
-                                        <img src={profileImage} alt="" className=""></img>
+                                        <ImageWrapper className='' alt='' fileName='profile.png'></ImageWrapper>
                                     </div>
                                     <div>
                                         {user.givenName}

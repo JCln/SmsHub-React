@@ -6,6 +6,7 @@ import { getDynamics } from '../../../dynamics/getDynamics';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { ENNaming } from '../../../constants/naming';
 import { toast } from 'react-toastify';
+import PageTitle from '../../../components/page-title';
 
 export default function LineCreate() {
     const [providers, setProviders] = useState<any[]>([]);
@@ -41,9 +42,7 @@ export default function LineCreate() {
     return (
         <>
             <div className='outer-container'>
-                <h3 className='dashboard-title'>
-                    افزودن خط
-                </h3>
+                <PageTitle title='افزودن خط' className='simcrd.png' isIcon={false}></PageTitle>
                 <div className='d-grid two_columns bg-white border-15'>
                     <div className='_section_view'>
                         <div>
@@ -82,7 +81,7 @@ export default function LineCreate() {
                             </textarea>
                         </div>
                     </div>
-                </div>                
+                </div>
             </div >
         </>
     )

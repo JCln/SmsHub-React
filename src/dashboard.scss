@@ -34,6 +34,14 @@
         color: var(--clr-gray);
     }
 
+    .clr-green-500 {
+        color: var(--green-500);
+    }
+
+    .clr-red-500 {
+        color: var(--red-500);
+    }
+
     p {
         font-size: var(--size-1rem);
         color: var(--clr-gray);
@@ -45,34 +53,31 @@
         align-items: center;
     }
 
-    // BIG CARDS MAYBE WITH CHARTS LIKE DOUGNOT CHART
-    .dash-card-two {
-        background: var(--clr-white);
-        border-radius: var(--border-15px);
-        padding: var(--size-1rem);
-        // width: 21rem;
-
-        .title {
-            color: var(--clr-5);
-        }
-
-        i {
-            font-size: var(--size-1rem);
-            width: var(--size-1rem);
-            height: var(--size-1rem);
-        }
-
-        .dash-card-two-value {
-            width: 100%;
-        }
-    }
-
     .dash-card-two-line {
         width: 100%;
     }
-
 }
 
+.dash-card-two {
+    background: var(--clr-white);
+    border-radius: var(--border-15px);
+    padding: var(--size-1rem);
+    // width: 21rem;
+
+    .title {
+        color: var(--clr-5);
+    }
+
+    i {
+        font-size: var(--size-1rem);
+        width: var(--size-1rem);
+        height: var(--size-1rem);
+    }
+
+    .dash-card-two-value {
+        width: 100%;
+    }
+}
 
 .desc {
     font-size: var(--size-12px);
@@ -104,7 +109,6 @@
 }
 
 .outer-container {
-    margin: var(--size-1rem);
     padding: var(--size-1rem);
     border-radius: var(--size-10px);
     // box-shadow: 0 0 2px 0px var(--clr-3);
@@ -116,10 +120,6 @@
 
 .border-15 {
     border-radius: var(--border-15px);
-}
-
-.dashboard-title {
-    color: var(--clr-5);
 }
 
 .dashboard-slide {

@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import TableDeleteButton from '../../../components/table-delete-button';
 import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
+import PageTitle from '../../../components/page-title';
 
 
 
@@ -120,35 +121,38 @@ const ConfigTypeGroup = () => {
     const header = renderHeader();
     return (
         <div>
-            <DataTable value={dataSource}
-                tableStyle={TABLE_STYLE}
-                editMode="row"
-                header={header}
-                stateStorage="session"
-                onRowEditComplete={onRowEditComplete}
-                stateKey={ENNaming.configTypeGroup + 'state'}
-                paginator
-                rows={TABLE_NUMBER_OF_ROWS}
-                stripedRows
-                rowsPerPageOptions={TABLE_ROWS_PER_PAGE}
-                removableSort
-                selectionMode="single"
-                selection={selectedProduct}
-                onSelectionChange={(e) => setSelectedProduct(e.value)}
-                filterDisplay="row"
-                globalFilterFields={getGlobalFilterfieldsConfigTypeGroup()}
-                dataKey="id"
-                metaKeySelection={metaKey}
-                emptyMessage={ENNaming.tableEmptyMessage}
-                paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
-                currentPageReportTemplate={ENNaming.currentPageReportText}
-            >
-                {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
-                ))}
-                <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
-                <Column body={actionTemplate} headerClassName="w-10rem" />
-            </DataTable>
+            <div className='outer-container'>
+                <PageTitle title='تنظیم گروه' className='setting.png' isIcon={false}></PageTitle>
+                <DataTable value={dataSource}
+                    tableStyle={TABLE_STYLE}
+                    editMode="row"
+                    header={header}
+                    stateStorage="session"
+                    onRowEditComplete={onRowEditComplete}
+                    stateKey={ENNaming.configTypeGroup + 'state'}
+                    paginator
+                    rows={TABLE_NUMBER_OF_ROWS}
+                    stripedRows
+                    rowsPerPageOptions={TABLE_ROWS_PER_PAGE}
+                    removableSort
+                    selectionMode="single"
+                    selection={selectedProduct}
+                    onSelectionChange={(e) => setSelectedProduct(e.value)}
+                    filterDisplay="row"
+                    globalFilterFields={getGlobalFilterfieldsConfigTypeGroup()}
+                    dataKey="id"
+                    metaKeySelection={metaKey}
+                    emptyMessage={ENNaming.tableEmptyMessage}
+                    paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                    currentPageReportTemplate={ENNaming.currentPageReportText}
+                >
+                    {visibleColumns.map((col, i) => (
+                        <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                    ))}
+                    <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
+                    <Column body={actionTemplate} headerClassName="w-10rem" />
+                </DataTable>
+            </div>
         </div>
     )
 }

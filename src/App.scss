@@ -381,6 +381,23 @@ $slider_content: 75%;
   }
 }
 
+.page-title {
+  color: var(--clr-5);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: var(--size-1rem);
+
+  i {
+    font-size: var(--size-1-5rem);
+  }
+
+  .page-title-img {
+    width: var(--size-1-5rem);
+    height: var(--size-1-5rem);
+  }
+}
+
 ._button {
   cursor: pointer;
   background: var(--clr-3);

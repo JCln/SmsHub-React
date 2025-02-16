@@ -1,39 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import loginDashboard from '../images/login-dashboard.jpg';
-import loginDashboard2 from '../images/dashboard-2.svg';
-import loginDashboard3 from '../images/dashboard-3.jpg';
+import ImageWrapper from './image';
 
-export default class SlidershowCarousel extends React.Component {
+const SlidershowCarousel = () => {
+    const [carouselImg] = useState<any[]>([
+        { key: 1, src: 'login-dashboard.jpg', alt: '' },
+        { key: 2, src: 'dashboard-2.svg', alt: '' },
+        { key: 3, src: 'login-2.svg', alt: '' },
+        { key: 3, src: 'dashboard-3.jpg', alt: '' }
+    ]);
 
-    render() {
-        return (
+    return (
+        <>
             <CarouselProvider
                 naturalSlideWidth={600}
                 naturalSlideHeight={400}
-                totalSlides={3}
+                totalSlides={carouselImg.length}
                 isPlaying={true}
                 interval={10000}
                 touchEnabled={false}
                 infinite={true}
             >
                 <Slider>
-                    <Slide className='dashboard-slide' index={0}>
-                        <img className='dashboard_image' src={loginDashboard} alt="" />
-                    </Slide>
-                    <Slide className='dashboard-slide' index={1}>
-                        <img className='dashboard_image' src={loginDashboard2} alt="" />
-                    </Slide>
-                    <Slide className='dashboard-slide' index={2}>
-                        <img className='dashboard_image' src={loginDashboard3} alt="" />
-                    </Slide>
+                    {
+                        carouselImg.map((item, index) => (
+                            <Slide className='dashboard-slide' key={item.key} index={index}>
+                                <ImageWrapper alt={item.alt} fileName={item.src} className='dashboard_image'></ImageWrapper>
+                            </Slide>
+                        ))
+                    }
                 </Slider>
                 {/* <div>
                     <ButtonBack>Back</ButtonBack>
                     <ButtonNext>Next</ButtonNext>
                 </div> */}
             </CarouselProvider>
-        );
-    }
+        </>
+    );
 }
+export default SlidershowCarousel;

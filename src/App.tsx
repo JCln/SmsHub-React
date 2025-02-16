@@ -9,7 +9,6 @@ import NotFound from './components/NotFound';
 // import Announcement from './components/Announcement';
 // import { PrivateRoute } from './components/PrivateRoute';
 import { Login } from './components/login';
-import back1 from './images/back1.png';
 import Providers from './pages/sms-hub/sub-routes/providers';
 import ConfigTypeGroup from './pages/sms-hub/sub-routes/configTypeGroup';
 import Home from './pages/sms-hub/sub-routes/home';
@@ -30,6 +29,7 @@ import Template from './pages/sms-hub/sub-routes/template';
 import CcSend from './pages/sms-hub/sub-routes/cc-send';
 import PermittedTime from './pages/sms-hub/sub-routes/permitted-time';
 import DisallowedPhrase from './pages/sms-hub/sub-routes/disallowed-phrase';
+import ImageWrapper from './components/image';
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
       <PrimeReactProvider value={primeLocal}>
         <BrowserRouter>
           <div className='_app_main'>
-            <img className="full-height-width position-fixed" src={back1} alt="" />
+            <ImageWrapper className='full-height-width position-fixed' alt='' fileName='back1.png'></ImageWrapper>
             <Routes>
               <Route path={ENRoutes.SMSHub} element={<Home />}>
                 {

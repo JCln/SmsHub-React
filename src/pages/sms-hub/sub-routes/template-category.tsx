@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import * as ENRoutes from '../../../constants/ENRoutes';
 import { NavLink, Outlet } from 'react-router';
 import TableDeleteButton from '../../../components/table-delete-button';
+import PageTitle from '../../../components/page-title';
 
 
 const TemplateCategory = () => {
@@ -127,36 +128,39 @@ const TemplateCategory = () => {
     const header = renderHeader();
     return (
         <div>
-            <DataTable value={dataSource}
-                tableStyle={TABLE_STYLE}
-                editMode="row"
-                header={header}
-                onRowEditComplete={onRowEditComplete}
-                stateStorage="session"
-                stateKey={ENNaming.templateCategory + 'state'}
-                paginator
-                rows={TABLE_NUMBER_OF_ROWS}
-                stripedRows
-                rowsPerPageOptions={TABLE_ROWS_PER_PAGE}
-                removableSort
-                selectionMode="single"
-                selection={selectedProduct}
-                onSelectionChange={(e) => setSelectedProduct(e.value)}
-                filterDisplay="row"
-                globalFilterFields={getGlobalFilterfieldsTemplateCategory()}
-                dataKey="id"
-                metaKeySelection={metaKey}
-                emptyMessage={ENNaming.tableEmptyMessage}
-                paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
-                currentPageReportTemplate={ENNaming.currentPageReportText}
-            >
-                {visibleColumns.map((col, i) => (
-                    <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
-                ))}
-                <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
-                <Column body={actionTemplate} headerClassName="w-10rem" />
-            </DataTable>
-            <Outlet />
+            <div className='outer-container'>
+                <PageTitle title='نمایش دسته‌بندی‌ها' className='message2.png' isIcon={false}></PageTitle>
+                <DataTable value={dataSource}
+                    tableStyle={TABLE_STYLE}
+                    editMode="row"
+                    header={header}
+                    onRowEditComplete={onRowEditComplete}
+                    stateStorage="session"
+                    stateKey={ENNaming.templateCategory + 'state'}
+                    paginator
+                    rows={TABLE_NUMBER_OF_ROWS}
+                    stripedRows
+                    rowsPerPageOptions={TABLE_ROWS_PER_PAGE}
+                    removableSort
+                    selectionMode="single"
+                    selection={selectedProduct}
+                    onSelectionChange={(e) => setSelectedProduct(e.value)}
+                    filterDisplay="row"
+                    globalFilterFields={getGlobalFilterfieldsTemplateCategory()}
+                    dataKey="id"
+                    metaKeySelection={metaKey}
+                    emptyMessage={ENNaming.tableEmptyMessage}
+                    paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                    currentPageReportTemplate={ENNaming.currentPageReportText}
+                >
+                    {visibleColumns.map((col, i) => (
+                        <Column key={col.field} field={col.field} header={col.header} editor={(options) => textEditor(options)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                    ))}
+                    <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
+                    <Column body={actionTemplate} headerClassName="w-10rem" />
+                </DataTable>
+                <Outlet />
+            </div>
         </div>
     )
 }

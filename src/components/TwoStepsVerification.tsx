@@ -1,14 +1,14 @@
 import { Button } from './Button';
-import lockTwoStep from '../images/lock.svg';
 import { Inputs } from './Inputs';
 import * as ENRoutes from '../constants/ENRoutes';
 import { Link } from 'react-router';
+import ImageWrapper from './image';
 
 const TwoStepVerification = () => {
     return (
         <div className='َapp'>
             <div className="_content">
-                <img className='logo-img' src={lockTwoStep} alt="" />
+                <ImageWrapper className='logo-img' alt='' fileName='lock.svg'></ImageWrapper>
                 <h3>ثبت کد تایید</h3>
                 <div>
                     <Inputs type='text' label='' name='in1' placeholder='' key={1} direction='ltr'></Inputs>

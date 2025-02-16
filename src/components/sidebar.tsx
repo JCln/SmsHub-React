@@ -1,22 +1,23 @@
-import smsHubLogo from '../images/smsHubLogo.png';
-import userImage from '../images/user1.png';
-import infoImage from '../images/info.png';
-import simcardImage from '../images/simcrd.png';
-import developerImage from '../images/developer.png';
-import logImage from '../images/refresh.png';
-import patternImage from '../images/message2.png';
-import reportImage from '../images/report.png';
-import sendImage from '../images/message.png';
 import { Link, NavLink } from 'react-router';
 import * as ENRoutes from '../constants/ENRoutes';
 import { IUserClaims } from '../constants/interface';
+import ImageWrapper from './image';
 
 
 const Sidebar = ({ user }: { user: IUserClaims }) => {
     const toggleSubItem = (e: any) => {
-        const angleIcon = e.currentTarget.firstChild.firstChild.childNodes[2].classList;
-        e.currentTarget.classList.toggle('toggle-sidebar');
-        angleIcon.toggle('rotate-current-angle');
+        console.log(e.target.className);
+        console.log(e.currentTarget.classList);
+        if (
+            e.target.className === 'nav__subtitle' ||
+            e.target.className === 'nav__dropdown' ||
+            e.target.className.includes('Image') ||
+            e.target.className.includes('-icon')
+        ) {
+            const angleIcon = e.currentTarget.firstChild.firstChild.childNodes[2].classList;
+            e.currentTarget.classList.toggle('toggle-sidebar');
+            angleIcon.toggle('rotate-current-angle');
+        }
     }
 
     return (
@@ -25,12 +26,12 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                 <div className="nav" id="navbar">
                     <nav className="nav__container">
                         <Link to={ENRoutes.SMSHub} className="nav__link nav__logo">
-                            <img src={smsHubLogo} alt="" className="sidebar__img"></img>
+                            <ImageWrapper className='sidebar__img' alt='' fileName='smsHubLogo.png'></ImageWrapper>
                         </Link>
                         <div className="nav__list">
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={infoImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='info.png'></ImageWrapper>
                                     راهنما سایت
                                 </div>
                             </div>
@@ -38,7 +39,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
-                                        <img src={userImage} alt="" className="sidebar_icon"></img>
+                                        <ImageWrapper className='sidebar_icon' alt='' fileName='user1.png'></ImageWrapper>
                                         کاربران
                                         <i className="-icon pi pi-angle-down"></i>
                                     </div>
@@ -58,7 +59,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
-                                        <img src={simcardImage} alt="" className="sidebar_icon"></img>
+                                        <ImageWrapper className='sidebar_icon' alt='' fileName='simcrd.png'></ImageWrapper>
                                         خطوط
                                         <i className="-icon pi pi-angle-down"></i>
                                     </div>
@@ -86,14 +87,15 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             </div>
                             <Link to={ENRoutes.provider} className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={simcardImage} alt="" className="sidebar_icon"></img>
+                                    {/* <ImageWrapper className='sidebar_icon' alt='' fileName='simcrd.png'></ImageWrapper> */}
+                                    <i className="sidebar_icon pi pi-building"></i>
                                     <div className="nav__dropdown-item">سرویس دهندگان</div>
                                 </div>
                             </Link>
                             <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
-                                        <img src={patternImage} alt="" className="sidebar_icon"></img>
+                                        <ImageWrapper className='sidebar_icon' alt='' fileName='message2.png'></ImageWrapper>
                                         تنظیمات
                                         <i className="-icon pi pi-angle-down"></i>
                                     </div>
@@ -118,14 +120,14 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             </div>
                             <Link to={ENRoutes.SendManager} className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={sendImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='message.png'></ImageWrapper>
                                     <div className="nav__dropdown-item">ارسال</div>
                                 </div>
                             </Link>
                             <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
-                                        <img src={patternImage} alt="" className="sidebar_icon"></img>
+                                        <ImageWrapper className='sidebar_icon' alt='' fileName='message2.png'></ImageWrapper>
                                         قالب
                                         <i className="-icon pi pi-angle-down"></i>
                                     </div>
@@ -147,19 +149,19 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             </div>
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={reportImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='report.png'></ImageWrapper>
                                     گزارش ها
                                 </div>
                             </div>
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={developerImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='developer.png'></ImageWrapper>
                                     توسعه دهندگان
                                 </div>
                             </div>
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={logImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='refresh.png'></ImageWrapper>
                                     ثبت نشان
                                 </div>
                             </div>
@@ -178,7 +180,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                 <div className="nav" id="navbar">
                     <nav className="nav__container">
                         <Link to={ENRoutes.SMSHub} className="nav__link nav__logo">
-                            <img src={smsHubLogo} alt="" className="sidebar__img"></img>
+                            <ImageWrapper className='sidebar_icon' alt='' fileName='smsHubLogo.png'></ImageWrapper>
                         </Link>
                         <div className="nav__list">
                             <div className="nav__items">
@@ -190,13 +192,13 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
 
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={sendImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='message.png'></ImageWrapper>
                                     ارسال
                                 </div>
                             </div>
                             <div className="nav__items">
                                 <div className="nav__subtitle">
-                                    <img src={developerImage} alt="" className="sidebar_icon"></img>
+                                    <ImageWrapper className='sidebar_icon' alt='' fileName='developer.png'></ImageWrapper>
                                     توسعه دهندگان
                                 </div>
                             </div>
