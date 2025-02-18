@@ -6,6 +6,13 @@ import ImageWrapper from './image';
 
 const Sidebar = ({ user }: { user: IUserClaims }) => {
     const toggleSubItem = (e: any) => {
+        const allDropDowns = document.querySelectorAll('.nav__dropdown');
+        allDropDowns.forEach(item => {
+            if (!e.currentTarget.classList.value.includes('toggle-sidebar')) {
+                item.classList.remove('toggle-sidebar');
+            }
+        })
+
         if (
             e.target.className === 'nav__subtitle' ||
             e.target.className === 'nav__dropdown' ||
