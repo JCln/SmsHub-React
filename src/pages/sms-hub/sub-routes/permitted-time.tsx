@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getGlobalFilterfieldsPermittedTime, permittedTime } from '../../../dynamics/column-data';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
@@ -52,6 +52,9 @@ const PermittedTime = () => {
         })
 
     }
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, [])
     const callAPIPostDelete = async (e: IPermittedTime) => {
         POST(getDynamics.apis.permittedTimeDelete, { id: e.id }).then(() => {
             toast.success(ENNaming.successRemove);
@@ -119,6 +122,7 @@ const PermittedTime = () => {
                     option={permittedTime}
                     onClicked={() => onRowAdd()}
                     hasClick={true}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

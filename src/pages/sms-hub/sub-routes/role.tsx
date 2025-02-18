@@ -2,7 +2,7 @@ import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import http from '../../../services/httpService';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import { getGlobalFilterfieldsRole, role } from '../../../dynamics/column-data';
 import { ColumnMeta, IRole } from '../../../constants/interface';
@@ -23,11 +23,13 @@ const Role = () => {
     });
 
     useEffect(() => {
-        callAPI(getDynamics.apis.role);
+        callAPI();
     }, []);
-
-    const callAPI = async (api: any) => {
-        GET(api).then((res: any) => {
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, []);
+    const callAPI = async () => {
+        GET(getDynamics.apis.role).then((res: any) => {
             setDataSource(res.data.data);
         })
     }
@@ -42,6 +44,7 @@ const Role = () => {
                     fileName={ENNaming.role}
                     option={role}
                     hasClick={false}
+                    tableRefresh={tableRefresh}                    
                 ></TableHeader>
             </>
         )

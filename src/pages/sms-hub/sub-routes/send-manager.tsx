@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { GET, POST } from '../../../services/callAPIWrapperService';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { ENNaming } from '../../../constants/naming';
@@ -23,6 +23,7 @@ export default function SendManager() {
             setLineDictionary(res.data.data);
         })
     }, []);
+   ;
     const setForm = (e: any) => {
         const value = e.target.value;
         const name = e.target.name;

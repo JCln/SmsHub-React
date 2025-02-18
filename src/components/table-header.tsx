@@ -2,6 +2,7 @@ import { ITableHeader } from '../constants/interface'
 import ColumnToggle from './column-toggle'
 import TableGlobalSearch from './table-global-search'
 import TableOutputs from './table-outputs'
+import TableRefresh from './table-refresh'
 
 export default function TableHeader(
     { dataSource,
@@ -13,7 +14,8 @@ export default function TableHeader(
         fileName,
         onClicked,
         hasClick,
-        hasOutput = true
+        hasOutput = true,
+        tableRefresh
     }: ITableHeader
 ) {
     return (
@@ -24,7 +26,7 @@ export default function TableHeader(
                 <TableGlobalSearch filters={filters} setFilters={setFilters}></TableGlobalSearch>
             </div>
             {hasOutput ?
-                <TableOutputs columns={option} dataSource={dataSource} fileName={fileName} hasClick={hasClick} onClicked={() => onClicked()}></TableOutputs>
+                <TableOutputs tableRefresh={tableRefresh} columns={option} dataSource={dataSource} fileName={fileName} hasClick={hasClick} onClicked={() => onClicked()}></TableOutputs>
                 :
                 <></>
             }

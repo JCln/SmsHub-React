@@ -1,7 +1,7 @@
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
 import { getGlobalFilterfields, lineGetByUserId } from '../../../dynamics/column-data';
@@ -25,6 +25,9 @@ const UserByLineIds = () => {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
 
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, []);
     useEffect(() => {
         POST(getDynamics.apis.lineGetList).then((res: any) => {
             setUserId(res.data.data);
@@ -48,6 +51,7 @@ const UserByLineIds = () => {
                     option={lineGetByUserId}
                     hasClick={false}
                     hasOutput={false}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

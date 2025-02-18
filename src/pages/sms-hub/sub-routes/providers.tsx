@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ColumnMeta, IProvider } from '../../../constants/interface';
 import { getGlobalFilterfieldsProvider, provider } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
@@ -33,7 +33,9 @@ const Providers = () => {
     useEffect(() => {
         callAPI();
     }, []);
-
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, []);
     const callAPI = async () => {
         POST(getDynamics.apis.providerGetList).then((res: any) => {
             setDataSource(res.data.data);
@@ -52,6 +54,7 @@ const Providers = () => {
                         option={provider}
                         onClicked={() => onRowAdd()}
                         hasClick={true}
+                        tableRefresh={callAPI}
                     ></TableHeader>
                 </div>
             </>

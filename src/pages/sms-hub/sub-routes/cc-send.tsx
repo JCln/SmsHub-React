@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ccSend, getGlobalFilterfieldsCcSend } from '../../../dynamics/column-data';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { ENNaming } from '../../../constants/naming';
@@ -30,7 +30,9 @@ const CcSend = () => {
     useEffect(() => {
         callAPI();
     }, []);
-
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, [])
     const insertToAux = () => {
         dataSource.forEach(item => {
             item.dynamicId = item.configTypeGroupId;
@@ -119,6 +121,7 @@ const CcSend = () => {
                     option={ccSend}
                     onClicked={() => onRowAdd()}
                     hasClick={true}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

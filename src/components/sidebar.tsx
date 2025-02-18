@@ -83,7 +83,9 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             <Link to={ENRoutes.provider} className="nav__items">
                                 <div className="nav__subtitle">
                                     {/* <ImageWrapper className='sidebar_icon' alt='' fileName='simcrd.png'></ImageWrapper> */}
-                                    <i className="sidebar_icon pi pi-building"></i>
+                                    <div className="sidebar_icon">
+                                        <i className="pi pi-building"></i>
+                                    </div>
                                     <div className="nav__dropdown-item">سرویس دهندگان</div>
                                 </div>
                             </Link>

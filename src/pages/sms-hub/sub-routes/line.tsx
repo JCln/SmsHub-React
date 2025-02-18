@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { getGlobalFilterfieldsLine, line } from '../../../dynamics/column-data';
@@ -10,7 +10,7 @@ import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
-import { NavLink, Outlet } from 'react-router';
+import { data, NavLink, Outlet } from 'react-router';
 import * as ENRoutes from '../../../constants/ENRoutes';
 import { Converter } from '../../../components/converter';
 import PageTitle from '../../../components/page-title';
@@ -29,28 +29,51 @@ const Line = () => {
     });
 
     useEffect(() => {
-        callAPI(getDynamics.apis.lineGetList);
+        callAPI();
     }, []);
 
-    const insertToAux = () => {
-        const newData = dataSource.map(d => ({ ...d, dynamicId: d.providerId }));
-        setDataSource(newData);
-        // dataSource.forEach(item => {
-        //     item.dynamicId = item.providerId;
-        // })
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, [])
+    const insertToAux = (): any[] => {
+        const newData = [...dataSource];
+        newData.forEach(item => {
+            item.dynamicId = item.providerId;
+        })
+        return newData;
     }
-    const callAPI = async (api: any) => {
-        POST(api).then((res: any) => {
+
+    const getDictionary = async () => {
+        POST(getDynamics.apis.providerGetList).then((tes: any) => {
+            setProviders(tes.data.data);
+        })
+    }
+    const getDataSource = async () => {
+        POST(getDynamics.apis.lineGetList).then((res: any) => {
             setDataSource(res.data.data);
         })
-        POST(getDynamics.apis.providerGetList).then((res: any) => {
-            setProviders(res.data.data);
+    }
+    const convertIdToTitle = (dataSource: any, dictionary: any): any[] => {
+        const toConvert = 'dynamicId';
+        const newData = [...dataSource];
+        newData.map(item => {
+            dictionary.map((dic: any) => {
+                if (dic.id === item[toConvert]) {
+                    console.log(item[toConvert]);
+
+                    item[toConvert] = dic.title
+                }
+            })
         })
-        insertToAux();
-        console.log(dataSource);
-        Converter.convertIdToTitle(dataSource, providers, ENNaming.DYNAMICID);
-        console.log(dataSource);
-        setDataSource(dataSource);
+        console.log(newData);
+        return newData;
+    }
+    const callAPI = async () => {
+        await getDataSource();
+        await getDictionary();
+        const b = convertIdToTitle(insertToAux(), providers);
+        console.log(b);
+        setDataSource(b);
     }
     const renderHeader = () => {
         return (
@@ -63,6 +86,7 @@ const Line = () => {
                     fileName={ENNaming.line}
                     option={line}
                     hasClick={false}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

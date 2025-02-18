@@ -1,7 +1,7 @@
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ColumnMetaS, ENCellTypes, ITemplateDTO } from '../../../constants/interface';
 import { getGlobalFilterfieldsTemplate, template } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
@@ -29,7 +29,9 @@ const Template = () => {
     useEffect(() => {
         callAPI();
     }, []);
-
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, []);
     const renderHeader = () => {
         return (
             <>
@@ -41,6 +43,7 @@ const Template = () => {
                     fileName={ENNaming.template}
                     option={template}
                     hasClick={false}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

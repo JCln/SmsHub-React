@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
 import { getGlobalFilterfields, userAll, userLineGetByUserId } from '../../../dynamics/column-data';
@@ -36,7 +36,9 @@ const LineByUserIds = () => {
             setDataSource(res.data.data);
         })
     }
-
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, [])
     const renderHeader = () => {
         return (
             <>
@@ -49,6 +51,7 @@ const LineByUserIds = () => {
                     option={userLineGetByUserId}
                     hasClick={false}
                     hasOutput={false}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
 import 'jspdf-autotable';
 import { getGlobalFilterfields, userAll } from '../../../dynamics/column-data';
@@ -34,11 +34,13 @@ const UserAll = () => {
         lockTimespan: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
     useEffect(() => {
-        callAPI(getDynamics.apis.userAll);
+        callAPI();
     }, []);
-
-    const callAPI = async (api: any) => {
-        GET(api).then((res: any) => {
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, []);
+    const callAPI = async () => {
+        GET(getDynamics.apis.userAll).then((res: any) => {
             setDataSource(res.data.data);
         })
     }
@@ -53,6 +55,7 @@ const UserAll = () => {
                     fileName={ENNaming.userAll}
                     option={userAll}
                     hasClick={false}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

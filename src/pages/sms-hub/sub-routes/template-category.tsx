@@ -1,7 +1,7 @@
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ColumnMeta, ITemplateCategoryDTO } from '../../../constants/interface';
 import { getGlobalFilterfieldsTemplateCategory, templateCategory } from '../../../dynamics/column-data';
 import { FilterMatchMode } from 'primereact/api';
@@ -30,7 +30,9 @@ const TemplateCategory = () => {
     useEffect(() => {
         callAPI();
     }, []);
-
+    const tableRefresh = useCallback(() => {
+        callAPI()
+    }, []);
     const onRowAdd = () => {
         if (isNew) {
             setIsNew(false);
@@ -90,6 +92,7 @@ const TemplateCategory = () => {
                     option={templateCategory}
                     onClicked={() => onRowAdd()}
                     hasClick={true}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

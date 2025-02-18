@@ -1,9 +1,10 @@
 import { Button } from 'primereact/button';
 import * as ExcelJs from "exceljs";
+import TableRefresh from './table-refresh';
+import { ITableOutput } from '../constants/interface';
 
 export default function TableOutputs(
-    { dataSource, columns, fileName, onClicked, hasClick }:
-        { dataSource: any, columns: any, fileName: string, onClicked?: any, hasClick: boolean }) {
+    { dataSource, columns, fileName, onClicked, hasClick, tableRefresh }: ITableOutput) {
     const makeEXCEL = () => {
         console.log(dataSource);
         console.log(fileName);
@@ -59,6 +60,7 @@ export default function TableOutputs(
             <Button type="button" icon="pi pi-file" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود CSV" onClick={() => (false)} />
             <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => makeEXCEL()} />
             <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => (false)} />
+            <TableRefresh handleClick={tableRefresh}></TableRefresh>
             {hasClick ?
                 <Button type="button" icon="pi pi-plus" severity='info' rounded tooltipOptions={{ position: 'mouse' }} tooltip="افزودن مورد" onClick={() => onClicked()}></Button>
                 :

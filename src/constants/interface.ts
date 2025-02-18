@@ -31,6 +31,15 @@ export interface IUserAll {
     latestLoginDateTime: string,
     lockTimespan: string
 }
+
+export interface ITableOutput {
+    dataSource: any,
+    columns: any,
+    fileName: string,
+    onClicked?: any,
+    hasClick: boolean,
+    tableRefresh: any,
+}
 export interface IProvider {
     id?: number,
     title: string,
@@ -51,6 +60,7 @@ export interface ITableHeader {
     fileName: any,
     onClicked?: any
     hasClick: boolean,
+    tableRefresh: any,
     hasOutput?: boolean
 }
 export interface ILine {

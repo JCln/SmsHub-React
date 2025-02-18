@@ -11,7 +11,7 @@ const Dashboard = () => {
         { id: 1, title: 'تعداد ارسال', isCountUp: true, value: '2000000', icon: 'pi pi-bookmark' },
         { id: 2, title: 'حجم ارسال', isCountUp: true, value: '33', icon: 'pi pi-bookmark', description: 'نیازمند توضیحات اضافه' },
         { id: 3, title: 'هزینه ارسال(ریال)', isCountUp: true, value: '59052', icon: 'pi pi-dollar', description: 'نیازمند توضیحات اضافه' },
-        { id: 4, title: 'رسیده به گیرنده', isCountUp: false, value: '32', icon: 'pi pi-bookmark' },
+        { id: 4, title: 'رسیده به گیرنده', isCountUp: false, value: '320000', icon: 'pi pi-bookmark' },
         { id: 5, title: 'نرسیده به گیرنده', isCountUp: false, value: '2', icon: 'pi pi-bookmark' },
         { id: 6, title: 'تعداد دریافت', isCountUp: true, value: '1938811', icon: 'pi pi-bookmark' }
     ]);

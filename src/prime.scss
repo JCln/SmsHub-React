@@ -56,6 +56,13 @@
     direction: rtl;
 }
 
+.p-datatable {
+    position: relative;
+    padding: var(--size-5px);
+    background: var(--clr-white);
+    border-radius: var(--border-10px);
+}
+
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item .p-dropdown-check-icon {
     position: relative;
     margin-right: -var(--size-05rem);
