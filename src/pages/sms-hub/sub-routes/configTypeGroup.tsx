@@ -127,6 +127,7 @@ const ConfigTypeGroup = () => {
             <div className='outer-container'>
                 <PageTitle title='تنظیم گروه' className='setting.png' isIcon={false}></PageTitle>
                 <DataTable value={dataSource}
+                    filters={filters}
                     tableStyle={TABLE_STYLE}
                     editMode="row"
                     header={header}

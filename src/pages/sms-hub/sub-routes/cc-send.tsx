@@ -157,6 +157,7 @@ const CcSend = () => {
             <div className='outer-container'>
                 <PageTitle title='ارسال مجدد' className='setting.png' isIcon={false}></PageTitle>
                 <DataTable value={dataSource}
+                    filters={filters}
                     key={ENNaming.ccSend}
                     tableStyle={TABLE_STYLE}
                     editMode="row"

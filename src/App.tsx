@@ -1,5 +1,5 @@
 import './index.css';
-import './App.scss';
+import './styles/App.scss';
 import 'primeicons/primeicons.css';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { BrowserRouter, Route, Routes } from 'react-router';

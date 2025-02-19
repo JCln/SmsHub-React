@@ -156,6 +156,7 @@ const DisallowedPhrase = () => {
             <div className='outer-container'>
                 <PageTitle title='کلمات غیر مجاز' className='setting.png' isIcon={false}></PageTitle>
                 <DataTable value={dataSource}
+                    filters={filters}
                     key={ENNaming.disallowedPhrase}
                     tableStyle={TABLE_STYLE}
                     editMode="row"

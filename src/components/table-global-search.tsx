@@ -6,8 +6,6 @@ import { InputText } from 'primereact/inputtext';
 export default function TableGlobalSearch({ filters, setFilters }: { setFilters: any, filters: any }) {
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const onGlobalFilterChange = (e: any) => {
-        console.log(e);
-
         const value = e.target.value;
         let _filters = { ...filters };
 

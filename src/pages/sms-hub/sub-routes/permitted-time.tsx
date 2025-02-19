@@ -158,6 +158,7 @@ const PermittedTime = () => {
             <div className='outer-container'>
                 <PageTitle title='بازه مجاز' className='setting.png' isIcon={false}></PageTitle>
                 <DataTable value={dataSource}
+                    filters={filters}
                     key={ENNaming.permittedTime}
                     tableStyle={TABLE_STYLE}
                     editMode="row"

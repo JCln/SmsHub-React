@@ -19,8 +19,8 @@
 @layer base {
   @font-face {
     font-family: 'Ravi' !important;
-    src: url('./fonts/Ravi-VF.woff2') format('woff2 supports variations'),
-      url('./fonts/RaviFaNum-VF.woff2') format('woff2-variations');
+    src: url('../fonts/Ravi-VF.woff2') format('woff2 supports variations'),
+      url('../fonts//RaviFaNum-VF.woff2') format('woff2-variations');
   }
 }
 

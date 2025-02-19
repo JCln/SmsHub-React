@@ -84,6 +84,7 @@ const Template = () => {
             <div className='outer-container'>
                 <PageTitle title='نمایش قالب' className='message2.png' isIcon={false}></PageTitle>
                 <DataTable value={dataSource}
+                    filters={filters}
                     tableStyle={TABLE_STYLE}
                     editMode="row"
                     header={header}

@@ -111,6 +111,7 @@ const Providers = () => {
             <div className='outer-container'>
                 <PageTitle title='سرویس دهندگان' className='pi pi-building' isIcon={true}></PageTitle>
                 <DataTable value={dataSource}
+                    filters={filters}
                     tableStyle={TABLE_STYLE}
                     editMode="row"
                     header={header}

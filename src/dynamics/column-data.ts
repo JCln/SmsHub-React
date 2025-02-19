@@ -97,7 +97,7 @@ export const getGlobalFilterfieldsProvider = () => {
     return provider.map((item: { field: string; }) => item.field);
 }
 export const getGlobalFilterfieldsLine = () => {
-    return provider.map((item: { field: string; }) => item.field);
+    return line.map((item: { field: string; }) => item.field);
 }
 export const getGlobalFilterfieldsTemplateCategory = () => {
     return templateCategory.map((item: { field: string; }) => item.field);

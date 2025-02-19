@@ -69,7 +69,7 @@ const Dashboard = () => {
                                 <>
                                     {
                                         item.isCountUp ?
-                                            <div className='dash-card-two'>
+                                            <div key={item.id} className='dash-card-two'>
                                                 <div className="d-flex align-items-center gap-2 justify-space-between flex-direction-reverse">
                                                     <i className={item.icon}></i>
                                                     <p className="title">{item.title}</p>
@@ -78,7 +78,7 @@ const Dashboard = () => {
                                                 <div className="desc">{item.description}</div>
 
                                             </div> :
-                                            <div className='dash-card-two'>
+                                            <div key={item.id} className='dash-card-two'>
                                                 <div className="d-flex align-items-center gap-2 justify-space-between flex-direction-reverse">
                                                     <i className={item.icon}></i>
                                                     <p className="title">{item.title}</p>
@@ -103,7 +103,7 @@ const Dashboard = () => {
                     {
                         reportTwo.map(item => (
                             <>
-                                <div className='dash-card-wrap'>
+                                <div key={item.id} className='dash-card-wrap'>
                                     <i className={item.icon}></i>
                                     <div className='dash-card-content'>
                                         <div className="dash-card-value">{item.value}</div>

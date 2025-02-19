@@ -22,7 +22,7 @@ const Line = () => {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         number: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        providerId: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        dynamicId: { value: null, matchMode: FilterMatchMode.CONTAINS },
         credential: { value: null, matchMode: FilterMatchMode.CONTAINS },
     });
 
@@ -40,7 +40,6 @@ const Line = () => {
         })
         return newData;
     }
-
     const getDictionary = async () => {
         POST(getDynamics.apis.providerGetList).then((tes: any) => {
             setProviders(tes.data.data);
@@ -106,7 +105,7 @@ const Line = () => {
                 <div className='outer-container'>
                     <PageTitle title='همه خطوط' className='simcrd.png' isIcon={false}></PageTitle>
                     <DataTable value={dataSource} tableStyle={TABLE_STYLE} editMode="row" header={header} stateStorage="session" stateKey={ENNaming.line + 'state'} paginator rows={TABLE_NUMBER_OF_ROWS} rowsPerPageOptions={TABLE_ROWS_PER_PAGE} stripedRows removableSort selectionMode="single" selection={selectedProduct}
-                        onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown' currentPageReportTemplate={ENNaming.currentPageReportText}>
+                        filters={filters} onSelectionChange={(e) => setSelectedProduct(e.value)} filterDisplay="row" globalFilterFields={getGlobalFilterfieldsLine()} dataKey="id" metaKeySelection={metaKey} emptyMessage={ENNaming.tableEmptyMessage} paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown' currentPageReportTemplate={ENNaming.currentPageReportText}>
                         {visibleColumns.map((col, i) => (
                             <Column key={col.field} field={col.field} header={col.header} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
                         ))}
