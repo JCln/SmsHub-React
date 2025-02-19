@@ -2,7 +2,6 @@ import { ITableHeader } from '../constants/interface'
 import ColumnToggle from './column-toggle'
 import TableGlobalSearch from './table-global-search'
 import TableOutputs from './table-outputs'
-import TableRefresh from './table-refresh'
 
 export default function TableHeader(
     { dataSource,

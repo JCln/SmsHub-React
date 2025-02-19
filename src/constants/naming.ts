@@ -1,5 +1,6 @@
 export enum ENNaming {
     userAll = 'userAll',
+    userCreate = 'userCreate',
     DYNAMICID = 'dynamicId',
     userLineGetByUserId = 'userLineGetByUserId',
     userLineGetByLineId = 'userLineGetByLineId',

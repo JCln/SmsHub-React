@@ -54,7 +54,7 @@ const UserCreate = () => {
                     setFilters={setFilters}
                     visibleColumns={visibleColumns}
                     setVisibleColumns={setVisibleColumns}
-                    fileName={ENNaming.userAll}
+                    fileName={ENNaming.userCreate}
                     option={userAll}
                     hasClick={false}
                     tableRefresh={tableRefresh}

@@ -1,18 +1,16 @@
-import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
-import { Column, ColumnEditorOptions } from 'primereact/column';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { getDynamics } from '../../../dynamics/getDynamics';
 import { useCallback, useEffect, useState } from 'react';
 import { FilterMatchMode } from 'primereact/api';
-import { InputText } from 'primereact/inputtext';
 import { getGlobalFilterfieldsLine, line } from '../../../dynamics/column-data';
 import { ColumnMeta, ILine } from '../../../constants/interface';
 import TableHeader from '../../../components/table-header';
 import { ENNaming } from '../../../constants/naming';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
-import { data, NavLink, Outlet } from 'react-router';
+import { NavLink, Outlet } from 'react-router';
 import * as ENRoutes from '../../../constants/ENRoutes';
-import { Converter } from '../../../components/converter';
 import PageTitle from '../../../components/page-title';
 
 const Line = () => {

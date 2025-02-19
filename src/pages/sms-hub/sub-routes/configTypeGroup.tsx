@@ -55,7 +55,7 @@ const ConfigTypeGroup = () => {
                     setFilters={setFilters}
                     visibleColumns={visibleColumns}
                     setVisibleColumns={setVisibleColumns}
-                    fileName={ENNaming.template}
+                    fileName={ENNaming.configTypeGroup}
                     option={configTypeGroup}
                     onClicked={() => onRowAdd()}
                     hasClick={true}
