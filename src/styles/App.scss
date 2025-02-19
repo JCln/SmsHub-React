@@ -177,7 +177,8 @@ input {
 }
 
 ._column_toggle_width {
-  max-width: 13rem;
+  max-width: 10rem;
+  min-width: 9rem;
 
   .p-multiselect {
     max-width: 13rem !important;
