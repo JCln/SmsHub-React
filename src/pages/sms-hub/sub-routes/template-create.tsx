@@ -49,70 +49,67 @@ export default function TemplateCreate() {
     }, [])
     return (
         <>
-            <div className='outer-container'>
-                <PageTitle title='افزودن قالب' className='message2.png' isIcon={false}></PageTitle>
-                <div className="bg-white border-15 p-1rem">
-                    <div className='d-grid two_columns'>
-                        <div className='_section_view'>
-                            <p>عنوان</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <input name='title' placeholder='عنوان' type="text" className='inputs dir-rtl' value={templateDTO.title} onChange={setForm} />
-                                </div>
+            <div className="bg-white border-15 p-1rem">
+                <div className='d-grid two_columns'>
+                    <div className='_section_view'>
+                        <p>عنوان</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <input name='title' placeholder='عنوان' type="text" className='inputs dir-rtl' value={templateDTO.title} onChange={setForm} />
                             </div>
                         </div>
-                        <div className='_section_view'>
-                            <p>عبارت</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <input name='expression' placeholder='عبارت' type="text" className='inputs dir-rtl' value={templateDTO.expression} onChange={setForm} />
-                                </div>
+                    </div>
+                    <div className='_section_view'>
+                        <p>عبارت</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <input name='expression' placeholder='عبارت' type="text" className='inputs dir-rtl' value={templateDTO.expression} onChange={setForm} />
                             </div>
                         </div>
-                        <div className='_section_view'>
-                            <p>دسته‌بندی</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <Dropdown value={selectedCategory} onChange={(e: DropdownChangeEvent) => setSelectedCategory(e.value)} options={categoryDictionary} optionLabel="title"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
+                    </div>
+                    <div className='_section_view'>
+                        <p>دسته‌بندی</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <Dropdown value={selectedCategory} onChange={(e: DropdownChangeEvent) => setSelectedCategory(e.value)} options={categoryDictionary} optionLabel="title"
+                                    placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                             </div>
                         </div>
-                        <div className='_section_view'>
-                            <p>تنظیمات</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <Dropdown value={selectedConfigType} onChange={(e: DropdownChangeEvent) => setSelectedConfigType(e.value)} options={configTypeGroup} optionLabel="title"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
+                    </div>
+                    <div className='_section_view'>
+                        <p>تنظیمات</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <Dropdown value={selectedConfigType} onChange={(e: DropdownChangeEvent) => setSelectedConfigType(e.value)} options={configTypeGroup} optionLabel="title"
+                                    placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                             </div>
                         </div>
-                        <div className='_section_view'>
-                            <p>حداقل اعتبار</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <input name='minCredit' placeholder='عبارت' type="number" className='inputs' value={templateDTO.minCredit} onChange={setForm} />
-                                </div>
+                    </div>
+                    <div className='_section_view'>
+                        <p>حداقل اعتبار</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <input name='minCredit' placeholder='عبارت' type="number" className='inputs' value={templateDTO.minCredit} onChange={setForm} />
                             </div>
                         </div>
-                        <div className='_section_view'>
-                            <p>فعال</p>
-                            <div className="w-20rem">
-                                <div className='p-1'>
-                                    <div className="dir-rtl m-1">
-                                        <Checkbox onChange={e => setIsActive(e.checked)} checked={isActive}></Checkbox>
-                                    </div>
+                    </div>
+                    <div className='_section_view'>
+                        <p>فعال</p>
+                        <div className="w-20rem">
+                            <div className='p-1'>
+                                <div className="dir-rtl m-1">
+                                    <Checkbox onChange={e => setIsActive(e.checked)} checked={isActive}></Checkbox>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className='d-grid justify-content-center mt-1-2'>
-                        {
-                            <button onClick={() => callAPI()} className="_button w-16rem">
-                                افزودن
-                            </button>
-                        }
-                    </div>
+                </div>
+                <div className='d-grid justify-content-center mt-1-2'>
+                    {
+                        <button onClick={() => callAPI()} className="_button w-16rem">
+                            افزودن
+                        </button>
+                    }
                 </div>
             </div>
         </>

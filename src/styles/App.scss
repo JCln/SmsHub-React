@@ -439,6 +439,12 @@ $slider_content: 75%;
   }
 }
 
+.bread_crumb_wrapper {
+  padding: 1rem;
+  border-radius: var(--border-15px);
+  margin: 1rem 0rem 1rem;
+}
+
 ._logo-wrapper {
   margin-bottom: var(--size-1-5rem);
 }
