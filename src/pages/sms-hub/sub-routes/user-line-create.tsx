@@ -34,49 +34,39 @@ export default function UserLineCreate() {
     }
 
     return (
-        <>
-            <div className='d-grid border-10 card-box-shadow p-1-0 m-12px justify-content-center'>
-                <div className='outer-container'>
-                    <PageTitle title='افزودن کاربر- خط' className='simcrd.png' isIcon={false}></PageTitle>
-                    <div className='_section_view'>
-                        <div>
-                            <p>کاربر</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-user"></i>
-                                    </div>
-                                    <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <p>خط</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
-                                    </div>
-                                    <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="number"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            {
-                                <button onClick={() => callAPI()} className="_button w-20rem mt-1-2">
-                                    افزودن کاربر- خط
-                                </button>
-                            }
-                        </div>
-                    </div>
-                </div>
 
-                <div>
-                    {/* image section */}
-                    <div className='brand-wrapper'>
-                        {/* <img className='brand-logo' src={brandLogo} alt="" /> */}
+        <>
+            <div className='outer-container'>
+                <PageTitle title='افزودن کاربر- خط' className='simcrd.png' isIcon={false}></PageTitle>
+                <div className="bg-white border-15">
+                    <div className='d-grid two_columns'>
+                        <div className='m-0-auto'>
+                            <div className='_section_view'>
+                                <p>کاربر</p>
+                                <div className="w-20rem">
+                                    <div className='_captcha'>
+                                        <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
+                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='_section_view'>
+                                <p>خط</p>
+                                <div className="w-20rem">
+                                    <div className='_captcha'>
+                                        <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="number"
+                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
+                                    </div>
+                                </div>
+                                <div>
+                                    {
+                                        <button onClick={() => callAPI()} className="_button w-20rem mt-1-2">
+                                            افزودن کاربر- خط
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

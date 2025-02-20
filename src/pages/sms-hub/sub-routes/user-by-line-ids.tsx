@@ -60,13 +60,10 @@ const UserByLineIds = () => {
     return (
         <div className='bg-white border-15'>
             <div className='_section_view'>
-                <div className='d-grid align-items-center'>
+                <div className='d-grid align-items-center justify-content-center'>
                     <p>خط</p>
                     <div className="w-20rem">
                         <div className='_captcha'>
-                            <div className='captcha-refresh-wrapper'>
-                                <i className="-input-icon pi pi-arrow-right-arrow-left"></i>
-                            </div>
                             <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="number"
                                 placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                         </div>

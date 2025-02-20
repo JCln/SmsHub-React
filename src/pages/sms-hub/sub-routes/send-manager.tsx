@@ -23,7 +23,7 @@ export default function SendManager() {
             setLineDictionary(res.data.data);
         })
     }, []);
-   ;
+    ;
     const setForm = (e: any) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -43,66 +43,56 @@ export default function SendManager() {
 
     return (
         <>
+
             <div className='outer-container'>
                 <PageTitle title='ارسال پیام' className='message.png' isIcon={false}></PageTitle>
-                <div className='d-grid two_one_columns d-grid border-10 card-box-shadow p-1-0 m-12px bg-white'>
-                    <div className='_section_view'>
-                        <div>
-                            <p>اطلاعات کاربران</p>
-                            {/* <p>اطلاعات کاربران را بصورت JSON وارد نمایید</p> */}
-                            <div className="w-full">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
+                <div className="bg-white border-15">
+                    <div className='d-grid two_columns'>
+                        <div className='m-0-auto'>
+                            <div className='_section_view'>
+                                <p>شماره خط</p>
+                                <div className="w-20rem">
+                                    <div className='_captcha'>
+                                        <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="lineNumber"
+                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                     </div>
-                                    <textarea
-                                        className='w-full text-area-line special-font-family dir-ltr h-15rem'
-                                        placeholder='وارد نمایید برای مثال JSON اطلاعات کاربران را بصورت
+                                </div>
+                            </div>
+                            <div className='_section_view'>
+                                <p>قالب پیام</p>
+                                <div className="w-20rem">
+                                    <div className='_captcha'>
+                                        <Dropdown value={selectedTemplateId} onChange={(e: DropdownChangeEvent) => setSelectedTemplateId(e.value)} options={templateId} optionLabel="title"
+                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
+                                    </div>
+                                </div>
+                                <div>
+                                    {
+                                        <div>
+                                            <button onClick={() => callAPI()} className="_button w-20rem mt-2">
+                                                ارسال
+                                            </button>
+                                        </div>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='_section_view'>
+                            <p>اطلاعات کاربران</p>
+                            <div>
+                                <textarea
+                                    className='w-full text-area-line special-font-family dir-ltr h-15rem'
+                                    placeholder='وارد نمایید برای مثال JSON اطلاعات کاربران را بصورت
                                     [{
                                          text" : "متن مورد نظر",                                         
                                          "mobile" : " 091~~~~~~~"
     }]'
-                                        name='text'
-                                        value={sendMessageDTO.text}
-                                        onChange={setForm}
-                                    >
-                                    </textarea>
-                                </div>
+                                    name='text'
+                                    value={sendMessageDTO.text}
+                                    onChange={setForm}
+                                >
+                                </textarea>
                             </div>
-                        </div>
-                    </div>
-                    <div className='_section_view'>
-                        <div>
-                            <p>شماره خط</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
-                                    <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="lineNumber"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <p>قالب پیام</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
-                                    <Dropdown value={selectedTemplateId} onChange={(e: DropdownChangeEvent) => setSelectedTemplateId(e.value)} options={templateId} optionLabel="title"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            {
-                                <div>
-                                    <button onClick={() => callAPI()} className="_button w-20rem mt-2">
-                                        ارسال
-                                    </button>
-                                </div>}
                         </div>
                     </div>
                 </div>

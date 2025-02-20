@@ -28,7 +28,7 @@ const Home = () => {
                 <SidebarNav user={userClaim}></SidebarNav>
                 <div className="_pages_wrapper">
                     <Header user={userClaim} />
-                    {/* <CustomBreadcrumb></CustomBreadcrumb> */}
+                    <CustomBreadcrumb></CustomBreadcrumb>
                     <Outlet />
                 </div>
             </div>

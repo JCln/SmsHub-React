@@ -44,43 +44,19 @@ const Providers = () => {
     const renderHeader = () => {
         return (
             <>
-                <div className='d-flex'>
-                    <TableHeader dataSource={dataSource}
-                        filters={filters}
-                        setFilters={setFilters}
-                        visibleColumns={visibleColumns}
-                        setVisibleColumns={setVisibleColumns}
-                        fileName={ENNaming.provider}
-                        option={provider}
-                        onClicked={() => onRowAdd()}
-                        hasClick={true}
-                        tableRefresh={callAPI}
-                    ></TableHeader>
-                </div>
+                <TableHeader dataSource={dataSource}
+                    filters={filters}
+                    setFilters={setFilters}
+                    visibleColumns={visibleColumns}
+                    setVisibleColumns={setVisibleColumns}
+                    fileName={ENNaming.provider}
+                    option={provider}
+                    hasClick={false}
+                    tableRefresh={callAPI}
+                ></TableHeader>
             </>
         )
     };
-    const onRowAdd = () => {
-        console.log('hid');
-
-        if (isNew) {
-            setIsNew(false);
-
-            let _datas = [...dataSource];
-            _datas.unshift(
-                {
-                    title: '',
-                    website: '',
-                    defaultPreNumber: null,
-                    batchSize: null,
-                    baseUri: '',
-                    fallbackBaseUri: '',
-                    credentialTemplate: ''
-                }
-            )
-            setDataSource(_datas);
-        }
-    }
     const addNew = (e: DataTableRowEditCompleteEvent) => {
         let _datas = [...dataSource];
         let { newData, index } = e;

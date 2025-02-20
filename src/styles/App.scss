@@ -161,7 +161,7 @@ input {
   background-color: var(--clr-white);
   display: grid;
   align-self: flex-start;
-  justify-content: center;
+  gap: var(--size-05rem);
 }
 
 ._content {
@@ -242,6 +242,7 @@ input {
   width: 20rem;
   margin-left: auto;
   margin-right: auto;
+  user-select: none;
 
   @media (max-width:768px) {
     width: 100%;
@@ -400,14 +401,42 @@ $slider_content: 75%;
 }
 
 ._button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
   cursor: pointer;
-  background: var(--clr-3);
-  border: var(--border-10px);
+  min-width: var(--size-10rem);
+  background: var(--clr-white);
+  outline: 1px solid var(--clr-3);
+  border: 0;
   padding: var(--size-12px);
   border-radius: var(--border-10px);
-  color: var(--clr-white);
-  font-weight: 600;
-  font-size: var(--size-1-2rem);
+  color: var(--clr-3);
+  font-weight: 400;
+  height: var(--size-3rem);
+  font-size: var(--size-1rem);
+
+  &:hover,
+  &:active,
+  &:focus-visible {
+    box-shadow: 0 0 5px 0 var(--clr-3);
+    font-weight: 500;
+  }
+}
+
+.-danger {
+  outline: 1px solid var(--red-500);
+  color: var(--red-500);
+  background: var(--clr-white);
+
+  &:hover,
+  &:active,
+  &:focus-visible {
+    box-shadow: 0 0 5px 0 var(--red-700);
+    font-weight: 500;
+  }
 }
 
 ._logo-wrapper {
@@ -544,6 +573,22 @@ $slider_content: 75%;
 
 .h-15rem {
   height: var(--size-15rem);
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.m-1 {
+  margin: var(--size-1rem);
+}
+
+.m-2 {
+  margin: var(--size-2rem);
+}
+
+.m-0-auto {
+  margin: 0 auto !important;
 }
 
 p {

@@ -33,42 +33,48 @@ const Line = () => {
     const tableRefresh = useCallback(() => {
         callAPI()
     }, [])
-    const insertToAux = (): any[] => {
-        const newData = [...dataSource];
+    const insertToAux = (response: any): any[] => {
+        const newData = [...response];
         newData.forEach(item => {
             item.dynamicId = item.providerId;
         })
         return newData;
     }
     const getDictionary = async () => {
-        POST(getDynamics.apis.providerGetList).then((tes: any) => {
-            setProviders(tes.data.data);
+        return new Promise((resolve, reject) => {
+            POST(getDynamics.apis.providerGetList).then((tes: any) => {
+                resolve(tes.data.data);
+            })
         })
     }
     const getDataSource = async () => {
-        POST(getDynamics.apis.lineGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+        return new Promise((resolve, reject) => {
+            POST(getDynamics.apis.lineGetList).then((res: any) => {
+                resolve(res.data.data);
+            })
+        });
     }
-    const convertIdToTitle = (dataSource: any, dictionary: any): any[] => {
+    const convertIdToTitle = (dataSource: any[], dictionary: any[]): any[] => {
         const toConvert = 'dynamicId';
-        const newData = [...dataSource];
-        newData.map(item => {
-            dictionary.map((dic: any) => {
-                if (dic.id === item[toConvert]) {
-                    console.log(item[toConvert]);
+        console.log(dictionary);
 
+        dataSource.forEach(item => {
+            return dictionary.forEach((dic: any) => {
+                if (dic.id === item[toConvert]) {
                     item[toConvert] = dic.title
                 }
             })
         })
-        console.log(newData);
-        return newData;
+        console.log(dataSource);
+        return dataSource;
     }
     const callAPI = async () => {
-        await getDataSource();
-        await getDictionary();
-        const b = convertIdToTitle(insertToAux(), providers);
+        const a: any = await getDataSource();
+        const dictionary: any = await getDictionary();
+        setProviders(dictionary);
+        const aux = insertToAux(a);
+
+        const b = convertIdToTitle(aux, providers);
         console.log(b);
         setDataSource(b);
     }

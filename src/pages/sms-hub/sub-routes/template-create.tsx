@@ -57,9 +57,6 @@ export default function TemplateCreate() {
                             <p>عنوان</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
                                     <input name='title' placeholder='عنوان' type="text" className='inputs dir-rtl' value={templateDTO.title} onChange={setForm} />
                                 </div>
                             </div>
@@ -68,9 +65,6 @@ export default function TemplateCreate() {
                             <p>عبارت</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
                                     <input name='expression' placeholder='عبارت' type="text" className='inputs dir-rtl' value={templateDTO.expression} onChange={setForm} />
                                 </div>
                             </div>
@@ -79,9 +73,6 @@ export default function TemplateCreate() {
                             <p>دسته‌بندی</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
                                     <Dropdown value={selectedCategory} onChange={(e: DropdownChangeEvent) => setSelectedCategory(e.value)} options={categoryDictionary} optionLabel="title"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                 </div>
@@ -91,24 +82,8 @@ export default function TemplateCreate() {
                             <p>تنظیمات</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
                                     <Dropdown value={selectedConfigType} onChange={(e: DropdownChangeEvent) => setSelectedConfigType(e.value)} options={configTypeGroup} optionLabel="title"
                                         placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className='_section_view'>
-                            <p>فعال</p>
-                            <div className="w-20rem">
-                                <div className='_captcha justify-space-between pr-1'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
-                                    <div className="dir-rtl">
-                                        <Checkbox onChange={e => setIsActive(e.checked)} checked={isActive}></Checkbox>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -116,10 +91,17 @@ export default function TemplateCreate() {
                             <p>حداقل اعتبار</p>
                             <div className="w-20rem">
                                 <div className='_captcha'>
-                                    <div className='captcha-refresh-wrapper'>
-                                        <i className="-input-icon pi pi-bookmark"></i>
-                                    </div>
                                     <input name='minCredit' placeholder='عبارت' type="number" className='inputs' value={templateDTO.minCredit} onChange={setForm} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className='_section_view'>
+                            <p>فعال</p>
+                            <div className="w-20rem">
+                                <div className='p-1'>
+                                    <div className="dir-rtl m-1">
+                                        <Checkbox onChange={e => setIsActive(e.checked)} checked={isActive}></Checkbox>
+                                    </div>
                                 </div>
                             </div>
                         </div>

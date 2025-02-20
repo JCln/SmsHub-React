@@ -15,26 +15,8 @@
     border-radius: var(--border-10px);
     border: 1px solid var(--clr-lightgray);
     font-size: var(--size-1-2rem);
-    min-height: 10rem;
+    min-height: 16.5rem;
     min-width: 16rem;
     max-width: 70vw;
     width: 100%;
-}
-
-.-danger {
-    cursor: pointer;
-    padding: var(--size-12px);
-    border-radius: var(--border-10px);
-    font-weight: 600;
-    font-size: var(--size-1rem);
-    border: 0;
-    outline: var(--red-500);
-    color: var(--red-500);
-    background-color: var(--clr-white);
-
-    &:hover,
-    &:active,
-    &:focus-visible {
-        box-shadow: 0 0 5px 0 var(--red-700);
-    }
 }
