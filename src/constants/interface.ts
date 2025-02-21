@@ -17,7 +17,14 @@ export interface IRole {
     name: string;
     title: string
 }
-
+export interface ILoginForm {
+    username: string,
+    password: string,
+    clientDateTime: string,
+    appVersion: string,
+    captchaText: string,
+    captchaInputText: string
+}
 export interface IUserAll {
     id: string,
     fullName: string,

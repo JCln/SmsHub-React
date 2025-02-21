@@ -20,5 +20,8 @@ export enum ENNaming {
     successRemove = 'حذف با موفقیت انجام شد',
     successEdit = 'ویرایش با موفقیت انجام شد',
     successCreate = 'افزودن با موفقیت انجام شد',
-    deleteConfirmMessage = 'شما درحال حذف این مورد هستید، اطمینان دارید؟'
+    deleteConfirmMessage = 'شما درحال حذف این مورد هستید، اطمینان دارید؟',
+    requiredItem = 'این فیلد نمی‌تواند خالی باشد',
+    maxLengthExceed = 'این فیلد از حداکثر مجاز بیشتر است',
+    minLengthExceed = 'این فیلد از حداقل مجاز کمتر است',
 }    

@@ -8,7 +8,7 @@ const SlidershowCarousel = () => {
         { key: 1, src: 'login-dashboard.jpg', alt: '' },
         { key: 2, src: 'dashboard-2.svg', alt: '' },
         { key: 3, src: 'login-2.svg', alt: '' },
-        { key: 3, src: 'dashboard-3.jpg', alt: '' }
+        { key: 4, src: 'dashboard-3.jpg', alt: '' }
     ]);
 
     return (

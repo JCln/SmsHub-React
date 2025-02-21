@@ -10,11 +10,21 @@ import { BEARER } from '../constants/ActionTypes';
 import { AxiosResponse } from 'axios';
 import { GET, POST } from '../services/callAPIWrapperService';
 import ImageWrapper from './image';
+import { useForm } from 'react-hook-form';
+import { ILoginForm } from '../constants/interface';
+import { ENNaming } from '../constants/naming';
 
 export const Login = () => {
     let navigate = useNavigate();
     const [captchaImg, setCaptchaImg] = useState(null);
     const [nextAction, setNextAction] = useState<boolean>(false);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors }
+    } = useForm<ILoginForm>();
+
     const [inputs, setInputs] = useState(
         {
             username: '',
@@ -33,11 +43,6 @@ export const Login = () => {
         getCaptcha();
     }, []);
 
-    const setLoginForm = (e: any) => {
-        const value = e.target.value;
-        const name = e.target.name;
-        setInputs(values => ({ ...values, [name]: value }))
-    }
     const setSecondStepForm = (e: any) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -48,21 +53,18 @@ export const Login = () => {
         setSecondStep({ id: response.data.data.id, confirmCode: '' });
     }
     const getServerToken = (response: AxiosResponse) => {
-        console.log('1');
         setNextAction(false);// after return to the main page, another login will have been needed, so next action should not shown                            
         const AUTH_TOKEN = BEARER + response.data.data.accessToken;
         setAxiosHeader(AUTH_TOKEN);
         navigate(ENRoutes.SMSHub);
     }
-    const callFirstStepAPI = async (event: any) => {
-        event.preventDefault()
-        POST(getDynamics.apis.firstStep, inputs).then((response: any) => {
+    const callFirstStepAPI = async (event: ILoginForm) => {
+        event.captchaInputText = inputs.captchaInputText;
+        event.appVersion = getDynamics.configs.version;
+        event.clientDateTime = inputs.clientDateTime || '';
+        POST(getDynamics.apis.firstStep, event).then((response: any) => {
             response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
         })
-    }
-    const onSubmit = (event: any) => {
-        console.log(event);
-
     }
 
     const callSecondStepAPI = async () => {
@@ -78,7 +80,7 @@ export const Login = () => {
     }
     return (
         <>
-            <form onSubmit={callFirstStepAPI} className="wrapper">
+            <form onSubmit={handleSubmit(callFirstStepAPI)} className="wrapper">
                 <section className="main">
                     <div className="_content">
                         <div className="inner_content">
@@ -101,8 +103,46 @@ export const Login = () => {
                                     <div className='mb-8 _logo-wrapper'>
                                         <ImageWrapper className='w-100 h-100 _logo' alt='' fileName='abfa_logo.png'></ImageWrapper>
                                     </div>
-                                    <input name='username' placeholder='نام کاربری' type="text" dir='rtl' className='inputs fa fa-user' value={inputs.username} onChange={setLoginForm} />
-                                    <input name='password' placeholder='گذرواژه' type="password" dir='rtl' className='inputs fa fa-password' value={inputs.password} onChange={setLoginForm} />
+                                    <input
+                                        placeholder='نام کاربری'
+                                        type="text"
+                                        dir='rtl'
+                                        className='inputs fa fa-user'
+                                        {...register("username", {
+                                            required: true,
+                                            maxLength: 20,
+                                            minLength: 3,
+                                        })}
+                                    />
+                                    {errors?.username?.type === "required" &&
+                                        <p className='form-error-input'>{ENNaming.requiredItem}</p>}
+                                    {errors?.username?.type === "maxLength" && (
+                                        <p className='form-error-input'>{ENNaming.maxLengthExceed}</p>
+                                    )}
+                                    {errors?.username?.type === "minLength" && (
+                                        <p className='form-error-input'>{ENNaming.minLengthExceed}</p>
+                                    )}
+
+                                    <input
+                                        placeholder='گذرواژه'
+                                        type="password"
+                                        dir='rtl'
+                                        className='inputs fa fa-user'
+                                        {...register("password", {
+                                            required: true,
+                                            maxLength: 20,
+                                            minLength: 3,
+                                        })}
+                                    />
+                                    {errors?.password?.type === "required" &&
+                                        <p className='form-error-input'>{ENNaming.requiredItem}</p>}
+                                    {errors?.password?.type === "maxLength" && (
+                                        <p className='form-error-input'>{ENNaming.maxLengthExceed}</p>
+                                    )}
+                                    {errors?.password?.type === "minLength" && (
+                                        <p className='form-error-input'>{ENNaming.minLengthExceed}</p>
+                                    )}
+
                                     <div className='_captcha'>
                                         <div className='captcha-refresh-wrapper' onClick={() => getCaptcha()}>
                                             <ImageWrapper className='captcha-refresh' alt='' fileName='refresh.png'></ImageWrapper>
@@ -113,7 +153,17 @@ export const Login = () => {
                                             <div className="spinner_"></div>
                                         }
                                     </div>
-                                    <input name='captchaText' placeholder='کد امنیتی را وارد نمایید' type="text" dir='rtl' className='inputs' value={inputs.captchaText} onChange={setLoginForm} />
+                                    <input
+                                        placeholder='کد امنیتی را وارد نمایید'
+                                        type="text"
+                                        dir='rtl'
+                                        className='inputs fa fa-user'
+                                        {...register("captchaText", {
+                                            required: true,
+                                        })}
+                                    />
+                                    {errors?.captchaText?.type === "required" &&
+                                        <p className='form-error-input'>{ENNaming.requiredItem}</p>}
 
                                     <button id="enter-button" type='submit' className="_button">
                                         ورود
