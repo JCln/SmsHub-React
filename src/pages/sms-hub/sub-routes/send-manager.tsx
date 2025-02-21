@@ -5,7 +5,7 @@ import { ENNaming } from '../../../constants/naming';
 import { toast } from 'react-toastify';
 import { ISendManagerDTO } from '../../../constants/interface';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
-import PageTitle from '../../../components/page-title';
+
 
 export default function SendManager() {
     const [templateId, setTemplateDictionary] = useState<any[]>([]);

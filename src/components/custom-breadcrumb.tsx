@@ -1,22 +1,41 @@
-import { BreadCrumb } from 'primereact/breadcrumb';
-import { MenuItem, MenuItemOptions } from 'primereact/menuitem';
+import { Button } from 'primereact/button';
 import * as ENRoutes from '../constants/ENRoutes';
-import { NavLink } from 'react-router';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 
 export default function CustomBreadcrumb() {
-    const iconItemTemplate = (item: MenuItem, options: MenuItemOptions) => {
-        return (
-            <NavLink to={ENRoutes.SMSHub} className="nav__dropdown-item"></NavLink>
-        );
-    };
-    const items: MenuItem[] = [
-        { icon: 'smsHub', template: () => <NavLink to={ENRoutes.SMSHub}>test</NavLink> },
-        { icon: '12', template: () => <NavLink to={ENRoutes.CCSend}>test2</NavLink> },
-        { icon: '353', template: () => <NavLink to={ENRoutes.Permittedtime}>test3</NavLink> },
-    ];
-    const home: MenuItem = { icon: 'pi pi-home', url: ENRoutes.SMSHub }
+    const location = useLocation();
+    const navigate = useNavigate();
 
     return (
-        <BreadCrumb model={items} home={home} />
+
+        <div className="bg-white d-flex nav-bread">
+            <div className="d-flex align-items-center p-2 gap-5 nav-bread-crumb">
+                {
+                    ENRoutes.getRoutesAndOptions().map(item => (
+                        <>
+                            {location.pathname.includes(item.link) && (
+                                <>
+                                    <NavLink
+                                        to={item.link}
+                                        className="nav-bread-crumb-link">
+                                        <p>
+                                            {item.header}
+                                        </p>
+                                    </NavLink>
+                                    <i className=" pi pi-angle-left"></i>
+                                </>
+                            )}
+                        </>
+                    ))
+                }
+            </div>
+            <div className="mr-auto d-flex align-items-center cursor-pointer">
+                {
+                    location.pathname !== ENRoutes.SMSHub && (
+                        <Button type="button" icon="pi pi-reply" className='back-button' tooltipOptions={{ position: 'mouse' }} tooltip="بازشگت به صفحه قبل" onClick={() => navigate(-1)} />
+                    )
+                }
+            </div>
+        </div >
     )
 }

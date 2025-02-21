@@ -13,7 +13,7 @@ import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
 import TableDeleteButton from '../../../components/table-delete-button';
-import PageTitle from '../../../components/page-title';
+
 
 
 const Template = () => {

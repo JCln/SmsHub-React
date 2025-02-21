@@ -13,7 +13,7 @@ import TableHeader from '../../../components/table-header';
 import { GET, POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
-import PageTitle from '../../../components/page-title';
+
 
 
 const UserAll = () => {

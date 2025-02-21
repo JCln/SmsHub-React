@@ -11,7 +11,7 @@ import { InputText } from 'primereact/inputtext';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
 import { GET } from '../../../services/callAPIWrapperService';
-import PageTitle from '../../../components/page-title';
+
 const Role = () => {
     const [dataSource, setDataSource] = useState<IRole[]>([]);
     const [selectedProduct, setSelectedProduct] = useState<any | null>(null);

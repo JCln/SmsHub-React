@@ -11,7 +11,7 @@ import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TA
 import { POST } from '../../../services/callAPIWrapperService';
 import { NavLink, Outlet } from 'react-router';
 import * as ENRoutes from '../../../constants/ENRoutes';
-import PageTitle from '../../../components/page-title';
+
 
 const Line = () => {
     const [dataSource, setDataSource] = useState<ILine[]>([]);

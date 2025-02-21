@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import * as ENRoutes from '../../../constants/ENRoutes';
 import { NavLink, Outlet } from 'react-router';
 import TableDeleteButton from '../../../components/table-delete-button';
-import PageTitle from '../../../components/page-title';
+
 
 
 const TemplateCategory = () => {

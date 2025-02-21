@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import TableDeleteButton from '../../../components/table-delete-button';
-import PageTitle from '../../../components/page-title';
+
 
 const PermittedTime = () => {
     const [dataSource, setDataSource] = useState<IPermittedTime[]>([]);

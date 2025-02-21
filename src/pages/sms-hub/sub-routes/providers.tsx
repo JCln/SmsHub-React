@@ -11,7 +11,7 @@ import { InputText } from 'primereact/inputtext';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
-import PageTitle from '../../../components/page-title';
+
 
 
 const Providers = () => {

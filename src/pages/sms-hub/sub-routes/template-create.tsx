@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { ENNaming } from '../../../constants/naming';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { Checkbox } from 'primereact/checkbox';
-import PageTitle from '../../../components/page-title';
+
 
 export default function TemplateCreate() {
     const [categoryDictionary, setCategoryDictionary] = useState<any[]>([]);
@@ -103,14 +103,14 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                     </div>
-                    <div className='_section_view'>
-                        <div className='d-grid mt-1-2'>
-                            {
-                                <button onClick={() => callAPI()} className="_button w-20rem">
-                                    افزودن
-                                </button>
-                            }
-                        </div>
+                </div>
+                <div className='_section_view'>
+                    <div className='d-grid mt-1-2'>
+                        {
+                            <button onClick={() => callAPI()} className="_button w-20rem">
+                                افزودن
+                            </button>
+                        }
                     </div>
                 </div>
             </div>

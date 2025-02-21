@@ -246,6 +246,15 @@ img {
             transition: 250ms;
         }
     }
+
+    /*===== Active link =====*/
+    .active,
+    a.active {
+        background: var(--clr-1);
+        color: var(--clr-2-5);
+        border-radius: 5px;
+    }
+
 }
 
 .toggle-sidebar {
@@ -260,14 +269,6 @@ img {
 /*===== Show menu =====*/
 .show-menu {
     left: 0;
-}
-
-/*===== Active link =====*/
-.active,
-a.active {
-    background: var(--clr-1);
-    color: var(--clr-2-5);
-    border-radius: 5px;
 }
 
 /* ========== MEDIA QUERIES ==========*/

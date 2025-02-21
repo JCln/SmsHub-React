@@ -1,19 +1,38 @@
+import { useLocation } from "react-router";
 import ImageWrapper from "./image";
+import * as ENRoutes from '../constants/ENRoutes';
 
 interface Props {
     title?: string,
     className: string,
     isIcon: boolean
 }
-const PageTitle = ({ title, className, isIcon }: Props) => {
+const PageTitle = ({ className, isIcon }: Props) => {
+    const location = useLocation();
+
     return (
         <h3 className='page-title'>
             {
-                isIcon ?
-                    <i className={className}></i> :
-                    <ImageWrapper className='' alt='' fileName={className}></ImageWrapper>
+                ENRoutes.getRoutesAndOptions().map(item => (
+                    location.pathname === (item.link) ?
+                        isIcon ?
+                            <>
+                                <i className={className}></i>
+                                <div>
+                                    {item.header}
+                                </div>
+                            </>
+                            :
+                            <>
+                                <ImageWrapper className='' alt='' fileName={className}></ImageWrapper>
+                                <div>
+                                    {item.header}
+                                </div>
+                            </>
+                        :
+                        <></>
+                ))
             }
-            {title}
         </h3>
     )
 }
