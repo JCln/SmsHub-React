@@ -155,40 +155,37 @@ const PermittedTime = () => {
     const header = renderHeader();
     return (
         <div>
-            <div className='outer-container'>
-                <PageTitle title='بازه مجاز' className='setting.png' isIcon={false}></PageTitle>
-                <DataTable value={dataSource}
-                    filters={filters}
-                    key={ENNaming.permittedTime}
-                    tableStyle={TABLE_STYLE}
-                    editMode="row"
-                    header={header}
-                    stateStorage="session"
-                    onRowEditComplete={onRowEditComplete}
-                    stateKey={ENNaming.permittedTime + 'state'}
-                    paginator
-                    rows={TABLE_NUMBER_OF_ROWS}
-                    stripedRows
-                    rowsPerPageOptions={TABLE_ROWS_PER_PAGE}
-                    removableSort
-                    selectionMode="single"
-                    selection={selectedProduct}
-                    onSelectionChange={(e) => setSelectedProduct(e.value)}
-                    filterDisplay="row"
-                    globalFilterFields={getGlobalFilterfieldsPermittedTime()}
-                    dataKey="id"
-                    metaKeySelection={metaKey}
-                    emptyMessage={ENNaming.tableEmptyMessage}
-                    paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
-                    currentPageReportTemplate={ENNaming.currentPageReportText}
-                >
-                    {visibleColumns.map((col, i) => (
-                        <Column key={col.field} field={col.field} header={col.header} editor={(item) => statusEditor(item, col.types)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
-                    ))}
-                    <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
-                    <Column body={actionTemplate} headerClassName="w-10rem" />
-                </DataTable>
-            </div>
+            <DataTable value={dataSource}
+                filters={filters}
+                key={ENNaming.permittedTime}
+                tableStyle={TABLE_STYLE}
+                editMode="row"
+                header={header}
+                stateStorage="session"
+                onRowEditComplete={onRowEditComplete}
+                stateKey={ENNaming.permittedTime + 'state'}
+                paginator
+                rows={TABLE_NUMBER_OF_ROWS}
+                stripedRows
+                rowsPerPageOptions={TABLE_ROWS_PER_PAGE}
+                removableSort
+                selectionMode="single"
+                selection={selectedProduct}
+                onSelectionChange={(e) => setSelectedProduct(e.value)}
+                filterDisplay="row"
+                globalFilterFields={getGlobalFilterfieldsPermittedTime()}
+                dataKey="id"
+                metaKeySelection={metaKey}
+                emptyMessage={ENNaming.tableEmptyMessage}
+                paginatorTemplate='CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                currentPageReportTemplate={ENNaming.currentPageReportText}
+            >
+                {visibleColumns.map((col, i) => (
+                    <Column key={col.field} field={col.field} header={col.header} editor={(item) => statusEditor(item, col.types)} filter filterPlaceholder={TABLE_FILTER_PLACEHOLDER} sortable />
+                ))}
+                <Column rowEditor={allowEdit} headerStyle={TABLE_ICON_COLUMN_STYLE} bodyStyle={TABLE_TEXTALIGN}></Column>
+                <Column body={actionTemplate} headerClassName="w-10rem" />
+            </DataTable>
         </div>
     )
 }

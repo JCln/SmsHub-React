@@ -103,13 +103,15 @@ export default function TemplateCreate() {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='d-grid justify-content-center mt-1-2'>
-                    {
-                        <button onClick={() => callAPI()} className="_button w-16rem">
-                            افزودن
-                        </button>
-                    }
+                    <div className='_section_view'>
+                        <div className='d-grid mt-1-2'>
+                            {
+                                <button onClick={() => callAPI()} className="_button w-20rem">
+                                    افزودن
+                                </button>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

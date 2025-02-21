@@ -72,46 +72,43 @@ const LineEdit = () => {
 
     return (
         <>
-            <div className='outer-container'>
-                <PageTitle title='اطلاعات خط' className='simcrd.png' isIcon={false}></PageTitle>
-                <div className="bg-white border-15">
-                    <div className='d-grid two_columns'>
-                        <div className='m-0-auto'>
-                            <div className='_section_view'>
-                                <p>سرویس دهنده</p>
-                                <div className="w-20rem">
-                                    <div className='_captcha'>
-                                        <Dropdown value={dataSource.providerId} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
-                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                    </div>
+            <div className="bg-white border-15">
+                <div className='d-grid two_columns'>
+                    <div className='m-0-auto'>
+                        <div className='_section_view'>
+                            <p>سرویس دهنده</p>
+                            <div className="w-20rem">
+                                <div className='_captcha'>
+                                    <Dropdown value={dataSource.providerId} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
+                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                 </div>
-                            </div>
-                            <div className='_section_view'>
-                                <p>خط</p>
-                                <div className="w-20rem">
-                                    <div className='_captcha'>
-                                        <Dropdown value={dataSource.number} onChange={(e: DropdownChangeEvent) => changeSelectedLine(e.value)} options={lineId} optionLabel="lineNumber"
-                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='d-flex gap-5 p-1rem'>
-                                <button onClick={() => callAPIPost()} className="_button mt-1">
-                                    <i className="pi pi-file-edit"></i>
-                                    ویرایش خط
-                                </button>
-                                <button onClick={() => callAPIPostDelete()} className="_button -danger mt-1">
-                                    <i className="pi pi-trash"></i>
-                                    حذف خط
-                                </button>
                             </div>
                         </div>
                         <div className='_section_view'>
-                            <p>مجوزها</p>
-                            <div>
-                                <textarea className='w-full text-area-line dir-ltr' name='credential' value={dataSource.credential} onChange={setForm}>
-                                </textarea>
+                            <p>خط</p>
+                            <div className="w-20rem">
+                                <div className='_captcha'>
+                                    <Dropdown value={dataSource.number} onChange={(e: DropdownChangeEvent) => changeSelectedLine(e.value)} options={lineId} optionLabel="lineNumber"
+                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
+                                </div>
                             </div>
+                        </div>
+                        <div className='d-flex gap-5 p-1rem'>
+                            <button onClick={() => callAPIPost()} className="_button mt-1">
+                                <i className="pi pi-file-edit"></i>
+                                ویرایش خط
+                            </button>
+                            <button onClick={() => callAPIPostDelete()} className="_button -danger mt-1">
+                                <i className="pi pi-trash"></i>
+                                حذف خط
+                            </button>
+                        </div>
+                    </div>
+                    <div className='_section_view'>
+                        <p>مجوزها</p>
+                        <div>
+                            <textarea className='w-full text-area-line dir-ltr' name='credential' value={dataSource.credential} onChange={setForm}>
+                            </textarea>
                         </div>
                     </div>
                 </div>

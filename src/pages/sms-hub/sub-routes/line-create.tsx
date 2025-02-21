@@ -41,44 +41,41 @@ export default function LineCreate() {
 
     return (
         <>
-            <div className='outer-container'>
-                <PageTitle title='افزودن خط' className='simcrd.png' isIcon={false}></PageTitle>
-                <div className='d-grid two_columns bg-white border-15'>
-                    <div className='m-0-auto'>
-                        <div className='_section_view'>
-                            <p>سرویس دهنده</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
-                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                </div>
+            <div className='d-grid two_columns bg-white border-15'>
+                <div className='m-0-auto'>
+                    <div className='_section_view'>
+                        <p>سرویس دهنده</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <Dropdown value={selectedProvider} onChange={(e: DropdownChangeEvent) => changeSelectedProvider(e.value)} options={providers} optionLabel="title"
+                                    placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                             </div>
-                        </div>
-                        <div className='_section_view'>
-                            <p>خط</p>
-                            <div className="w-20rem">
-                                <div className='_captcha'>
-                                    <input name='number' placeholder='شماره' dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className='d-flex gap-5 p-1rem'>
-                            <button onClick={() => callAPI()} className="_button w-20rem mt-1">
-                                افزودن خط
-                            </button>
                         </div>
                     </div>
                     <div className='_section_view'>
-                        <div>
-                            <p>مجوزها</p>
-                            <div>
-                                <textarea className='w-full text-area-line dir-ltr' name='credential' value={createLine.credential} onChange={setForm}>
-                                </textarea>
+                        <p>خط</p>
+                        <div className="w-20rem">
+                            <div className='_captcha'>
+                                <input name='number' placeholder='شماره' dir='ltr' className='inputs' value={createLine.number} onChange={setForm} />
                             </div>
                         </div>
                     </div>
+                    <div className='d-flex gap-5 p-1rem'>
+                        <button onClick={() => callAPI()} className="_button w-20rem mt-1">
+                            افزودن خط
+                        </button>
+                    </div>
                 </div>
-            </div >
+                <div className='_section_view'>
+                    <div>
+                        <p>مجوزها</p>
+                        <div>
+                            <textarea className='w-full text-area-line dir-ltr' name='credential' value={createLine.credential} onChange={setForm}>
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

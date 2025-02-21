@@ -36,35 +36,32 @@ export default function UserLineCreate() {
     return (
 
         <>
-            <div className='outer-container'>
-                <PageTitle title='افزودن کاربر- خط' className='simcrd.png' isIcon={false}></PageTitle>
-                <div className="bg-white border-15">
-                    <div className='d-grid two_columns'>
-                        <div className='m-0-auto'>
-                            <div className='_section_view'>
-                                <p>کاربر</p>
-                                <div className="w-20rem">
-                                    <div className='_captcha'>
-                                        <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
-                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                    </div>
+            <div className="bg-white border-15">
+                <div className='d-grid two_columns'>
+                    <div className='m-0-auto'>
+                        <div className='_section_view'>
+                            <p>کاربر</p>
+                            <div className="w-20rem">
+                                <div className='_captcha'>
+                                    <Dropdown value={selectedUserId} onChange={(e: DropdownChangeEvent) => setSelectedUserId(e.value)} options={userId} optionLabel="displayName"
+                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                 </div>
                             </div>
-                            <div className='_section_view'>
-                                <p>خط</p>
-                                <div className="w-20rem">
-                                    <div className='_captcha'>
-                                        <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="number"
-                                            placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
-                                    </div>
+                        </div>
+                        <div className='_section_view'>
+                            <p>خط</p>
+                            <div className="w-20rem">
+                                <div className='_captcha'>
+                                    <Dropdown value={selectedLineId} onChange={(e: DropdownChangeEvent) => setSelectedLineId(e.value)} options={lineId} optionLabel="number"
+                                        placeholder={ENNaming.choose} className="w-full mw-w-16rem" checkmark={true} highlightOnSelect={true} />
                                 </div>
-                                <div>
-                                    {
-                                        <button onClick={() => callAPI()} className="_button w-20rem mt-1-2">
-                                            افزودن کاربر- خط
-                                        </button>
-                                    }
-                                </div>
+                            </div>
+                            <div>
+                                {
+                                    <button onClick={() => callAPI()} className="_button w-20rem mt-1-2">
+                                        افزودن کاربر- خط
+                                    </button>
+                                }
                             </div>
                         </div>
                     </div>

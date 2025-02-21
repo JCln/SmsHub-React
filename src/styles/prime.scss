@@ -56,9 +56,13 @@
     direction: rtl;
 }
 
+.p-breadcrumb .p-breadcrumb-list li.p-menuitem-separator {
+    rotate: 180deg;
+}
+
 .p-breadcrumb {
     margin: var(--size-2rem) var(--size-1rem) var(--size-1rem);
-    border-radius: var(--border-15px);    
+    border-radius: var(--border-15px);
 }
 
 .p-datatable {

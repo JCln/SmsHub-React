@@ -63,6 +63,12 @@ $blue: #5597d4;
     }
 }
 
+#enter-button {
+    background: var(--clr-3);    
+    color: var(--clr-white);
+    border: 0;
+}
+
 .version {
     user-select: none;
     position: absolute;
