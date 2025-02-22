@@ -77,6 +77,13 @@ export interface ILine {
     number: string,
     credential: string,
 }
+export interface IConsumerSafeIp {
+    dynamicId?: any,
+    consumerId: number,
+    fromIp: string,
+    toIp: string,
+    isV6: boolean
+}
 export interface ICreateUserLineDto {
     lineId: number,
     userId: string,

@@ -7,7 +7,7 @@ interface Props {
     className: string,
     isIcon: boolean
 }
-const PageTitle = ({ className, isIcon }: Props) => {
+const PageTitle = ({ title, className, isIcon }: Props) => {
     const location = useLocation();
 
     return (
@@ -19,14 +19,14 @@ const PageTitle = ({ className, isIcon }: Props) => {
                             <>
                                 <i className={className}></i>
                                 <div>
-                                    {item.header}
+                                    {title ? title : item.header}
                                 </div>
                             </>
                             :
                             <>
                                 <ImageWrapper className='' alt='' fileName={className}></ImageWrapper>
                                 <div>
-                                    {item.header}
+                                    {title ? title : item.header}
                                 </div>
                             </>
                         :

@@ -51,6 +51,11 @@
     "lineUpdate": "/line/update",
     "lineSingle": "/line/single",
     "lineDelete": "/line/delete",
+    "consumerSafeIpGetList": "/consumerSafeIp/all",
+    "consumerSafeIpCreate": "/consumerSafeIp/create",
+    "consumerSafeIpUpdate": "/consumerSafeIp/update",
+    "consumerSafeIpSingle": "/consumerSafeIp/single",
+    "consumerSafeIpDelete": "/consumerSafeIp/delete",
     "secondStep": "/login/second-step",
     "role": "/role/all",
     "loginCaptcha": "/login/captcha"

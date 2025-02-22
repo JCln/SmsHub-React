@@ -31,7 +31,7 @@ const Home = () => {
                     <Header user={userClaim} />
                     <div className='outer-container'>
                         <div className="bg-white bread_crumb_wrapper">
-                            <PageTitle title='عنوان' className='message2.png' isIcon={false}></PageTitle>
+                            <PageTitle className='message2.png' isIcon={false}></PageTitle>
                             <CustomBreadcrumb></CustomBreadcrumb>
                         </div>
                         <Outlet />

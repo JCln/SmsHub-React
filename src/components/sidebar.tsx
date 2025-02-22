@@ -99,7 +99,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                             <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
                                 <div className="nav__items">
                                     <div className="nav__subtitle">
-                                        <ImageWrapper className='sidebar_icon' alt='' fileName='message2.png'></ImageWrapper>
+                                        <ImageWrapper className='sidebar_icon' alt='' fileName='setting.png'></ImageWrapper>
                                         تنظیمات
                                         <i className="-icon pi pi-angle-down"></i>
                                     </div>
@@ -117,6 +117,9 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                                             </div>
                                             <div className="nav__dropdown-item">
                                                 <NavLink to={ENRoutes.disallowedPhrase} className="nav__dropdown-item">کلمات غیر مجاز</NavLink>
+                                            </div>
+                                            <div className="nav__dropdown-item">
+                                                <NavLink to={ENRoutes.safeIP} className="nav__dropdown-item">IP مجاز</NavLink>
                                             </div>
                                         </div>
                                     </div>

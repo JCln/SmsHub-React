@@ -85,7 +85,7 @@
 }
 
 .dash-line-section {
-    margin: var(--size-1rem) var(--size-1rem) 0;
+    margin: var(--size-1rem) 0;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 49%));
     display: grid;
     max-width: 100%;
@@ -93,7 +93,7 @@
 }
 
 .dashboard-first {
-    margin: var(--size-1rem);
+    margin: var(--size-1rem) 0;
 
     .dash-first-card {
         display: grid;
@@ -107,6 +107,7 @@
 .half {
     width: 50%;
 }
+
 .outer-container {
     padding: var(--size-1rem);
     border-radius: var(--size-10px);

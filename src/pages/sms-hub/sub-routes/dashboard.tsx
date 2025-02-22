@@ -31,7 +31,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className='outer-container'>
+            <div className='mt-2'>
                 <PageTitle title='گزارش ماهیانه' className='pi pi-chart-line' isIcon={true}></PageTitle>
                 <div className="dash-line-section">
                     <div className="">
@@ -97,9 +97,9 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div >
-            <div className='outer-container'>
+            <div className='mt-2'>
                 <PageTitle title='گزارشات روزانه' className='pi pi-chart-pie' isIcon={true}></PageTitle>
-                <div className="dashboard-wrapper m-1">
+                <div className="dashboard-wrapper">
                     {
                         reportTwo.map(item => (
                             <>

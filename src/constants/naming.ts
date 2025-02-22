@@ -11,6 +11,7 @@ export enum ENNaming {
     configTypeGroup = 'configTypeGroup',
     ccSend = 'ccSend',
     permittedTime = 'permittedTime',
+    safeIp = 'safeIp',
     disallowedPhrase = 'disallowedPhrase',
     line = 'line',
     choose = 'انتخاب کنید',

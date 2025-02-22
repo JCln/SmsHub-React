@@ -21,11 +21,12 @@ export const consumerLine = '/smshub/consumerLine';
 export const ConfigTypeGroup = '/smshub/ConfigTypeGroup';
 export const CCSend = '/smshub/ccsend';
 export const Permittedtime = '/smshub/permittedTime';
+export const safeIP = '/smshub/safeIP';
 export const disallowedPhrase = '/smshub/disallowedPhrase';
 
 export const getRoutesAndOptions = () => {
     return [
-        { field: 'SMSHub', header: 'داشبورد', icon: '', link: '/smshub' },
+        { field: 'SMSHub', header: 'خانه', icon: '', link: '/smshub' },
         { field: 'role', header: 'نقش ها', icon: '', link: '/smshub/role' },
         { field: 'SendManager', header: 'ارسال پیام', icon: '', link: '/smshub/sendManager' },
         { field: 'line', header: 'همه خطوط', icon: '', link: '/smshub/line' },
@@ -44,6 +45,7 @@ export const getRoutesAndOptions = () => {
         { field: 'ConfigTypeGroup', header: 'تنظیم گروه', icon: '', link: '/smshub/ConfigTypeGroup' },
         { field: 'CCSend', header: 'ارسال مجدد', icon: '', link: '/smshub/ccsend' },
         { field: 'Permittedtime', header: 'بازه مجاز', icon: '', link: '/smshub/permittedTime' },
+        { field: 'safeIP', header: 'IP مجاز', icon: '', link: '/smshub/safeIP' },
         { field: 'disallowedPhrase', header: 'کلمات غیرمجاز', icon: '', link: '/smshub/disallowedPhrase' },
     ]
 }

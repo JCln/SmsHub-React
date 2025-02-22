@@ -12,8 +12,6 @@ import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import TableDeleteButton from '../../../components/table-delete-button';
-import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
-
 
 
 

@@ -29,6 +29,7 @@ import PermittedTime from './pages/sms-hub/sub-routes/permitted-time';
 import DisallowedPhrase from './pages/sms-hub/sub-routes/disallowed-phrase';
 import ImageWrapper from './components/image';
 import UserLineGet from './pages/sms-hub/sub-routes/user-line-get';
+import ConsumerSafeIp from './pages/sms-hub/sub-routes/consumer-safe-ip';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
                     <Route path={ENRoutes.SendManager} element={<SendManager />}></Route>
                     <Route path={ENRoutes.CCSend} element={<CcSend />}></Route>
                     <Route path={ENRoutes.Permittedtime} element={<PermittedTime />}></Route>
+                    <Route path={ENRoutes.safeIP} element={<ConsumerSafeIp />}></Route>
                     <Route path={ENRoutes.disallowedPhrase} element={<DisallowedPhrase />}></Route>
                   </>
                 }

@@ -1,3 +1,4 @@
+import { Input } from './../components/Input';
 import { ColumnMetaS, ENCellTypes } from './../constants/interface';
 
 export const role = [
@@ -60,6 +61,13 @@ export const permittedTime: ColumnMetaS[] = [
     { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
     // { field: 'dynamicId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
 ];
+export const consumerSafeIp: ColumnMetaS[] = [
+    { field: 'dynamicId', header: 'کاربر', types: ENCellTypes.dropdowns },
+    { field: 'fromIp', header: 'از IP', types: ENCellTypes.inputs },
+    { field: 'toIp', header: 'تا IP', types: ENCellTypes.inputs },
+    { field: 'isV6', header: 'تا IP', types: ENCellTypes.booleans },
+    // { field: 'consumerId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
+];
 export const disallowedPhrase: ColumnMetaS[] = [
     { field: 'phrase', header: 'کلمه', types: ENCellTypes.inputs },
     { field: 'configTypeGroupId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
@@ -113,6 +121,9 @@ export const getGlobalFilterfieldsCcSend = () => {
 }
 export const getGlobalFilterfieldsPermittedTime = () => {
     return permittedTime.map((item: { field: string; }) => item.field);
+}
+export const getGlobalFilterfieldsSafeIp = () => {
+    return consumerSafeIp.map((item: { field: string; }) => item.field);
 }
 export const getGlobalFilterfieldsDisallowedPhrase = () => {
     return disallowedPhrase.map((item: { field: string; }) => item.field);
