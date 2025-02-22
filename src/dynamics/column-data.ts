@@ -65,7 +65,7 @@ export const consumerSafeIp: ColumnMetaS[] = [
     { field: 'dynamicId', header: 'کاربر', types: ENCellTypes.dropdowns },
     { field: 'fromIp', header: 'از IP', types: ENCellTypes.inputs },
     { field: 'toIp', header: 'تا IP', types: ENCellTypes.inputs },
-    { field: 'isV6', header: 'تا IP', types: ENCellTypes.booleans },
+    { field: 'isV6', header: 'v 6', types: ENCellTypes.booleans },
     // { field: 'consumerId', header: 'گروه دسته‌بندی', types: ENCellTypes.dropdowns },
 ];
 export const disallowedPhrase: ColumnMetaS[] = [

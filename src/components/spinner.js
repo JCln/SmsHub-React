@@ -1,9 +1,9 @@
 import { Spinner } from 'spin.js';
 
 var opts = {
-    lines: 12, // The number of lines to draw
+    lines: 11, // The number of lines to draw
     length: 30, // The length of each line
-    width: 17, // The line thickness
+    width: 8, // The line thickness
     radius: 21, // The radius of the inner circle
     scale: 0.45, // Scales overall size of the spinner
     corners: 1, // Corner roundness (0..1)

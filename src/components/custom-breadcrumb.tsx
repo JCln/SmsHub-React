@@ -1,6 +1,6 @@
 import { Button } from 'primereact/button';
 import * as ENRoutes from '../constants/ENRoutes';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 
 export default function CustomBreadcrumb() {
     const location = useLocation();
@@ -16,6 +16,7 @@ export default function CustomBreadcrumb() {
                             {location.pathname.includes(item.link) && (
                                 <>
                                     <NavLink
+                                        key={item.field}
                                         to={item.link}
                                         className="nav-bread-crumb-link">
                                         <p>

@@ -1,21 +1,21 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ACCESS_TOKEN, Authorization } from "../constants/ActionTypes";
-import routerService from "./routerService";
+import routerService, { RouteToLogin } from "./routerService";
 
-axios.interceptors.response.use(config => {
-  return config;
-}, error => { })
 axios.interceptors.response.use(response => {
   return response;
 }, error => {
+  console.log(1);
+  
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
     error.response.status < 600;
   if (error.response.status === 401) {
     alert('logout please');
-    routerService.logout();
+    localStorage.removeItem(ACCESS_TOKEN);
+    RouteToLogin();
   }
   if (error.dueToNoInternetConnection) {
     alert('no internet connection');

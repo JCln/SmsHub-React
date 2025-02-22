@@ -52,11 +52,12 @@ export default function TableOutputs(
     }
     const makeEXCEL = (dataSource: any, columns: any) => {
         const _exportType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const excelType = 'xlsx';
         const config = {
             shouldFilteredValue: false,
             shouldFreezeHeader: false,
             defaultColWidth: 13,
-            defaultFontFamily: 'Calibri',
+            defaultFontFamily: 'BLotus',
             canShowCurrentTable: false
         }
         const datas = getValidatedTableData(dataSource, columns, config);
@@ -70,6 +71,7 @@ export default function TableOutputs(
         // worksheet.properties.defaultColWidth = outputConfig.defaultColWidth;
 
         // TABLE
+        console.log(datas);
         worksheet.addTable({
             name: 'MyTable',
             ref: 'A1',
@@ -82,13 +84,13 @@ export default function TableOutputs(
             rows: datas.data
         });
 
-        worksheet.getRow(1).font = { name: 'Calibri', size: 14, color: { argb: 'ffffff' } };//wrapText: true    , bold: true
+        worksheet.getRow(1).font = { name: 'BLotus', size: 14, color: { argb: 'ffffff' } };//wrapText: true    , bold: true
 
         for (let rowIndex = 2; rowIndex <= worksheet.rowCount; rowIndex++) {
             worksheet.getRow(rowIndex).alignment = { vertical: 'middle', horizontal: 'center' };//wrapText: true
         }
 
-        workbook.csv.writeBuffer().then((data: any) => {
+        workbook.xlsx.writeBuffer().then((data: any) => {
             const blob = new Blob([data], {
                 type: _exportType
             });
@@ -97,7 +99,7 @@ export default function TableOutputs(
             document.body.appendChild(a);
             a.setAttribute("style", "display: none");
             a.href = url;
-            a.download = fileName;
+            a.download = fileName + new Date().getTime() + '.xlsx';
             a.click();
             window.URL.revokeObjectURL(url);
             a.remove();
@@ -138,7 +140,7 @@ export default function TableOutputs(
     };
     return (
         <div className="flex align-items-center justify-content-end gap-5">
-            {/* <Button type="button" icon="pi pi-file" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود CSV" onClick={() => (false)} /> */}
+            {/* <Button type="button" icon="pi pi-file" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود xlsx" onClick={() => (false)} /> */}
             <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => makeEXCEL(dataSource, columns)} />
             <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => (exportPDF(dataSource, columns))} />
             <TableRefresh handleClick={tableRefresh}></TableRefresh>

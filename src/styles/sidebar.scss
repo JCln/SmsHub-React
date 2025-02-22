@@ -94,7 +94,7 @@ img {
     min-width: var(--side_bar_width);
     height: 100vh;
     direction: rtl;
-    padding: 0px 0.5rem 0;
+    padding: 0 0 0 3px;
     background-color: var(--clr-white);
     box-shadow: 1px 0 0 rgba(22, 8, 43, .1);
     z-index: var(--z-fixed);
@@ -136,11 +136,10 @@ img {
 
     &__items {
         row-gap: 1.7rem;
-        margin: 0 5px;
+        margin: 1px 5px;
 
         :hover,
-        :focus-visible,
-        :active {
+        :focus-visible {
             background-color: var(--clr-0);
             color: var(--clr-2-5);
         }
@@ -192,7 +191,7 @@ img {
         overflow: hidden;
         max-height: 3.6rem;
         transition: 250ms ease-in-out;
-        margin: 0;
+        margin: 1px 0;
         cursor: pointer;
 
         .nav__items {
@@ -202,21 +201,20 @@ img {
         &-collapse {
             position: relative;
             background-color: var(--clr-0);
-            border-radius: .25rem;
+            border-radius: 0.25rem;
+            margin: 5px 2rem 5px 0;
 
             &::before {
                 content: '';
                 position: absolute;
                 height: 90%;
-                right: 2rem;
+                right: 0;
                 border-right: 2px dashed var(--clr-1);
             }
         }
 
         &-content {
-            display: grid;
-            row-gap: .5rem;
-            padding: .75rem 2rem .75rem 1.8rem;
+            line-height: 2.5;
         }
 
         &-item {
@@ -231,11 +229,12 @@ img {
             }
 
             a {
+                display: flex;
+                align-items: center;
                 font-size: var(--size-14px);
                 color: var(--clr-5);
                 border-right: 3px solid transparent;
-                display: block;
-                padding: 5px 10px;
+                padding: 0 10px;
                 width: 100%;
                 height: 100%;
             }
@@ -250,7 +249,7 @@ img {
     /*===== Active link =====*/
     .active,
     a.active {
-        background: var(--clr-1);
+        background: var(--clr-0);
         color: var(--clr-2-5);
         border-radius: 5px;
     }
