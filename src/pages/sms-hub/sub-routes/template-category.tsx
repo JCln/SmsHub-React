@@ -11,9 +11,10 @@ import { InputText } from 'primereact/inputtext';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE, TABLE_TEXTALIGN } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
-import * as ENRoutes from '../../../constants/ENRoutes';
 import { NavLink, Outlet } from 'react-router';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
+import { ENRoutes } from '../../../constants/ENRoutes';
 
 
 
@@ -31,7 +32,7 @@ const TemplateCategory = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
     const onRowAdd = () => {
         if (isNew) {
@@ -110,10 +111,13 @@ const TemplateCategory = () => {
         );
     };
 
-    const callAPI = async () => {
-        POST(getDynamics.apis.TemplateCategoryGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const TemplateCategoryGetList = await dataStoreService.fetchData(
+            ENNaming.TemplateCategoryGetList,
+            getDynamics.apis.TemplateCategoryGetList,
+            { method: 'POST', refresh: canRefresh }
+        );
+        setDataSource(TemplateCategoryGetList.data.data);
     }
     const callAPIPostDelete = async (e: ITemplateCategoryDTO) => {
         POST(getDynamics.apis.TemplateCategoryDelete, { id: e.id }).then(() => {

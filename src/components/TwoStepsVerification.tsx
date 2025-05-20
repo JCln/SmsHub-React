@@ -1,8 +1,8 @@
 import { Button } from './Button';
 import { Inputs } from './Inputs';
-import * as ENRoutes from '../constants/ENRoutes';
 import { Link } from 'react-router';
 import ImageWrapper from './image';
+import { ENRoutes } from '../constants/ENRoutes';
 
 const TwoStepVerification = () => {
     return (

@@ -11,6 +11,7 @@ import { TABLE_FILTER_PLACEHOLDER, TABLE_ICON_COLUMN_STYLE, TABLE_NUMBER_OF_ROWS
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
 import { GET, POST } from '../../../services/callAPIWrapperService';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 const UserCreate = () => {
@@ -34,12 +35,15 @@ const UserCreate = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
-    const callAPI = async () => {
-        GET(getDynamics.apis.userAll).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const userAll = await dataStoreService.fetchData(
+            ENNaming.userAll,
+            getDynamics.apis.userAll,
+            { method: 'GET', refresh: canRefresh }
+        );
+        setDataSource(userAll.data.data);
     }
     const callAPIPost = async (api: any, body: object) => {
         POST(api, body).then((res: any) => {

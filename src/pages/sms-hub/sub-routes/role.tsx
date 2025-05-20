@@ -11,6 +11,7 @@ import { InputText } from 'primereact/inputtext';
 import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
 import { GET } from '../../../services/callAPIWrapperService';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 const Role = () => {
     const [dataSource, setDataSource] = useState<IRole[]>([]);
@@ -26,12 +27,15 @@ const Role = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
-    const callAPI = async () => {
-        GET(getDynamics.apis.role).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const role = await dataStoreService.fetchData(
+            ENNaming.role,
+            getDynamics.apis.role,
+            { method: 'GET', refresh: canRefresh }
+        );
+        setDataSource(role.data.data);
     }
     const renderHeader = () => {
         return (

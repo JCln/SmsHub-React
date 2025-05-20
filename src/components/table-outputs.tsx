@@ -1,25 +1,40 @@
-import { Button } from 'primereact/button';
 import * as ExcelJs from "exceljs";
-import TableRefresh from './table-refresh';
-import { ITableOutput } from '../constants/interface';
+import { IOutputConfig, ITableOutput } from '../constants/interface';
 import jsPDF from 'jspdf';
 
-import 'jspdf-autotable';
+import autoTable, { HAlignType, ShowHeadType } from 'jspdf-autotable';
 import { font } from '../fonts/pdfjs/BLotus-normal';
-import { base64Img } from '../dynamics/pdf-logo';
-export interface IOutputConfig {
-    shouldFilteredValue: boolean,
-    shouldFreezeHeader: boolean,
-    defaultColWidth: number,
-    defaultFontFamily: string,
-    canShowCurrentTable: boolean
-}
+import { MathS } from "../services/utils";
+import { toast } from "react-toastify";
+import { storageService } from "../services/storage.service";
+import { DateJalaliService } from "../services/date-jalali.service";
+import { ENNaming } from "../constants/naming";
+import { Button } from "primereact/button";
+import TableRefresh from "./table-refresh";
+
 export default function TableOutputs(
-    { dataSource, columns, fileName, onClicked, hasClick, tableRefresh }: ITableOutput) {
-    const getValidatedTableData = (dataSource: any[], _selectCols: any[], outputConfig: IOutputConfig): any => {
+    { dataSource, columns, onClicked, hasClick, fileName, ...rest }: ITableOutput) {
+    const dateJalaliService = new DateJalaliService();
+
+    const getOutputConfigs = (): IOutputConfig => {
+        const temp: any = storageService.getItem(ENNaming.USERCONFIGSETTING);
+
+        return {
+            orientation: temp.orientation || 'landscape',
+            defaultColWidth: temp.defaultColWidth,
+            showHead: temp.showHead || 'everyPage',
+            canShowCurrentTable: false,
+            defaultFontFamily: font,
+            shouldFilteredValue: false,
+            shouldFreezeHeader: false,
+            direction: temp.direction as HAlignType,
+            tableWidthType: temp.tableWidthType
+        }
+    }
+    const getValidatedTableData = (dataSource: any[], _selectCols: any[]): any => {
         const colnames = _selectCols.map(c => ({ name: c.field, header: c.header, sel: true }));
         const validColNames: any[] = [];
-        const validHeaders = [];
+        const validHeaders: any[] = [];
         const firstItem = dataSource[0];
 
         const keys = Object.keys(firstItem);
@@ -29,11 +44,15 @@ export default function TableOutputs(
             for (let i = 0; i < keys.length; i++) {
                 const key = keys[i];
 
-                if (outputConfig.canShowCurrentTable ? key === colName : key === colName && colnames[j].sel) {
+                if (getOutputConfigs()?.canShowCurrentTable ? key === colName : key === colName && colnames[j].sel) {
                     validColNames.push(colName);
-                    validHeaders.push({
-                        name: colnames[j].header, style: { font: { name: outputConfig.defaultFontFamily } }
-                    })
+                    validHeaders.push(
+                        {
+                            name: colnames[j].header,
+                            style: {
+                                font: { name: getOutputConfigs()?.defaultFontFamily }
+                            }
+                        })
                 }
             }
         }
@@ -52,15 +71,8 @@ export default function TableOutputs(
     }
     const makeEXCEL = (dataSource: any, columns: any) => {
         const _exportType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-        const excelType = 'xlsx';
-        const config = {
-            shouldFilteredValue: false,
-            shouldFreezeHeader: false,
-            defaultColWidth: 13,
-            defaultFontFamily: 'BLotus',
-            canShowCurrentTable: false
-        }
-        const datas = getValidatedTableData(dataSource, columns, config);
+
+        const datas = getValidatedTableData(dataSource, columns);
 
         const workbook = new ExcelJs.Workbook();
         const viewsConfig = { rightToLeft: true }
@@ -68,7 +80,7 @@ export default function TableOutputs(
             "Sheet1",
             { views: [viewsConfig] }
         );
-        // worksheet.properties.defaultColWidth = outputConfig.defaultColWidth;
+        worksheet.properties.defaultColWidth = getOutputConfigs().defaultColWidth;
 
         // TABLE
         console.log(datas);
@@ -99,7 +111,7 @@ export default function TableOutputs(
             document.body.appendChild(a);
             a.setAttribute("style", "display: none");
             a.href = url;
-            a.download = fileName + new Date().getTime() + '.xlsx';
+            a.download = fileName + dateJalaliService.getGregorianDate() + '.xlsx';
             a.click();
             window.URL.revokeObjectURL(url);
             a.remove();
@@ -108,47 +120,65 @@ export default function TableOutputs(
     const exportPDF = (_dataSource: any, cols: any) => {
         const doc = new jsPDF('landscape');
         (doc as any).addFileToVFS('Blotus.ttf', font);//font should be ttf
-        doc.addFont('Blotus.ttf', 'font', 'normal');
-        doc.setFont('font'); // set font            
+        doc.addFont('Blotus.ttf', 'Blotus', 'normal');
+        doc.setFont('Blotus'); // set font                    
+        const datas = getValidatedTableData(_dataSource, columns);
+        const _columns = cols.map(item => item.header);
 
-        const exportColumns = cols.map((col: any, index: number) => ({ title: col.header, dataKey: col.field }));
-        (doc as any).autoTable(
-            exportColumns,
-            _dataSource,
-            {
+        autoTable(doc, {
+            body: datas.data,
+            head: [_columns],
+            styles: {
+                font: 'Blotus',
+                fontStyle: 'normal',
+                fillColor: [233, 236, 239],
+                halign: getOutputConfigs().direction as HAlignType,
+                fontSize: 12
+            },
+            headStyles: {
+                font: 'Blotus',
+                fontStyle: 'normal',
+                fillColor: [0, 69, 203],
+                textColor: [255, 255, 255],
+                halign: getOutputConfigs().direction as HAlignType,
+                fontSize: 14
 
-                styles: {
-                    font: 'font',
-                    fillColor: [233, 236, 239],
-                    fontSize: 12
-                },
-                headStyles: {
-                    font: 'font',
-                    fillColor: [0, 69, 203],
-                    textColor: [255, 255, 255],
-                    fontSize: 14
+            },
+            bodyStyles: {
+                halign: getOutputConfigs().direction as HAlignType       // Right alignment for body cells
+            },
+            showHead: getOutputConfigs()?.showHead as ShowHeadType,
+            tableWidth: getOutputConfigs()?.tableWidthType,
 
-                },
-                didDrawPage: function () {
-                    if (base64Img) {
-                        doc.addImage(base64Img, 'png', 200, 0, 40, 15);
-                    }
+            didDrawPage: function (data) {
+                if (data['section'] === 'head') {
+                    doc.setFont('Blotus', 'normal');
                 }
             }
+        }
         )
-        doc.save(fileName + '.pdf');
+        console.log(autoTable);
+        doc.save(fileName + dateJalaliService.getGregorianDate() + '.pdf');
     };
+    const validateDataSource = (body: any[], columns: any, isPdf: boolean) => {
+        if (MathS.isNull(body)) {
+            toast.warn(ENNaming.emptyMessageForOutput);
+            return;
+        }
+        isPdf ? exportPDF(body, columns) : makeEXCEL(body, columns)
+    }
     return (
-        <div className="flex align-items-center justify-content-end gap-5">
-            {/* <Button type="button" icon="pi pi-file" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود xlsx" onClick={() => (false)} /> */}
-            <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => makeEXCEL(dataSource, columns)} />
-            <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => (exportPDF(dataSource, columns))} />
-            <TableRefresh handleClick={tableRefresh}></TableRefresh>
-            {hasClick ?
-                <Button type="button" icon="pi pi-plus" severity='info' rounded tooltipOptions={{ position: 'mouse' }} tooltip="افزودن مورد" onClick={() => onClicked()}></Button>
-                :
-                <></>
-            }
+        <div className="flex align-items-center justify-content-end gap-2.5">
+            <div className="flex align-items-center justify-content-end gap-5">
+                <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => makeEXCEL(dataSource, columns)} />
+                <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => (exportPDF(dataSource, columns))} />
+                <TableRefresh handleClick={rest.tableRefresh}></TableRefresh>
+                {hasClick ?
+                    <Button type="button" icon="pi pi-plus" severity='info' rounded tooltipOptions={{ position: 'mouse' }} tooltip="افزودن مورد" onClick={() => onClicked()}></Button>
+                    :
+                    <></>
+                }
+            </div>
         </div >
 
     )

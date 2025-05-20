@@ -10,8 +10,7 @@ import { ENNaming } from '../../../constants/naming';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { NavLink, Outlet } from 'react-router';
-import * as ENRoutes from '../../../constants/ENRoutes';
-
+import { ENRoutes } from '../../../constants/ENRoutes';
 
 const Line = () => {
     const [dataSource, setDataSource] = useState<ILine[]>([]);

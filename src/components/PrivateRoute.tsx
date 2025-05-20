@@ -1,6 +1,5 @@
-import React from 'react';
 import { Navigate, Outlet } from 'react-router';
-import * as ENRoutes from '../constants/ENRoutes';
+import { ENRoutes } from '../constants/ENRoutes';
 
 export const PrivateRoute = () => {
     const auth = true; // determine if authorized, from context or however you're doing it

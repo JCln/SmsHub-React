@@ -11,6 +11,7 @@ import { InputText } from 'primereact/inputtext';
 import { TABLE_FILTER_PLACEHOLDER, TABLE_NUMBER_OF_ROWS, TABLE_ROWS_PER_PAGE, TABLE_STYLE } from '../../../constants/ActionTypes';
 import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 
@@ -34,12 +35,15 @@ const Providers = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
-    const callAPI = async () => {
-        POST(getDynamics.apis.providerGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const providerGetList = await dataStoreService.fetchData(
+            ENNaming.providerGetList,
+            getDynamics.apis.providerGetList,
+            { method: 'POST', refresh: canRefresh }
+        );
+        setDataSource(providerGetList.data.data);
     }
     const renderHeader = () => {
         return (
@@ -52,7 +56,7 @@ const Providers = () => {
                     fileName={ENNaming.provider}
                     option={provider}
                     hasClick={false}
-                    tableRefresh={callAPI}
+                    tableRefresh={tableRefresh}
                 ></TableHeader>
             </>
         )

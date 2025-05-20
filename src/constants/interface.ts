@@ -3,6 +3,34 @@ export enum ENCellTypes {
     dropdowns = 'dropdown',
     booleans = 'boolean'
 }
+export interface IOutputConfig {
+    shouldFilteredValue: boolean,
+    shouldFreezeHeader: boolean,
+    defaultColWidth: number,
+    defaultFontFamily: string,
+    canShowCurrentTable: boolean,
+    direction: string,
+    tableWidthType: "auto" | "wrap" | number;
+    orientation: "p" | "portrait" | "l" | "landscape",
+    showHead: string
+}
+export type MultiTheme = {
+    name: string;
+    value: string;
+    previewClass: string;
+};
+export type CacheItem = {
+    data: any;
+};
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+export type ApiCallFunction = {
+    method?: HttpMethod;
+    body?: any;
+    id?: string | number;
+    headers?: Record<string, string>;
+    refresh?: boolean;
+}
 export interface ColumnMeta {
     field: string;
     header: string;

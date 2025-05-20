@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { setAxiosHeader } from '../services/httpService';
 import { getDynamics } from '../dynamics/getDynamics';
-import * as ENRoutes from '../constants/ENRoutes';
-import SlidershowCarousel from './slideshow-carousel';
-import { configs } from '../dynamics/exportConfigs';
+import SlidershowCarousel from '../components/slideshow-carousel';
 import { useNavigate } from "react-router";
-import SlidershowTextPanel from './slidershow-text-panel';
+import SlidershowTextPanel from '../components/slidershow-text-panel';
 import { BEARER } from '../constants/ActionTypes';
 import { AxiosResponse } from 'axios';
 import { GET, POST } from '../services/callAPIWrapperService';
-import ImageWrapper from './image';
+import ImageWrapper from '../components/image';
 import { useForm } from 'react-hook-form';
 import { ILoginForm } from '../constants/interface';
 import { ENNaming } from '../constants/naming';
+import { ENRoutes } from '../constants/ENRoutes';
 
 export const Login = () => {
     let navigate = useNavigate();
@@ -30,7 +29,7 @@ export const Login = () => {
             username: '',
             password: '',
             clientDateTime: '',
-            appVersion: '',
+            appVersion: '1.2.1',
             captchaText: '',
             captchaInputText: ''
         });
@@ -54,13 +53,15 @@ export const Login = () => {
     }
     const getServerToken = (response: AxiosResponse) => {
         setNextAction(false);// after return to the main page, another login will have been needed, so next action should not shown                            
-        const AUTH_TOKEN = BEARER + response.data.data.accessToken;
-        setAxiosHeader(AUTH_TOKEN);
+        const accessToken = BEARER + response.data.data.accessToken;
+        const refreshToken = response.data.data.refreshToken;
+
+        setAxiosHeader(accessToken, refreshToken);        
         navigate(ENRoutes.SMSHub);
     }
     const callFirstStepAPI = async (event: ILoginForm) => {
         event.captchaInputText = inputs.captchaInputText;
-        event.appVersion = getDynamics.configs.version;
+        event.appVersion = inputs.appVersion;
         event.clientDateTime = inputs.clientDateTime || '';
         POST(getDynamics.apis.firstStep, event).then((response: any) => {
             response.data.meta.nextAction.length > 0 ? hasSecondStep(response) : getServerToken(response)
@@ -175,7 +176,7 @@ export const Login = () => {
                 </section>
                 <section className="slider">
                     <div className="version">
-                        <div className="version-name">{configs.version}</div>
+                        <div className="version-name">{inputs.appVersion}</div>
                     </div>
                     <div className="description">
                         <SlidershowCarousel />

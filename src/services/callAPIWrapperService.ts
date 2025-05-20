@@ -1,11 +1,10 @@
-import { getDynamics } from "../dynamics/getDynamics";
 import httpService from "../services/httpService";
 import * as Spinner from '../components/spinner';
 
 export const POST = async (API: string, BODY?: object) => {
     Spinner.startSpinner();
     return new Promise(async (resolve, rejects) => {
-        const res = await httpService.post(`${getDynamics.configs.apiEndpoint}${API}`, BODY).catch(function (error: any) {
+        const res = await httpService.post(`${(window as any).ENV.apiEndpoint}${API}`, BODY).catch(function (error: any) {
             rejects(error)
         })
         resolve(
@@ -16,8 +15,7 @@ export const POST = async (API: string, BODY?: object) => {
 export const POSTBYID = async (API: string, ID?: string) => {
     Spinner.startSpinner();
     return new Promise(async (resolve, rejects) => {
-        const res = await httpService.post(`${getDynamics.configs.apiEndpoint}${API}/${ID}`).catch(function (error: any) {
-            console.log(error);
+        const res = await httpService.post(`${(window as any).ENV.apiEndpoint}${API}/${ID}`).catch(function (error: any) {
             rejects(error)
         })
         resolve(
@@ -28,8 +26,7 @@ export const POSTBYID = async (API: string, ID?: string) => {
 export const GET = async (API: string) => {
     Spinner.startSpinner();
     return new Promise(async (resolve, rejects) => {
-        const res = await httpService.get(`${getDynamics.configs.apiEndpoint}${API}`).catch(function (error: any) {
-            console.log(error);
+        const res = await httpService.get(`${(window as any).ENV.apiEndpoint}${API}`).catch(function (error: any) {
             rejects(error)
         })
         resolve(

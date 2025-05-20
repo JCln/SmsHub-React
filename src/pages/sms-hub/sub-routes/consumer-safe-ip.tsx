@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 const ConsumerSafeIp = () => {
@@ -35,18 +36,23 @@ const ConsumerSafeIp = () => {
             item.dynamicId = item.consumerId;
         })
     }
-    const callAPI = async () => {
-        POST(getDynamics.apis.consumerSafeIpGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
-        GET(getDynamics.apis.userAll).then((res: any) => {
-            setUserId(res.data.data);
-        })
-
-    }
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, [])
+    const callAPI = async (canRefresh?: boolean) => {
+        const res = await dataStoreService.fetchData(
+            ENNaming.consumerSafeIpGetList,
+            getDynamics.apis.consumerSafeIpGetList,
+            { method: 'POST', refresh: canRefresh }
+        );
+        const userId = await dataStoreService.fetchData(
+            ENNaming.userAll,
+            getDynamics.apis.userAll,
+            { method: 'GET', refresh: canRefresh }
+        );
+        setDataSource(res.data.data);
+        setUserId(userId.data.data);
+    }
     const callAPIPostDelete = async (e: IConsumerSafeIp) => {
         POST(getDynamics.apis.consumerSafeIpDelete, { id: e.consumerId }).then(() => {
             toast.success(ENNaming.successRemove);

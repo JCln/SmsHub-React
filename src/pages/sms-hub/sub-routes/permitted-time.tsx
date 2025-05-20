@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 const PermittedTime = () => {
@@ -36,24 +37,22 @@ const PermittedTime = () => {
             item.dynamicId = item.configTypeGroupId;
         })
     }
-    const callAPI = async () => {
-        POST(getDynamics.apis.permittedTimeGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
-        POST(getDynamics.apis.ConfigTypeGroup).then((res: any) => {
-            setConfigGroupDropdown(res.data.data);
-            // console.log(dataSource);
-            // insertToAux();
-
-            // console.log(dataSource);
-            // Converter.convertIdToTitle(dataSource, configGroupDropdown, ENNaming.DYNAMICID);
-            // console.log(dataSource);
-            // setDataSource(dataSource);
-        })
-
+    const callAPI = async (canRefresh?: boolean) => {
+        const permittedTimeGetList = await dataStoreService.fetchData(
+            ENNaming.permittedTimeGetList,
+            getDynamics.apis.permittedTimeGetList,
+            { method: 'POST', refresh: canRefresh }
+        );
+        const ConfigTypeGroup = await dataStoreService.fetchData(
+            ENNaming.ConfigTypeGroup,
+            getDynamics.apis.ConfigTypeGroup,
+            { method: 'POST' }
+        );
+        setDataSource(permittedTimeGetList.data.data);
+        setConfigGroupDropdown(ConfigTypeGroup.data.data);
     }
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, [])
     const callAPIPostDelete = async (e: IPermittedTime) => {
         POST(getDynamics.apis.permittedTimeDelete, { id: e.id }).then(() => {

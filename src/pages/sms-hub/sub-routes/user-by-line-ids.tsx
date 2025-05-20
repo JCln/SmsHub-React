@@ -11,6 +11,7 @@ import { ENNaming } from '../../../constants/naming';
 import TableHeader from '../../../components/table-header';
 import { POST, POSTBYID } from '../../../services/callAPIWrapperService';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 const UserByLineIds = () => {
@@ -26,17 +27,20 @@ const UserByLineIds = () => {
     });
 
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
     useEffect(() => {
         POST(getDynamics.apis.lineGetList).then((res: any) => {
             setUserId(res.data.data);
         })
     }, []);
-    const callAPI = async () => {
-        POSTBYID(getDynamics.apis.userLineGetByLineId, selectedLineId.id).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const userLineGetByLineId = await dataStoreService.fetchData(
+            ENNaming.userLineGetByLineId,
+            getDynamics.apis.userLineGetByLineId,
+            { method: 'POST', refresh: canRefresh, id: selectedLineId.id }
+        );
+        setDataSource(userLineGetByLineId.data.data);
     }
 
     const renderHeader = () => {

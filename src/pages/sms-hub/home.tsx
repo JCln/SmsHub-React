@@ -1,12 +1,12 @@
 import { Outlet } from "react-router";
-import SidebarNav from "../../../components/sidebar";
-import Header from "../../../components/header";
 import { useEffect, useState } from "react";
 import { jwtDecode, JwtPayload } from "jwt-decode";
-import { ACCESS_TOKEN, IDENTITY_CLAIM_GIVENNAME, IDENTITY_CLAIM_ROLE } from "../../../constants/ActionTypes";
-import { IUserClaims } from "../../../constants/interface";
-import CustomBreadcrumb from "../../../components/custom-breadcrumb";
-import PageTitle from "../../../components/page-title";
+import CustomBreadcrumb from "../../components/custom-breadcrumb";
+import Header from "../../components/header";
+import PageTitle from "../../components/page-title";
+import SidebarNav from "../../components/sidebar";
+import { ACCESS_TOKEN, IDENTITY_CLAIM_GIVENNAME, IDENTITY_CLAIM_ROLE } from "../../constants/ActionTypes";
+import { IUserClaims } from "../../constants/interface";
 
 const Home = () => {
     const [userClaim, setUserClaim] = useState<IUserClaims>({ givenName: '', role: '' });

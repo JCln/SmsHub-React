@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 import ImageWrapper from "./image";
-import * as ENRoutes from '../constants/ENRoutes';
+import { getRoutesAndOptions } from "../constants/ENRoutes";
 
 interface Props {
     title?: string,
@@ -13,7 +13,7 @@ const PageTitle = ({ title, className, isIcon }: Props) => {
     return (
         <h3 className='page-title'>
             {
-                ENRoutes.getRoutesAndOptions().map(item => (
+                getRoutesAndOptions().map(item => (
                     location.pathname === (item.link) ?
                         isIcon ?
                             <>

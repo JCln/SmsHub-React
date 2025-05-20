@@ -13,6 +13,7 @@ import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 
@@ -30,7 +31,7 @@ const Template = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
     const renderHeader = () => {
         return (
@@ -56,10 +57,13 @@ const Template = () => {
         );
     };
 
-    const callAPI = async () => {
-        POST(getDynamics.apis.TemplateGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const TemplateGetList = await dataStoreService.fetchData(
+            ENNaming.TemplateGetList,
+            getDynamics.apis.TemplateGetList,
+            { method: 'POST', refresh: canRefresh }
+        );
+        setDataSource(TemplateGetList.data.data);
     }
     const callAPIPostDelete = async (e: ITemplateDTO) => {
         POST(getDynamics.apis.TemplateDelete, { id: e.id }).then(() => {

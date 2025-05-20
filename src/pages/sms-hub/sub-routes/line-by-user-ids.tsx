@@ -12,6 +12,7 @@ import TableHeader from '../../../components/table-header';
 import { GET, POSTBYID } from '../../../services/callAPIWrapperService';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import { toast } from 'react-toastify';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 const LineByUserIds = () => {
@@ -27,14 +28,20 @@ const LineByUserIds = () => {
     });
 
     useEffect(() => {
-        GET(getDynamics.apis.userAll).then((res: any) => {
-            setUserId(res.data.data);
-        })
     }, []);
     const callAPI = async () => {
-        POSTBYID(getDynamics.apis.userLineGetUserId, selectedUserId.id).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+        const userId = await dataStoreService.fetchData(
+            ENNaming.userAll,
+            getDynamics.apis.userAll,
+            { method: 'GET' }
+        );
+        const userLineGetUserId = await dataStoreService.fetchData(
+            ENNaming.userLineGetUserId,
+            getDynamics.apis.userLineGetUserId,
+            { method: 'POST', id: selectedUserId.id }
+        );
+        setUserId(userId.data.data);
+        setDataSource(userLineGetUserId.data.data);
     }
     const tableRefresh = useCallback(() => {
         callAPI()

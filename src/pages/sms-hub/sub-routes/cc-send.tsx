@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 const CcSend = () => {
@@ -31,28 +32,26 @@ const CcSend = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, [])
+    const callAPI = async (canRefresh?: boolean) => {
+        const res = await dataStoreService.fetchData(
+            ENNaming.ccSend,
+            getDynamics.apis.ccSendGetList,
+            { method: 'POST', refresh: canRefresh }
+        );
+        const configTypeGroup = await dataStoreService.fetchData(
+            ENNaming.configTypeGroup,
+            getDynamics.apis.ConfigTypeGroup,
+            { method: 'POST', refresh: canRefresh }
+        );
+        setDataSource(res.data.data);
+        setConfigGroupDropdown(configTypeGroup.data.data);
+    }
     const insertToAux = () => {
         dataSource.forEach(item => {
             item.dynamicId = item.configTypeGroupId;
         })
-    }
-    const callAPI = async () => {
-        POST(getDynamics.apis.ccSendGetList).then((res: any) => {
-            setDataSource(res.data.data);
-        })
-        POST(getDynamics.apis.ConfigTypeGroup).then((res: any) => {
-            setConfigGroupDropdown(res.data.data);
-            // console.log(dataSource);
-            // insertToAux();
-
-            // console.log(dataSource);
-            // Converter.convertIdToTitle(dataSource, configGroupDropdown, ENNaming.DYNAMICID);
-            // console.log(dataSource);
-            // setDataSource(dataSource);
-        })
-
     }
     const callAPIPostDelete = async (e: ICcSend) => {
         POST(getDynamics.apis.ccSendDelete, { id: e.id }).then(() => {

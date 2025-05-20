@@ -1,9 +1,9 @@
-import DashboardLineSend from "./dashboard-line-send";
-import { useEffect, useRef, useState } from "react";
-import DashboardLineReceive from "./dashboard-line-receive";
-import DashboardKnob from "./dashboard-knob";
-import CountUp, { useCountUp } from "react-countup";
-import PageTitle from "../../../components/page-title";
+import { useState } from "react";
+import CountUp from "react-countup";
+import PageTitle from "../../components/page-title";
+import DashboardKnob from "./sub-routes/dashboard-knob";
+import DashboardLineReceive from "./sub-routes/dashboard-line-receive";
+import DashboardLineSend from "./sub-routes/dashboard-line-send";
 
 const Dashboard = () => {
     const [knobValue, setKnobValue] = useState();

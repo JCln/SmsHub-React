@@ -1,6 +1,6 @@
 import UseImage from './use-image'
 interface IImage {
-    fileName: string,
+    fileName: string | any,
     className: string
     alt?: string,
 }

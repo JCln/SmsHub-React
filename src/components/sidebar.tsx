@@ -1,10 +1,10 @@
 import { Link, NavLink } from 'react-router';
-import * as ENRoutes from '../constants/ENRoutes';
 import { IUserClaims } from '../constants/interface';
 import ImageWrapper from './image';
+import { ENRoutes, getSidebar } from '../constants/ENRoutes';
 
 
-const Sidebar = ({ user }: { user: IUserClaims }) => {
+const SidebarNav = ({ user }: { user: IUserClaims }) => {
     const toggleSubItem = (e: any) => {
         const allDropDowns = document.querySelectorAll('.nav__dropdown');
         allDropDowns.forEach(item => {
@@ -33,7 +33,7 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
                 </Link>
                 <div className="nav__list">
                     {
-                        ENRoutes.getSidebar(user.role).map(item =>
+                        getSidebar(user.role).map(item =>
                             <>
                                 {item.hasSubRoutes ?
                                     <div className="nav__dropdown" onClick={e => { toggleSubItem(e) }}>
@@ -97,4 +97,4 @@ const Sidebar = ({ user }: { user: IUserClaims }) => {
 
 
 }
-export default Sidebar;
+export default SidebarNav;

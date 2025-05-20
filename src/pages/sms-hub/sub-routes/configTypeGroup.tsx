@@ -12,6 +12,7 @@ import { POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { InputText } from 'primereact/inputtext';
 import TableDeleteButton from '../../../components/table-delete-button';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 
@@ -29,12 +30,15 @@ const ConfigTypeGroup = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, [])
-    const callAPI = async () => {
-        POST(getDynamics.apis.ConfigTypeGroup).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const res = await dataStoreService.fetchData(
+            ENNaming.configTypeGroup,
+            getDynamics.apis.ConfigTypeGroup,
+            { method: 'GET', refresh: canRefresh }
+        );
+        setDataSource(res.data.data);
     }
     const callAPIPostDelete = async (e: IConfigeTypeGroupDTO) => {
         POST(getDynamics.apis.ConfigTypeGroupDelete, { id: e.id }).then(() => {

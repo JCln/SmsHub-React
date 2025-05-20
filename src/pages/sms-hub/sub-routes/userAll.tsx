@@ -13,6 +13,7 @@ import TableHeader from '../../../components/table-header';
 import { GET, POST } from '../../../services/callAPIWrapperService';
 import { toast } from 'react-toastify';
 import { classNames } from 'primereact/utils';
+import { dataStoreService } from '../../../services/dictionary-wrapper';
 
 
 
@@ -37,12 +38,15 @@ const UserAll = () => {
         callAPI();
     }, []);
     const tableRefresh = useCallback(() => {
-        callAPI()
+        callAPI(true)
     }, []);
-    const callAPI = async () => {
-        GET(getDynamics.apis.userAll).then((res: any) => {
-            setDataSource(res.data.data);
-        })
+    const callAPI = async (canRefresh?: boolean) => {
+        const userAll = await dataStoreService.fetchData(
+            ENNaming.userAll,
+            getDynamics.apis.userAll,
+            { method: 'GET', refresh: canRefresh }
+        );
+        setDataSource(userAll.data.data);
     }
     const renderHeader = () => {
         return (
