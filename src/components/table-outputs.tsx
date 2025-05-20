@@ -62,7 +62,7 @@ export default function TableOutputs(
                 const key = validColNames[i];
                 let value = currentelement[validColNames[i]];
 
-                newElement[key] = value != undefined && value != null ? value : '';
+                newElement[key] = value !== undefined && value !== null ? value : '';
             }
             return Object.values(newElement);
         });
@@ -118,7 +118,7 @@ export default function TableOutputs(
         });
     }
     const exportPDF = (_dataSource: any, cols: any) => {
-        const doc = new jsPDF('landscape');
+        const doc = new jsPDF(getOutputConfigs()?.orientation);
         (doc as any).addFileToVFS('Blotus.ttf', font);//font should be ttf
         doc.addFont('Blotus.ttf', 'Blotus', 'normal');
         doc.setFont('Blotus'); // set font                    
@@ -170,8 +170,8 @@ export default function TableOutputs(
     return (
         <div className="flex align-items-center justify-content-end gap-2.5">
             <div className="flex align-items-center justify-content-end gap-5">
-                <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => makeEXCEL(dataSource, columns)} />
-                <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => (exportPDF(dataSource, columns))} />
+                <Button type="button" icon="pi pi-file-excel" severity="success" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود XLSX" onClick={() => validateDataSource(dataSource, columns, false)} />
+                <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded tooltipOptions={{ position: 'mouse' }} tooltip="دانلود PDF" onClick={() => validateDataSource(dataSource, columns, true)} />
                 <TableRefresh handleClick={rest.tableRefresh}></TableRefresh>
                 {hasClick ?
                     <Button type="button" icon="pi pi-plus" severity='info' rounded tooltipOptions={{ position: 'mouse' }} tooltip="افزودن مورد" onClick={() => onClicked()}></Button>
